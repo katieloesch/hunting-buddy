@@ -1,5 +1,19 @@
 # Hunting Buddy - Job Application Tracker App
 
+<!--
+
+Description:
+
+Job application tracker to help you keep an overview during your job hunt.
+
+MERN -> react frontend, backend based in express, mongoDB and node.js
+
+- full crud functionality
+- authentication
+- responsive design, styled components
+
+ -->
+
 - package manager used: npm (v10.8.1)
 
   - https://www.npmjs.com/
@@ -17,6 +31,18 @@
   ```zsh
   npm run dev
   ```
+
+<!--
+
+
+- client:
+
+```zsh
+
+```
+
+
+-->
 
 - dependencies
 
@@ -518,8 +544,45 @@ set up script in package.json that installs all dependencies:
 
 ```zsh
 "scripts": {
-    "setup-project": "npm i && cd client && npm i"
+    "setup-project": "npm i && cd client && npm i",
+    "dev": "nodemon server.js"
   },
 ```
+
+
+- set up express server
+
+```
+
+import express from 'express';
+
+const app = express();
+
+app.get('/', (req, res) => {
+  res.send('hello world');
+});
+
+app.listen(5100, () => {
+  console.log('server running on port 51000...');
+});
+
+
+```
+
+
+test it:
+
+npm run dev
+
+
+
+
+
+
+
+
+
+
+
 
 -->
