@@ -27,9 +27,108 @@ app.post('/', (req, res) => {
   res.json({ message: 'data received', data: req.body });
 });
 
+/*
+ * Action:        INDEX
+ * HTTP Method:   GET
+ * URI:           /api/v1/jobs
+ * Description:   retrieves a list of all jobs
+ * Response:      returns a JSON array of job objects
+ */
+
 app.get('/api/v1/jobs', (req, res) => {
   res.status(200).json({ jobs });
 });
+
+/*
+ * Action:        CREATE
+ * HTTP Method:   POST
+ * URI:           /api/v1/jobs
+ * Description:   creates new job
+ * Response:      returns a JSON object of newly created job
+ */
+
+app.post('/api/v1/jobs', (req, res) => {
+  const { company, position } = req.body;
+
+  if (!company || !position) {
+    return res.status(400).json({ msg: 'please provide company and position' });
+  }
+
+  const id = nanoid(10);
+  const job = { id, company, position };
+  jobs.push(job);
+  res.status(201).json({ job });
+});
+
+/*
+ * Action:        SHOW
+ * HTTP Method:   GET
+ * URI:           /api/v1/jobs/mdivATfPJQ
+ * Description:   retrieve a single job of id: mdivATfPJQ
+ * Response:      returns a JSON object of job with id mdivATfPJQ
+ */
+
+app.get('/api/v1/jobs/:id', (req, res) => {
+  const { id } = req.params;
+  const job = jobs.find((job) => job.id === id);
+
+  if (!job) {
+    return res.status(404).json({ msg: `could not find job with id ${id}` });
+  }
+
+  res.status(200).json({ job });
+});
+
+/*
+ * Action:        UPDATE
+ * HTTP Method:   PATCH
+ * URI:           /api/v1/jobs/mdivATfPJQ
+ * Description:   edits a single job of id: mdivATfPJQ
+ * Response:      returns a JSON object of updated job with id mdivATfPJQ
+ */
+
+app.patch('/api/v1/jobs/:id', (req, res) => {
+  const { company, position } = req.body;
+
+  if (!company || !position) {
+    return res.status(400).json({ msg: `please provide company and position` });
+  }
+
+  const { id } = req.params;
+  const job = jobs.find((job) => job.id === id);
+  if (!job) {
+    return res.status(404).json({ msg: `could not find job with id ${id}` });
+  }
+
+  job.company = company;
+  job.position = position;
+
+  res.status(200).json({ msg: 'job updated', job });
+});
+
+/*
+ * Action:        DELETE
+ * HTTP Method:   DELETE
+ * URI:           /api/v1/jobs/mdivATfPJQ
+ * Description:   removes a single job of id: mdivATfPJQ
+ * Response:      returns a JSON object of deleted job with id mdivATfPJQ
+ */
+
+app.delete('/api/v1/jobs/:id', (req, res) => {
+  const { id } = req.params;
+
+  const job = jobs.find((job) => job.id === id);
+  if (!job) {
+    return res.status(404).json({ msg: `could not find job with id ${id}` });
+  }
+
+  const filteredJobs = jobs.filter((job) => job.id !== id);
+  jobs = filteredJobs;
+
+  res.status(200).json({ msg: 'job deleted', job });
+});
+
+// -------------------------------------------
 
 const port = process.env.PORT || 5100;
 
