@@ -1,7 +1,9 @@
 import * as dotenv from 'dotenv';
 dotenv.config();
+
 import express from 'express';
 const app = express();
+
 import morgan from 'morgan';
 import { nanoid } from 'nanoid';
 
@@ -73,7 +75,8 @@ app.get('/api/v1/jobs/:id', (req, res) => {
   const job = jobs.find((job) => job.id === id);
 
   if (!job) {
-    return res.status(404).json({ msg: `could not find job with id ${id}` });
+    throw new Error(`could not find job with id ${id}`);
+    // return res.status(404).json({ msg: `could not find job with id ${id}` });
   }
 
   res.status(200).json({ job });
@@ -116,8 +119,8 @@ app.patch('/api/v1/jobs/:id', (req, res) => {
 
 app.delete('/api/v1/jobs/:id', (req, res) => {
   const { id } = req.params;
-
   const job = jobs.find((job) => job.id === id);
+
   if (!job) {
     return res.status(404).json({ msg: `could not find job with id ${id}` });
   }
@@ -128,10 +131,19 @@ app.delete('/api/v1/jobs/:id', (req, res) => {
   res.status(200).json({ msg: 'job deleted', job });
 });
 
-// -------------------------------------------
+app.use('*', (req, res) => {
+  res.status(404).json({ msg: 'not found' });
+});
+
+app.use((error, req, res, next) => {
+  console.log(error);
+  res.status(500).json({ msg: 'something went wrong...' });
+});
+
+// ---------------------------------------------------------------
 
 const port = process.env.PORT || 5100;
 
 app.listen(port, () => {
-  console.log(`server running on PORT ${5100} ...`);
+  console.log(`server running on port ${port}...`);
 });
