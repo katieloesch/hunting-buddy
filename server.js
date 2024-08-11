@@ -11,21 +11,20 @@ import mongoose from 'mongoose';
 // routers
 import jobRouter from './routes/jobRouter.js';
 
-//add middleware to all routes with app.use()
+// middleware
+import errorHandlerMiddleware from './middleware/errorHandlerMiddleware.js';
+
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
 app.use(express.json());
 
+// ---------------------------------------------------------------
+
 //routes
 app.get('/', (req, res) => {
   res.send('hello world');
-});
-
-app.post('/', (req, res) => {
-  console.log(req);
-  res.json({ message: 'data received', data: req.body });
 });
 
 app.use('/api/v1/jobs', jobRouter);
@@ -34,10 +33,7 @@ app.use('*', (req, res) => {
   res.status(404).json({ msg: 'not found' });
 });
 
-app.use((error, req, res, next) => {
-  console.log(error);
-  res.status(500).json({ msg: 'something went wrong...' });
-});
+app.use(errorHandlerMiddleware);
 
 // ---------------------------------------------------------------
 
