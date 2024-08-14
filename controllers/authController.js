@@ -2,6 +2,7 @@ import { StatusCodes } from 'http-status-codes';
 import User from '../models/UserModel.js';
 import { comparePasswords, hashPassword } from '../utils/passwordUtils.js';
 import { UnauthenticatedError } from '../errors/customErrors.js';
+import { createJWT } from '../utils/tokenUtils.js';
 
 export const register = async (req, res) => {
   // 1) if user is the first one created in collection, role should be set to 'admin'
@@ -34,7 +35,12 @@ export const login = async (req, res) => {
   }
 
   // user exists in db AND passwords match ->
-
   //   res.status(StatusCodes.ACCEPTED).json({ user });
-  res.send('login route');
+
+  const token = createJWT({
+    userId: user._id,
+    role: user.role,
+  });
+
+  res.send({ token });
 };
