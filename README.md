@@ -115,9 +115,7 @@ MERN -> react frontend, backend based in express, mongoDB and node.js
   - [React Router in Depth #3 - Router Provider, createBrowserRouter & Outlet](https://www.youtube.com/watch?v=5s57C7leXc4&pp=ygUacmVhY3QgY3JlYXRlYnJvd3NlcnJvdXRlciA%3D) by [Net Ninja](https://www.youtube.com/@NetNinja)
 - udemy:
   - [MERN 2024 Edition - MongoDB, Express, React and NodeJS](https://www.udemy.com/course/mern-stack-course-mongodb-express-react-and-nodejs/) by [John Smilga](https://www.udemy.com/user/janis-smilga-3/)
-    - GitHub:
-      - https://github.com/john-smilga/mern-jobify-v2
-      - https://github.com/john-smilga
+    - GitHub: https://github.com/john-smilga
 
 ---
 
@@ -755,6 +753,78 @@ export const login = async (req, res) => {
 <img src="./client/src/assets/images/screenshots/cookie-postman-1.png">
 <img src="./client/src/assets/images/screenshots/cookie-postman-2.png">
 <img src="./client/src/assets/images/screenshots/cookie-postman-3.png">
+
+
+
+```JavaScript
+import { UnauthenticatedError } from '../errors/customErrors.js';
+import { verifyJWT } from '../utils/tokenUtils.js';
+
+export const authenticateUser = (req, res, next) => {
+  const { token } = req.cookies;
+  if (!token) {
+    throw new UnauthenticatedError('authentication invalid'); // 401
+  }
+
+  try {
+    const { userId, role } = verifyJWT(token);
+    req.user = { userId, role };
+
+    next();
+  } catch (error) {
+    throw new UnauthenticatedError('authentication invalid'); // 401
+  }
+};
+
+```
+Token Extraction:
+The authenticateUser middleware first extracts the token from the cookies using req.cookies.
+
+Token Verification:
+The token is then verified using the verifyJWT function, which is assumed to decode the JWT (JSON Web Token) and return the payload. The payload typically includes the userId and possibly other claims like role.
+
+Saving User Info in req:
+Once the token is verified, the userId and role are extracted from the token payload and stored in the req.user object:
+
+```JavaScript
+req.user = { userId, role };
+```
+This step effectively makes userId and role available throughout the lifetime of the request.
+
+Passing Control to the Next Middleware/Controller:
+After storing the user information in req.user, the next() function is called to pass control to the next middleware function or the route handler (controller).
+
+In any subsequent middleware or controller handling the request, you can access the userId and other user data using req.user. For example:
+
+```JavaScript
+const userId = req.user.userId;
+```
+
+This allows your controllers to utilize the authenticated user's userId for various operations, such as fetching user-specific data, authorizing actions, etc.
+
+The authenticateUser middleware verifies the JWT token and extracts the userId.
+It saves the userId to req.user, making it accessible in any controller or middleware that runs after authenticateUser.
+Controllers can then retrieve the userId from req.user to perform operations related to the authenticated user.
+This pattern is a common and effective way to handle authentication and user identity within an Express.js application.
+
+-> make sure we only get jobs belonging to specific user when running job routes
+
+refactor getAllJobs, createJob to incorporate id from req
+
+```JavaScript
+
+export const getAllJobs = async (req, res) => {
+  const jobs = await Job.find({ createdBy: req.user.userId });
+  res.status(StatusCodes.OK).json({ jobs });
+};
+
+export const createJob = async (req, res) => {
+  req.body.createdBy = req.user.userId;
+  const job = await Job.create(req.body);
+  res.status(StatusCodes.CREATED).json({ job });
+};
+
+```
 
 
 -->
