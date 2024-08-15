@@ -577,12 +577,184 @@ npm run dev
 
 
 
+14/08/2024
+```
+import jwt from 'jsonwebtoken';
+
+export const createJWT = (payload) => {
+  const token = jwt.sign(payload, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRES_IN,
+  });
+  return token;
+};
+
+```
 
 
 
+```
+export const login = async (req, res) => {
+  const user = await User.findOne({ email: req.body.email });
+
+  // 1) check if user with input email exists in db
+  // 2) if user exists, check if password is correct
+
+  const isValidUser =
+    user && (await comparePasswords(req.body.password, user.password));
+
+  if (!isValidUser) {
+    // if user doesn't exist in db or passwords don't match -> 401
+    throw new UnauthenticatedError('invalid credentials');
+  }
+
+  const token = createJWT({
+    userId: user._id,
+    role: user.role,
+  });
+
+  //one day in milliseconds
+  const oneDayMs = 1000 * 60 * 60 * 24;
+
+  // name: token,
+  res.cookie('token', token, {
+    httpOnly: true,
+    expires: new Date(Date.now() + oneDayMs),
+    secure: process.env.NODE_ENV,
+  });
+
+  res.status(StatusCodes.OK).json({ msg: 'user logged in' });
+};
+
+```
 
 
 
+This function `login` is an asynchronous function used in a Node.js/Express application to handle user authentication. Let's break down the code step by step:
+
+### 1. Finding the User in the Database
+```javascript
+const user = await User.findOne({ email: req.body.email });
+```
+- **Purpose**: This line attempts to find a user in the database using the email provided in the request body (`req.body.email`).
+- **Outcome**: If a user with that email exists, the `user` variable will contain the user's data. If not, `user` will be `null`.
+
+### 2. Validating the User and Password
+```javascript
+const isValidUser = user && (await comparePasswords(req.body.password, user.password));
+```
+- **Purpose**: This line checks two conditions:
+  - Whether the `user` exists (i.e., the user was found in the database).
+  - Whether the provided password matches the stored hashed password in the database.
+- **Outcome**:
+  - `isValidUser` will be `true` if both the user exists and the password is correct.
+  - If either the user doesn't exist or the password is incorrect, `isValidUser` will be `false`.
+
+### 3. Handling Invalid Credentials
+```javascript
+if (!isValidUser) {
+  throw new UnauthenticatedError('invalid credentials');
+}
+```
+- **Purpose**: This block checks if the user credentials are invalid.
+- **Outcome**:
+  - If `isValidUser` is `false`, an `UnauthenticatedError` is thrown, which will typically result in an HTTP 401 Unauthorized response being sent back to the client.
+  - The error message is "invalid credentials."
+
+### 4. Creating a JWT (JSON Web Token)
+```javascript
+const token = createJWT({
+  userId: user._id,
+  role: user.role,
+});
+```
+- **Purpose**: This line creates a JWT using the `createJWT` function. The payload of the token includes the user's ID and role.
+- **Outcome**:
+  - A JWT token is generated, which will be used to authenticate subsequent requests made by the user.
+
+### 5. Setting the JWT in a Cookie
+```javascript
+res.cookie('token', token, {
+  httpOnly: true,
+  expires: new Date(Date.now() + oneDayMs),
+  secure: process.env.NODE_ENV,
+});
+```
+- **Purpose**: This block sets the JWT as a cookie in the response to the client.
+- **Cookie Options**:
+  - `httpOnly: true`: Ensures that the cookie is only accessible via HTTP(S) and not client-side JavaScript, enhancing security.
+  - `expires`: Sets the cookie's expiration time to one day from the current time.
+  - `secure`: Ensures the cookie is sent only over HTTPS if the `NODE_ENV` environment variable is set (usually to `production`).
+
+### 6. Sending the Success Response
+```javascript
+res.status(StatusCodes.OK).json({ msg: 'user logged in' });
+```
+- **Purpose**: This line sends an HTTP 200 OK response back to the client, indicating that the user has successfully logged in.
+- **Outcome**: The response contains a JSON object with a success message.
+
+### The `createJWT` Function
+```javascript
+export const createJWT = (payload) => {
+  const token = jwt.sign(payload, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRES_IN,
+  });
+  return token;
+};
+```
+- **Purpose**: This function is responsible for creating a JWT.
+- **Parameters**:
+  - `payload`: Contains data that will be embedded in the JWT, such as the user ID and role.
+  - `process.env.JWT_SECRET`: A secret key used to sign the JWT. This should be stored securely in environment variables.
+  - `process.env.JWT_EXPIRES_IN`: Defines how long the token will be valid.
+- **Outcome**: The function returns the generated JWT.
+
+### Summary
+- **Functionality**: The `login` function authenticates a user by checking the email and password, generates a JWT if the credentials are valid, and then sets this JWT in a cookie before sending a response back to the client.
+- **Error Handling**: If the email or password is incorrect, the function throws an `UnauthenticatedError`, which should be handled by the Express error middleware to return a 401 status code to the client.
+
+
+15/08/2024
+
+```JavaScript
+export const login = async (req, res) => {
+  const user = await User.findOne({ email: req.body.email });
+
+  // 1) check if user with input email exists in db
+  // 2) if user exists, check if password is correct
+
+  const isValidUser =
+    user && (await comparePasswords(req.body.password, user.password));
+
+  if (!isValidUser) {
+    // if user doesn't exist in db or passwords don't match -> 401
+    throw new UnauthenticatedError('invalid credentials');
+  }
+
+  const token = createJWT({
+    userId: user._id,
+    role: user.role,
+  });
+
+  //one day in milliseconds
+  const oneDayMs = 1000 * 60 * 60 * 24;
+
+  // send back cookie, name of cookie: 'token',
+  res.cookie('token', token, {
+    httpOnly: true, // can't be accessed using JS, makes it more secure
+    expires: new Date(Date.now() + oneDayMs), // jwt expires in 1 day, set cookie expiration to same value but in ms
+    secure: process.env.NODE_ENV === 'production', // true if while in production env (https), false while in dev env (http)
+  });
+
+  res.status(StatusCodes.OK).json({ msg: 'user logged in' });
+};
+
+
+
+```
+
+<img src="./client/src/assets/images/screenshots/cookie-postman-1.png">
+<img src="./client/src/assets/images/screenshots/cookie-postman-2.png">
+<img src="./client/src/assets/images/screenshots/cookie-postman-3.png">
 
 
 -->

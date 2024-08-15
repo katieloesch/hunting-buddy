@@ -34,13 +34,20 @@ export const login = async (req, res) => {
     throw new UnauthenticatedError('invalid credentials');
   }
 
-  // user exists in db AND passwords match ->
-  //   res.status(StatusCodes.ACCEPTED).json({ user });
-
   const token = createJWT({
     userId: user._id,
     role: user.role,
   });
 
-  res.send({ token });
+  //one day in milliseconds
+  const oneDayMs = 1000 * 60 * 60 * 24;
+
+  // send back cookie, name of cookie: 'token',
+  res.cookie('token', token, {
+    httpOnly: true, // can't be accessed using JS, makes it more secure
+    expires: new Date(Date.now() + oneDayMs), // jwt expires in 1 day, set cookie expiration to same value but in ms
+    secure: process.env.NODE_ENV === 'production', // true if while in production env (https), false while in dev env (http)
+  });
+
+  res.status(StatusCodes.OK).json({ msg: 'user logged in' });
 };
