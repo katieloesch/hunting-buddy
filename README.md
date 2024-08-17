@@ -826,5 +826,27 @@ export const createJob = async (req, res) => {
 
 ```
 
+17/08/2024
 
+- only in dev env
+- a must since cookies are sent back to the same server
+- need to put frontend and backend on the same server during development stage
+
+- using 5100 for backend -> configure vite for same server to avoid CORS issues
+
+
+```js
+export default defineConfig({
+  plugins: [react()],
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:5100/api',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
+    },
+  },
+});
+```
 -->
