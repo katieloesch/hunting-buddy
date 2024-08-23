@@ -2,7 +2,32 @@
 
 <!--
 
-Description:
+<img src="" alt="" width="250">
+image source: []()
+
+-->
+
+## Overview
+
+1. [Description](#description)
+2. [Deployment Link](#deployment-link)
+3. [Installation](#installation)
+4. [Technologies Used](#technologies)
+5. [Deliverables](#deliverables)
+6. [Planning & Build Process](#planning)
+7. [Challenges](#challenges)
+8. [Wins](#wins)
+9. [Key Learnings & Takeaways](#takeaways)
+10. [Future Improvements](#future-improvements)
+
+---
+
+## <a name="description"></a> 1. Description
+
+<!--
+<img src="" alt="" width="250">
+
+image source: []()
 
 Job application tracker to help you keep an overview during your job hunt.
 
@@ -14,112 +39,222 @@ MERN -> react frontend, backend based in express, mongoDB and node.js
 
  -->
 
-- package manager used: npm (v10.8.1)
+## <a name="deployment-link"></a> 2. Deployment Link
 
-  - https://www.npmjs.com/
+## <a name="installation"></a> 3. Installation
 
-- to start application:
+#### Package Manager: npm (v10.8.1)
 
-  - install dependencies on both the fronend and the backend:
+- <sub>[website](https://www.npmjs.com/)</sub>
+- <sub>[GitHub Repository](https://github.com/npm)</sub>
 
-  ```zsh
-  npm run setup-project
-  ```
+#### Getting Started
 
-  - then start the server:
+- Ensure [Git](https://git-scm.com/) is installed on your machine.
+- Clone the repository by running this command in your terminal:
 
-  ```zsh
-  npm run dev
-  ```
+```zsh
+git clone https://github.com/katieloesch/hunting-buddy.git
+```
+
+- Navigate to the project directory to install dependencies:
+
+```zsh
+cd hunting-buddy
+```
+
+### Running the Application Locally in a local development environment:
+
+**1. Install Dependencies**
+
+- Run the following command in the project’s root directory to install all necessary dependencies on both the frontend and the backend:
+
+```zsh
+npm run setup-project
+```
+
+**2. Start the Development Server**
+
+- After installing the dependencies, start the the backend and frontend servers (concurrently) run:
+
+```zsh
+npm run dev
+```
+
+**3. Access the Application**
+
+- The backend development server will start at `http://localhost:5100/`.
+- The frontend development server will start at `http://localhost:5173/`.
+- By default, your web browser should automatically open and navigate to this address.
+- If it doesn’t, you can manually access the application by entering `http://localhost:5173/` in any web browser.
+
+## <a name="technologies"></a> 4. Technologies Used
+
+### Core Technologies
+
+### Key Dependencies - Frontend
+
+- **Sass** (v1.77.8)
+  - <sub>CSS preprocessor used for styling the application</sub>
+  - <sub>[npm page](https://www.npmjs.com/package/sass)</sub>
+  - <sub>[GitHub repository](https://github.com/sass/dart-sass)</sub>
+- **@tanstack/react-query** (v4.29.5)
+  - <sub>A library for managing server-side data in React applications, providing features like caching, synchronization, and automatic background updates for fetching and updating data.</sub>
+  - <sub>[npm page](https://www.npmjs.com/package/@tanstack/react-query)</sub>
+  - <sub>[GitHub repository](https://github.com/TanStack/query)</sub>
+  - <sub>[website](https://tanstack.com/query/latest)</sub>
+- **@tanstack/react-query-devtools** (v4.29.6)
+  - <sub>A development tool that works alongside react-query, offering a visual interface for inspecting and debugging your data fetching operations in a React application.</sub>
+  - <sub>[npm page](https://www.npmjs.com/package/@tanstack/react-query-devtools)</sub>
+  - <sub>[GitHub repository](https://github.com/TanStack/query)</sub>
+  - <sub>[website](https://tanstack.com/query/latest)</sub>
+- **axios** (v1.3.6)
+  - <sub>A promise-based HTTP client for Node.js and the browser that simplifies making asynchronous HTTP requests to REST endpoints.</sub>
+  - <sub>[npm page](https://www.npmjs.com/package/axios)</sub>
+  - <sub>[GitHub repository](https://github.com/axios/axios)</sub>
+  - <sub> [website](https://axios-http.com/)</sub>
+- **dayjs** (v1.11.7)
+  - <sub>A minimalist JavaScript library for parsing, validating, manipulating, and formatting dates, offering a lightweight and fast alternative to Moment.js.</sub>
+  - <sub>[npm page](https://www.npmjs.com/package/dayjs)</sub>
+  - <sub>[GitHub repository](https://github.com/iamkun/dayjs)</sub>
+  - <sub> [website](https://day.js.org/)</sub>
+- **react-icons** (v4.8.0)
+  - <sub>a free and open-source project providing icons for use in React projects</sub>
+  - <sub>[npm page](https://www.npmjs.com/package/react-icons)</sub>
+  - <sub>[GitHub repository](https://github.com/react-icons/react-icons)</sub>
+  - <sub> [website](https://react-icons.github.io/react-icons/)</sub>
+- **react-router-dom** (v6.10.0)
+  - <sub>An implementation of react-router that includes additional components for browser-based routing</sub>
+  - <sub>[npm page](https://www.npmjs.com/package/react-router-dom)</sub>
+  - <sub>[GitHub repository](https://github.com/remix-run/react-router)</sub>
+  - <sub> [website](https://reactrouter.com/en/main)</sub>
+- **react-toastify** (v9.1.2)
+  - <sub>A library for displaying customizable toast notifications in React applications, making it easy to show alerts, success messages, and other notifications.</sub>
+  - <sub>[npm page](https://www.npmjs.com/package/react-toastify)</sub>
+  - <sub>[GitHub repository](https://github.com/fkhadra/react-toastify)</sub>
+  - <sub> [website](https://fkhadra.github.io/react-toastify/introduction/)</sub>
+- **recharts** (v2.5.0)
+  - <sub>A charting library built with React components, enabling developers to create a wide variety of customizable charts and visualizations with ease.</sub>
+  - <sub>[npm page](https://www.npmjs.com/package/recharts)</sub>
+  - <sub>[GitHub repository](https://github.com/recharts/recharts)</sub>
+  - <sub> [website](https://recharts.org/en-US/)</sub>
+- **styled-components** (v5.3.10)
+  - <sub>A library for styling React applications using tagged template literals, allowing developers to write CSS directly within JavaScript and create component-scoped styles.</sub>
+  - <sub>[npm page](https://www.npmjs.com/package/styled-components)</sub>
+  - <sub>[GitHub repository](https://github.com/styled-components/styled-components)</sub>
+  - <sub> [website](https://styled-components.com/)</sub>
+
+### Key Dependencies - Backend
+
+-
 
 <!--
 
+    "bcryptjs": "^2.4.3",
+    "cloudinary": "^1.37.3",
+    "concurrently": "^8.0.1",
+    "cookie-parser": "^1.4.6",
+    "datauri": "^4.1.0",
+    "dayjs": "^1.11.9",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-async-errors": "^3.1.1",
+    "express-mongo-sanitize": "^2.2.0",
+    "express-rate-limit": "^6.8.0",
+    "express-validator": "^7.0.1",
+    "helmet": "^7.0.0",
+    "http-status-codes": "^2.2.0",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.0.5",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "nanoid": "^4.0.2",
+    "nodemon": "^2.0.22"
 
-- client:
+ -->
 
-```zsh
+### UI and Design
 
-```
+- **Icons**
+  - **React Icons**
+    - <sub>A free and open-source project providing icons for use in React projects.</sub>
+    - <sub> [website](https://react-icons.github.io/react-icons/)</sub>
+    - <sub>[GitHub repository](https://github.com/react-icons/react-icons)</sub>
+    - <sub>[license](https://github.com/react-icons/react-icons/blob/master/LICENSE)</sub>
 
+### Development Tools
+
+### Resources & Tutorials
+
+- **Documentation**
+  - <sub>[vite](https://vitejs.dev/guide/)</sub>
+  - <sub>[react-router: Migrating to RouterProvider](https://reactrouter.com/en/main/upgrading/v6-data)</sub>
+  - <sub>[TanStack Query](https://tanstack.com/query/latest/docs/framework/react/quick-start)</sub>
+  - <sub>[axios](https://axios-http.com/docs/intro)</sub>
+  - <sub>[dayjs](https://day.js.org/docs/en/installation/installation)</sub>
+  - <sub>[styled-components](https://styled-components.com/docs)</sub>
+- **Blogs**
+  - <sub>[The Power Of CreateBrowserRouter: Optimizing Your React App's Navigation](https://www.dhiwise.com/post/the-power-of-createbrowserrouter-optimizing-your-react-app) by Daxesh Patel</sub>
+  - <sub>[Getting Started with createBrowserRouter in react-router-dom](https://medium.com/@pavitramodi.it/getting-started-with-createbrowserrouter-in-react-router-dom-e3131820fef4) by [Pavitra Modi](https://medium.com/@pavitramodi.it)</sub>
+- **YouTube**
+  - <sub>[React Router in Depth #3 - Router Provider, createBrowserRouter & Outlet](https://www.youtube.com/watch?v=5s57C7leXc4&pp=ygUacmVhY3QgY3JlYXRlYnJvd3NlcnJvdXRlciA%3D) by [Net Ninja](https://www.youtube.com/@NetNinja)</sub>
+  - <sub>[Javascript Nuggets - FormData API](https://youtu.be/5-x4OUM-SP8) by [Coding Addict](https://www.youtube.com/@CodingAddict)</sub>
+  - <sub>[FormData API - React](https://youtu.be/WrX5RndZIzw) by [Coding Addict](https://www.youtube.com/@CodingAddict)</sub>
+- **Udemy**
+  - <sub>[MERN 2024 Edition - MongoDB, Express, React and NodeJS](https://www.udemy.com/course/mern-stack-course-mongodb-express-react-and-nodejs/) by [John Smilga](https://www.udemy.com/user/janis-smilga-3/)</sub>
+  - <sub>[The Complete Node.js Developer Course (3rd Edition)](https://www.udemy.com/course/the-complete-nodejs-developer-course-2/) by [Andrew Mead](https://www.udemy.com/user/andrewmead/) & [Rob Percival](https://www.udemy.com/user/robpercival/)</sub>
+  - <sub>[React, NodeJS, Express & MongoDB - The MERN Fullstack Guide]() by [Manuel Lorenz](https://www.udemy.com/user/manuel-lorenz/) & [Maximilian Schwarzmüller](https://www.udemy.com/user/maximilian-schwarzmuller/)</sub>
+  - <sub>[React - The Complete Guide 2024 (incl. Next.js, Redux)](https://www.udemy.com/course/react-the-complete-guide-incl-redux/learn/lecture/25595350?start=0#overview) by [Maximilian Schwarzmüller](https://www.udemy.com/user/maximilian-schwarzmuller/)</sub>
+
+## <a name="deliverables"></a> 5. Deliverables
+
+<!--
+
+### MVP
+
+### Potential Extra Features / Stretch Goals
+
+### User Stories
 
 -->
 
-- dependencies
+## <a name="planning"></a> 6. Planning & Build Process
 
-  - sass (v1.77.8)
-    - npm: https://www.npmjs.com/package/sass
-    - repo: https://github.com/sass/dart-sass
-  - @tanstack/react-query (v4.29.5)
-    - npm: https://www.npmjs.com/package/@tanstack/react-query
-    - repo: https://github.com/TanStack/query
-    - homepage: https://tanstack.com/query/latest
-  - @tanstack/react-query-devtools (v4.29.6)
-    - npm: https://www.npmjs.com/package/@tanstack/react-query-devtools
-    - repo: https://github.com/TanStack/query
-    - homepage: https://tanstack.com/query/latest
-  - axios (v1.3.6)
-    - npm: https://www.npmjs.com/package/axios
-    - repo: https://github.com/axios/axios
-    - homepage: https://axios-http.com/
-  - dayjs (v1.11.7)
-    - npm: https://www.npmjs.com/package/dayjs
-    - repo: https://github.com/iamkun/dayjs
-    - homepage: https://day.js.org/
-  - react-icons (v4.8.0)
-    - npm: https://www.npmjs.com/package/react-icons
-    - repo: https://github.com/react-icons/react-icons
-    - homepage: https://react-icons.github.io/react-icons/
-  - react-router-dom (v6.10.0)
-    - npm: https://www.npmjs.com/package/react-router-dom
-    - repo: https://github.com/remix-run/react-router
-    - homepage: https://reactrouter.com/en/main
-  - react-toastify (v9.1.2)
-    - npm: https://www.npmjs.com/package/react-toastify
-    - repo: https://github.com/fkhadra/react-toastify
-    - homepage: https://fkhadra.github.io/react-toastify/introduction/
-  - recharts (v2.5.0)
-    - npm: https://www.npmjs.com/package/recharts
-    - repo: https://github.com/recharts/recharts
-    - homepage: https://recharts.org/en-US/
-  - styled-components (v5.3.10)
-    - npm: https://www.npmjs.com/package/styled-components
-    - repo: https://github.com/styled-components/styled-components
-    - homepage: https://styled-components.com/
+<!-- bronze plan | silver plan | gold plan
 
-- UI
-  - icons
-    - react-icons (v4.8.0)
-      - npm: https://www.npmjs.com/package/react-icons
-      - repo: https://github.com/react-icons/react-icons
-      - homepage: https://react-icons.github.io/react-icons/
+<img src="" alt="wireframe" width="250"> -->
 
-### resources & tutorials
+## <a name="challenges"></a> 7. Challenges
 
-- docs:
-  - vite
-    - https://vitejs.dev/guide/
-  - react-router: Migrating to RouterProvider
-    - https://reactrouter.com/en/main/upgrading/v6-data
-  - TanStack Query
-    - https://tanstack.com/query/latest/docs/framework/react/quick-start
-  - axios:
-    - https://axios-http.com/docs/intro
-  - dayjs:
-    - https://day.js.org/docs/en/installation/installation
-  - styled-components
-    - https://styled-components.com/docs
-- blogs:
-  - [The Power Of CreateBrowserRouter: Optimizing Your React App's Navigation](https://www.dhiwise.com/post/the-power-of-createbrowserrouter-optimizing-your-react-app) by Daxesh Patel
-  - [Getting Started with createBrowserRouter in react-router-dom](https://medium.com/@pavitramodi.it/getting-started-with-createbrowserrouter-in-react-router-dom-e3131820fef4) by [Pavitra Modi](https://medium.com/@pavitramodi.it)
-- Youtube:
-  - [React Router in Depth #3 - Router Provider, createBrowserRouter & Outlet](https://www.youtube.com/watch?v=5s57C7leXc4&pp=ygUacmVhY3QgY3JlYXRlYnJvd3NlcnJvdXRlciA%3D) by [Net Ninja](https://www.youtube.com/@NetNinja)
-- udemy:
-  - [MERN 2024 Edition - MongoDB, Express, React and NodeJS](https://www.udemy.com/course/mern-stack-course-mongodb-express-react-and-nodejs/) by [John Smilga](https://www.udemy.com/user/janis-smilga-3/)
-    - GitHub: https://github.com/john-smilga
+## <!--
 
----
+-
+- -->
+
+## <a name="wins"></a> 8. Wins
+
+## <!--
+
+-
+- -->
+
+## <a name="takeaways"></a> 9. Key Learnings & Takeaways
+
+## <!--
+
+-
+- -->
+
+## <a name="future-improvements"></a> 10. Future Improvements
+
+## <!--
+
+-
+- -->
 
 <!---
+
+--------------------------------------------------------------------------------------
 
 *** Notes ***
 
