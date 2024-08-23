@@ -213,6 +213,7 @@ npm run dev
   - <sub>[axios](https://axios-http.com/docs/intro)</sub>
   - <sub>[dayjs](https://day.js.org/docs/en/installation/installation)</sub>
   - <sub>[styled-components](https://styled-components.com/docs)</sub>
+  - <sub>[React-toastify](https://fkhadra.github.io/react-toastify/introduction/)</sub>
 - **Blogs**
   - <sub>[The Power Of CreateBrowserRouter: Optimizing Your React App's Navigation](https://www.dhiwise.com/post/the-power-of-createbrowserrouter-optimizing-your-react-app) by Daxesh Patel</sub>
   - <sub>[Getting Started with createBrowserRouter in react-router-dom](https://medium.com/@pavitramodi.it/getting-started-with-createbrowserrouter-in-react-router-dom-e3131820fef4) by [Pavitra Modi](https://medium.com/@pavitramodi.it)</sub>

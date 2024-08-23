@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form, Link, redirect, useNavigation } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import Wrapper from '../styledComponents/RegisterLoginPage';
 import { FormInput, Logo } from '../components';
@@ -11,9 +12,11 @@ export const action = async ({ request }) => {
 
   try {
     await customFetch.post('/auth/register', data);
+
+    toast.success('Registration Successful!');
     return redirect('/login');
   } catch (error) {
-    console.log(error);
+    toast.error(error?.response?.data?.msg); // make sure custom error is displayed, not axios error
     return error;
   }
 };
