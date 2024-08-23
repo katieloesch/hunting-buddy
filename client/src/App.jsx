@@ -17,6 +17,8 @@ import {
   Stats,
 } from './pages';
 
+import { action as registerAction } from './pages/Register';
+
 export const getThemeFromLS = () => {
   // check localStorage to see if theme was saved there last time website was visited
   // if a theme was saved there, apply it
@@ -40,6 +42,7 @@ const router = createBrowserRouter([
       {
         path: 'register',
         element: <Register />,
+        action: registerAction,
       },
       {
         path: 'login',

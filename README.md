@@ -1,11 +1,16 @@
 # Hunting Buddy - Job Application Tracker App
 
-<!--
+<img src="./client/src/assets/images/forms_2.jpg" alt="job application forms" width="420">
 
-<img src="" alt="" width="250">
-image source: []()
+<sub>image source: [Pixabay](https://pixabay.com/illustrations/application-pen-write-writing-tool-1915343/)</sub>
 
--->
+<img src="./client/src/assets/images/job_hunt.jpg" alt="job application forms" width="420">
+
+<sub>image source: [Unblast](https://unblast.com/)</sub>
+
+<!-- <img src="./client//src//assets/images/job_search_tool.jpg" alt="job search tool" width="400">
+
+<sub>image source: [Pixabay](https://pixabay.com/photos/trousers-pocket-note-wrench-job-1255851/)</sub> -->
 
 ## Overview
 
@@ -73,7 +78,7 @@ cd hunting-buddy
 npm run setup-project
 ```
 
-**2. Start the Development Server**
+**2. Start Development Servers**
 
 - After installing the dependencies, start the the backend and frontend servers (concurrently) run:
 
@@ -176,11 +181,26 @@ npm run dev
 ### UI and Design
 
 - **Icons**
+
   - **React Icons**
     - <sub>A free and open-source project providing icons for use in React projects.</sub>
     - <sub> [website](https://react-icons.github.io/react-icons/)</sub>
     - <sub>[GitHub repository](https://github.com/react-icons/react-icons)</sub>
     - <sub>[license](https://github.com/react-icons/react-icons/blob/master/LICENSE)</sub>
+
+- **Images**
+  - **Pixabay**
+    - <sub>A free stock photo and media platform offering a vast library of images, videos and music.</sub>
+    - <sub>[website](https://pixabay.com/)</sub>
+    - <sub>[license](https://pixabay.com/service/license-summary/)</sub>
+  - **istockphoto**
+    - <sub>A stock content service offering a wide range of photos, illustrations, videos, and audio clips for creative projects.</sub>
+    - <sub>[website](https://www.istockphoto.com/)</sub>
+    - <sub>[license](https://www.istockphoto.com/legal/license-agreement)</sub>
+  - **Unblast**
+    - <sub>A platform that offers a collection of design resources, including templates, mockups, icons and other creative assets for designers and developers.</sub>
+    - [website](https://unblast.com/)
+    - [license](https://unblast.com/license/)
 
 ### Development Tools
 
@@ -208,15 +228,11 @@ npm run dev
 
 ## <a name="deliverables"></a> 5. Deliverables
 
-<!--
-
-### MVP
+<!-- ### MVP
 
 ### Potential Extra Features / Stretch Goals
 
-### User Stories
-
--->
+### User Stories -->
 
 ## <a name="planning"></a> 6. Planning & Build Process
 
@@ -226,35 +242,16 @@ npm run dev
 
 ## <a name="challenges"></a> 7. Challenges
 
-## <!--
-
--
-- -->
-
 ## <a name="wins"></a> 8. Wins
-
-## <!--
-
--
-- -->
 
 ## <a name="takeaways"></a> 9. Key Learnings & Takeaways
 
-## <!--
-
--
-- -->
-
 ## <a name="future-improvements"></a> 10. Future Improvements
 
-## <!--
-
--
-- -->
-
-<!---
+<!--
 
 --------------------------------------------------------------------------------------
+
 
 *** Notes ***
 

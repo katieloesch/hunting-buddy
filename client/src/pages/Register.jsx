@@ -1,13 +1,27 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Form, Link, redirect, useNavigation } from 'react-router-dom';
 
 import Wrapper from '../styledComponents/RegisterLoginPage';
 import { FormInput, Logo } from '../components';
+import customFetch from '../utils/customFetch';
+
+export const action = async ({ request }) => {
+  const formData = await request.formData();
+  const data = Object.fromEntries(formData);
+
+  try {
+    await customFetch.post('/auth/register', data);
+    return redirect('/login');
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
 
 const Register = () => {
   return (
     <Wrapper>
-      <form className='form auth-form'>
+      <Form method='post' className='form auth-form'>
         <Logo section='auth' />
         <h4>Register</h4>
 
@@ -29,7 +43,7 @@ const Register = () => {
           name='email'
           defaultValue='hquinn@wayneindusties.com'
         />
-        <FormInput type='password' name='password' defaultValue='mrj' />
+        <FormInput type='password' name='password' defaultValue='mrjpuddin' />
 
         <button type='submit' className='btn btn-block'>
           submit
@@ -40,7 +54,7 @@ const Register = () => {
             Login
           </Link>
         </p>
-      </form>
+      </Form>
     </Wrapper>
   );
 };
