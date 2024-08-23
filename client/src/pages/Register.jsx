@@ -19,6 +19,9 @@ export const action = async ({ request }) => {
 };
 
 const Register = () => {
+  const navigation = useNavigation();
+  console.log(navigation);
+  const isSubmitting = navigation.state === 'submitting';
   return (
     <Wrapper>
       <Form method='post' className='form auth-form'>
@@ -45,8 +48,8 @@ const Register = () => {
         />
         <FormInput type='password' name='password' defaultValue='mrjpuddin' />
 
-        <button type='submit' className='btn btn-block'>
-          submit
+        <button type='submit' className='btn btn-block' disabled={isSubmitting}>
+          {isSubmitting ? 'submitting...' : 'submit'}
         </button>
         <p>
           Already a member?
