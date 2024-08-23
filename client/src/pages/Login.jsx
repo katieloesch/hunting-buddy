@@ -16,7 +16,7 @@ const Login = () => {
           name='email'
           defaultValue='hquinn@wayneindusties.com'
         />
-        <FormInput type='password' name='password' defaultValue='mrj' />
+        <FormInput type='password' name='password' defaultValue='mrjpuddin' />
 
         <button type='submit' className='btn btn-block'>
           submit
