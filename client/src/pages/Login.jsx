@@ -13,8 +13,10 @@ export const action = async ({ request }) => {
 
   try {
     await customFetch.post('/auth/login', data);
+    toast.success('Login successful');
     return redirect('/dashboard');
   } catch (error) {
+    toast.error(error?.response?.data?.msg);
     return error;
   }
 };
@@ -22,7 +24,6 @@ export const action = async ({ request }) => {
 const Login = () => {
   const navigation = useNavigation();
   const isSubmitting = navigation.state === 'submitting';
-
   return (
     <Wrapper>
       <Form method='post' className='form auth-form'>
