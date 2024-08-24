@@ -1,13 +1,28 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Form, Link, redirect, useNavigation } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import Wrapper from '../styledComponents/RegisterLoginPage';
 import { FormInput, Logo } from '../components';
+import customFetch from '../utils/customFetch';
+
+export const action = async ({ request }) => {
+  const formData = await request.formData();
+  const data = Object.fromEntries(formData);
+  console.log(data);
+
+  try {
+    await customFetch.post('/auth/login', data);
+    return redirect('/dashboard');
+  } catch (error) {
+    return error;
+  }
+};
 
 const Login = () => {
   return (
     <Wrapper>
-      <form className='form auth-form'>
+      <Form method='post' className='form auth-form'>
         <Logo section='auth' />
         <h4>Login</h4>
 
@@ -32,7 +47,7 @@ const Login = () => {
             Register
           </Link>
         </p>
-      </form>
+      </Form>
     </Wrapper>
   );
 };
