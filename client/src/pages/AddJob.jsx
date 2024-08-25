@@ -8,7 +8,7 @@ import {
 import { toast } from 'react-toastify';
 
 import Wrapper from '../styledComponents/DashboardFormPage';
-import { FormInput } from '../components';
+import { FormInput, FormSelect } from '../components';
 import customFetch from '../utils/customFetch';
 import { JOB_STATUS, JOB_TYPE } from '../../../utils/constants';
 
@@ -30,6 +30,20 @@ const AddJob = () => {
             labelText='location'
             name='jobLocation'
             defaultValue={user.location}
+          />
+
+          <FormSelect
+            name='jobStatus'
+            labelText='status'
+            options={Object.values(JOB_STATUS)}
+            defaultValue={JOB_STATUS.PENDING}
+          />
+
+          <FormSelect
+            name='jobType'
+            labelText='type'
+            options={Object.values(JOB_TYPE)}
+            defaultValue={JOB_TYPE.FULL_TIME}
           />
 
           <button
