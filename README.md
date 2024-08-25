@@ -55,12 +55,13 @@ MERN -> react frontend, backend based in express, mongoDB and node.js
 
 ## <a name="installation"></a> 3. Installation
 
-#### Package Manager: npm (v10.8.1)
+### Package Manager: npm (v10.8.1)
 
 - <sub>[website](https://www.npmjs.com/)</sub>
+- <sub>[documentation](https://docs.npmjs.com/)</sub>
 - <sub>[GitHub Repository](https://github.com/npm)</sub>
 
-#### Getting Started
+### Getting Started
 
 - Ensure [Git](https://git-scm.com/) is installed on your machine.
 - Clone the repository by running this command in your terminal:
@@ -97,14 +98,14 @@ npm run dev
 
 - The backend development server will start at `http://localhost:5100/`.
 - The frontend development server will start at `http://localhost:5173/`.
-- By default, your web browser should automatically open and navigate to this address.
-- If it doesn’t, you can manually access the application by entering `http://localhost:5173/` in any web browser.
+  - By default, your web browser should automatically open and navigate to this address.
+  - If it doesn’t, you can manually access the application by entering `http://localhost:5173/` in any web browser.
 
 ## <a name="technologies"></a> 4. Technologies Used
 
 ### Core Technologies
 
-This application was built using the MERN stack, an open source–centric collection of technologies that uses JavaScript for both the browser and server sides of a web application:
+This application was built using the `MERN stack`, an open source–centric collection of technologies that uses `JavaScript` for both the browser and server sides of a web application:
 
 - **Frontend**
   - **React.js** (v18.3.1)
@@ -116,7 +117,7 @@ This application was built using the MERN stack, an open source–centric collec
     - <sub>[website](https://vitejs.dev/)</sub>
     - <sub>[Github repository](https://github.com/vitejs/vite)</sub>
     - <sub>[npm page](https://www.npmjs.com/package/vite)</sub>
-- Backend
+- **Backend**
   - **Express.js** (v4.18.2)
     - <sub>A fast and minimalist web framework for Node.js, used to build web applications and APIs.</sub>
     - <sub>[npm page](https://www.npmjs.com/package/express)</sub>
@@ -126,7 +127,7 @@ This application was built using the MERN stack, an open source–centric collec
     - <sub>A JavaScript runtime built on Chrome's V8 JavaScript engine, allowing developers to use JavaScript to build server-side applications with event-driven, non-blocking I/O.</sub>
     - <sub>[website](https://nodejs.org)</sub>
     - <sub>[GitHub Repository](https://github.com/nodejs)</sub>
-- Database
+- **Database**
   - **MongoDB / MongoDB Atlas** (v7.0.12)
     - <sub>MongoDB: a document-oriented NoSQL database designed for scalability and flexibility, making it easy to store and retrieve large volumes of structured and semi-structured data.</sub>
     - <sub>MongoDB Atlas: a fully managed cloud-based service that hosts and manages MongoDB databases, provided by the creators of MongoDB.</sub>
@@ -300,7 +301,7 @@ This application was built using the MERN stack, an open source–centric collec
     - <sub>A free stock photo and media platform offering a vast library of images, videos and music.</sub>
     - <sub>[website](https://pixabay.com/)</sub>
     - <sub>[license](https://pixabay.com/service/license-summary/)</sub>
-  - **istockphoto**
+  - **iStockPhoto**
     - <sub>A stock content service offering a wide range of photos, illustrations, videos, and audio clips for creative projects.</sub>
     - <sub>[website](https://www.istockphoto.com/)</sub>
     - <sub>[license](https://www.istockphoto.com/legal/license-agreement)</sub>
@@ -374,9 +375,14 @@ This application was built using the MERN stack, an open source–centric collec
 
 ## <a name="wins"></a> 8. Wins
 
+- vite
+- styled components
+
 ## <a name="takeaways"></a> 9. Key Learnings & Takeaways
 
 ## <a name="future-improvements"></a> 10. Future Improvements
+
+- more themes in addition to light/dark theme to customise app
 
 <!--
 
