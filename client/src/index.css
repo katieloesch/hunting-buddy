@@ -345,18 +345,18 @@ button:disabled {
   margin: 0 auto;
 }
 
-/* buttons + badges */
+/* job status badges */
 .pending {
   background: #fef3c7;
-  color: #f59e0b;
+  color: #cd7121ee;
 }
 
 .interview {
-  background: #e0e8f9;
-  color: #647acb;
+  background: rgba(211, 244, 201, 0.887);
+  color: #3f7343;
 }
 
 .declined {
-  background: #ffeeee;
-  color: #d66a6a;
+  background: #d8d7d7c5;
+  color: #6d6a6a;
 }

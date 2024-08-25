@@ -4,9 +4,9 @@
 
 <sub>image source: [Pixabay](https://pixabay.com/illustrations/application-pen-write-writing-tool-1915343/)</sub> -->
 
-<img src="./client/src/assets/images/job_hunt.jpg" alt="job application forms" width="550">
+<img src="./client/src/assets/images/job_hunt.jpg" alt="job application forms" width="500">
 
-<sub>image source: [Unblast](https://unblast.com/)</sub>
+<sub>image source: [Unblast](https://unblast.com/job-hunting-illustration-ai/)</sub>
 
 <!-- <img src="./client//src//assets/images/job_search_tool.jpg" alt="job search tool" width="400">
 
@@ -55,56 +55,118 @@ MERN -> react frontend, backend based in express, mongoDB and node.js
 
 ## <a name="installation"></a> 3. Installation
 
-#### Package Manager: npm (v10.8.1)
+### Package Manager: npm (v10.8.1)
 
 - <sub>[website](https://www.npmjs.com/)</sub>
+- <sub>[documentation](https://docs.npmjs.com/)</sub>
 - <sub>[GitHub Repository](https://github.com/npm)</sub>
 
-#### Getting Started
+### Getting Started
 
-- Ensure [Git](https://git-scm.com/) is installed on your machine.
-- Clone the repository by running this command in your terminal:
+#### 1. Ensure [Git](https://git-scm.com/) is installed:
+
+- Before you begin, make sure Git is installed on your machine.
+
+#### 2. Clone the repository:
+
+- Run the following commandn in your terminal to clone the repository:
 
 ```zsh
 git clone https://github.com/katieloesch/hunting-buddy.git
 ```
 
-- Navigate to the project directory to install dependencies:
+#### 3. Navigate to the project directory:
+
+- Change into the project directory to install the necessary dependencies:
 
 ```zsh
 cd hunting-buddy
 ```
 
-### Running the Application Locally in a local development environment:
+### Running the Application Locally
 
-**1. Install Dependencies**
+#### 1. Install Dependencies
 
-- Run the following command in the project’s root directory to install all necessary dependencies on both the frontend and the backend:
+- To install all the required dependencies for both the frontend and backend, run:
 
-```zsh
-npm run setup-project
-```
+  ```zsh
+  npm run setup-project
+  ```
 
-**2. Start Development Servers**
+#### 2. Set Up Environment Variables
 
-- After installing the dependencies, start the the backend and frontend servers (concurrently) run:
+- The application requires a `.env` file in the root directory to function correctly. This file contains essential environment variables, such as the MongoDB connection string and JWT secret keys, without which the application will not connect to the database or perform critical functions.
 
-```zsh
-npm run dev
-```
+  **Required Environment Variables:**
 
-**3. Access the Application**
+  ```plaintext
+  NODE_ENV
+  PORT
+  MONGO_URL
+  JWT_SECRET
+  JWT_EXPIRES_IN
+  ```
 
-- The backend development server will start at `http://localhost:5100/`.
-- The frontend development server will start at `http://localhost:5173/`.
-- By default, your web browser should automatically open and navigate to this address.
-- If it doesn’t, you can manually access the application by entering `http://localhost:5173/` in any web browser.
+  **Setting up the `.env` File:**
+
+  1. Create a `.env` file in the root directory of the project.
+  2. Copy the required environment variables listed above into the `.env` file and assign values to them.
+
+  **Example `.env` File:**
+
+  ```plaintext
+  NODE_ENV=development
+  PORT=5100
+  MONGO_URL=mongodb+srv://<your-username>:<your-password>@atlascluster.ic1x9.mongodb.net/<your-database-name>?retryWrites=true&w=majority
+  JWT_SECRET=your_jwt_secret
+  JWT_EXPIRES_IN=1d
+  ```
+
+  3. Replace the placeholder values (`<your-username>`, `<your-password>`, `<your-database-name>`, `your_jwt_secret`) with your actual MongoDB credentials and JWT secret.
+
+  - to obtain the `MONGO_URL`, you need to set up a MongoDB database
+  - If you don't have an account already, register on MongoDB Atlas:
+
+    - Go to [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) and create a free account.
+    - Create a New Cluster:
+      - Once logged in, click on the "Build a Cluster" button.
+      - Choose a cloud provider (e.g., AWS, Google Cloud, Azure), and select a region that is close to you for better performance.
+      - You can use the free tier cluster, which provides enough resources for development and small projects.
+    - Create a Database User:
+      - After the cluster is set up, you’ll need to create a database user with a username and password.
+      - Navigate to the "Database Access" tab in your cluster and create a new user.
+      - Make sure to save the username and password, as you’ll need these credentials for the `MONGO_URL`.
+    - Obtain the Connection String:
+
+      - Go to the "Clusters" view, and click on the "Connect" button for your cluster.
+      - Select "Drivers" and you will be provided with a connection string similar to this:
+
+        ```plaintext
+        mongodb+srv://<your-username>:<your-password>@cluster0.mongodb.net/<your-database-name>?retryWrites=true&w=majority
+        ```
+
+    - Update the `.env` File:
+      - Copy the connection string into your `.env` file, replacing the placeholders (`<your-username>`, `<your-password>`, `<your-database-name>`) with your actual database credentials and database name.
+
+#### 3. Start the Development Servers
+
+- Once the dependencies are installed and the `.env` file is configured, you can start both the backend and frontend servers concurrently by running:
+
+  ```zsh
+  npm run dev
+  ```
+
+#### 4. Access the Application
+
+- The backend server will be running at `http://localhost:5100/` by default, or at the port you specified in the .env file.
+- The frontend server will be available at `http://localhost:5173/`.
+  - If your default web browser doesn't automatically open and navigate to the frontend server, you can manually access the application by visiting `http://localhost:5173/` in any web browser.
 
 ## <a name="technologies"></a> 4. Technologies Used
 
 ### Core Technologies
 
-This application was built using the MERN stack, an open source–centric collection of technologies that uses JavaScript for both the browser and server sides of a web application:
+This application was built using the `MERN stack`, an open source–centric collection of technologies that uses `JavaScript` for both the browser and server sides of a web application:
 
 - **Frontend**
   - **React.js** (v18.3.1)
@@ -116,7 +178,7 @@ This application was built using the MERN stack, an open source–centric collec
     - <sub>[website](https://vitejs.dev/)</sub>
     - <sub>[Github repository](https://github.com/vitejs/vite)</sub>
     - <sub>[npm page](https://www.npmjs.com/package/vite)</sub>
-- Backend
+- **Backend**
   - **Express.js** (v4.18.2)
     - <sub>A fast and minimalist web framework for Node.js, used to build web applications and APIs.</sub>
     - <sub>[npm page](https://www.npmjs.com/package/express)</sub>
@@ -126,7 +188,7 @@ This application was built using the MERN stack, an open source–centric collec
     - <sub>A JavaScript runtime built on Chrome's V8 JavaScript engine, allowing developers to use JavaScript to build server-side applications with event-driven, non-blocking I/O.</sub>
     - <sub>[website](https://nodejs.org)</sub>
     - <sub>[GitHub Repository](https://github.com/nodejs)</sub>
-- Database
+- **Database**
   - **MongoDB / MongoDB Atlas** (v7.0.12)
     - <sub>MongoDB: a document-oriented NoSQL database designed for scalability and flexibility, making it easy to store and retrieve large volumes of structured and semi-structured data.</sub>
     - <sub>MongoDB Atlas: a fully managed cloud-based service that hosts and manages MongoDB databases, provided by the creators of MongoDB.</sub>
@@ -142,6 +204,21 @@ This application was built using the MERN stack, an open source–centric collec
 
 ### Key Dependencies - Frontend
 
+- **@fortawesome/fontawesome-svg-core** (v6.6.0)
+  - <sub>A core package that provides the necessary utilities and functions that underpin the use of FontAwesome icons, ensuring that the icons render correctly across different environments.</sub>
+  - <sub>[npm page](https://www.npmjs.com/package/@fortawesome/fontawesome-svg-core?activeTab=readme)</sub>
+  - <sub>[GitHub repository](https://github.com/FortAwesome/Font-Awesome)</sub>
+  - <sub>[website](https://fontawesome.com/)</sub>
+- **@fortawesome/free-solid-svg-icons** (v6.6.0)
+  - <sub>A package that contains the SVG icon definitions for the "solid" style icons provided by FontAwesome, making them available for use in your project.</sub>
+  - <sub>[npm page](https://www.npmjs.com/package/@fortawesome/free-solid-svg-icons)</sub>
+  - <sub>[GitHub repository](https://github.com/FortAwesome/Font-Awesome)</sub>
+  - <sub>[website](https://fontawesome.com/)</sub>
+- **@fortawesome/react-fontawesome** (v0.2.2)
+  - <sub>A package that provides the React components necessary to use FontAwesome icons in React applications.</sub>
+  - <sub>[npm page](https://www.npmjs.com/package/@fortawesome/react-fontawesome)</sub>
+  - <sub>[GitHub repository](https://github.com/FortAwesome/react-fontawesome)</sub>
+  - <sub>[website](https://fontawesome.com/)</sub>
 - **@tanstack/react-query** (v4.29.5)
   - <sub>A library for managing server-side data in React applications, providing features like caching, synchronization, and automatic background updates for fetching and updating data.</sub>
   - <sub>[npm page](https://www.npmjs.com/package/@tanstack/react-query)</sub>
@@ -288,19 +365,22 @@ This application was built using the MERN stack, an open source–centric collec
 ### UI and Design
 
 - **Icons**
-
+  - **Font Awesome**
+    - <sub>A popular icon library offering a large set of scalable and customizable icons, with a free version that is open source.</sub>
+    - <sub>[website](https://fontawesome.com/)</sub>
+    - <sub>[GitHub repository](https://github.com/FortAwesome/Font-Awesome)</sub>
+    - <sub>[license](https://fontawesome.com/license/free)</sub>
   - **React Icons**
     - <sub>A free and open-source project providing icons for use in React projects.</sub>
     - <sub> [website](https://react-icons.github.io/react-icons/)</sub>
     - <sub>[GitHub repository](https://github.com/react-icons/react-icons)</sub>
     - <sub>[license](https://github.com/react-icons/react-icons/blob/master/LICENSE)</sub>
-
 - **Images**
   - **Pixabay**
     - <sub>A free stock photo and media platform offering a vast library of images, videos and music.</sub>
     - <sub>[website](https://pixabay.com/)</sub>
     - <sub>[license](https://pixabay.com/service/license-summary/)</sub>
-  - **istockphoto**
+  - **iStockPhoto**
     - <sub>A stock content service offering a wide range of photos, illustrations, videos, and audio clips for creative projects.</sub>
     - <sub>[website](https://www.istockphoto.com/)</sub>
     - <sub>[license](https://www.istockphoto.com/legal/license-agreement)</sub>
@@ -311,23 +391,34 @@ This application was built using the MERN stack, an open source–centric collec
 
 ### Development Tools
 
-- **Git / GitHub**
+- **Vite** (v5.3.4)
+  - <sub>A frontend build tool that offers fast development and optimized production builds for modern JavaScript projects.</sub>
+  - <sub>[website](https://vitejs.dev/)</sub>
+  - <sub>[Github repository](https://github.com/vitejs/vite)</sub>
+  - <sub>[npm page](https://www.npmjs.com/package/vite)</sub>
+  - <sub>[documentation](https://vitejs.dev/guide/)</sub>
+- **Git / GitHub** (v2.39.3)
   - <sub>used for version control and collaboration</sub>
   - <sub>[Git website](https://git-scm.com/)</sub>
+  - <sub>[Git documentation](https://git-scm.com/doc)</sub>
   - <sub>[GitHub website](https://github.com/)</sub>
-- **Visual Studio Code (VSCode)**
+  - <sub>[GitHub documentation](https://docs.github.com/en)</sub>
+- **Visual Studio Code (VSCode)** (v1.92.2)
   - <sub>code editor used for development</sub>
   - <sub>[website](https://code.visualstudio.com/)</sub>
   - <sub>[GitHub repository](https://github.com/microsoft/vscode)</sub>
-- **Google Chrome & Chrome DevTools**
+  - <sub>[documentation](https://code.visualstudio.com/docs)</sub>
+- **Google Chrome & Chrome DevTools** (v128.0.6613.85)
   - <sub>used for testing, debugging, and developing in the browser</sub>
   - <sub>[Google Chrome website](https://www.google.com/chrome/)</sub>
+  - <sub>[Google Chrome documentation](https://developer.chrome.com/docs)</sub>
   - <sub>[Chrome DevTools documentation](https://developer.chrome.com/docs/devtools)</sub>
-- **Excalidraw**
+- **Excalidraw** (v0.17.0)
   - <sub>tool used to create wireframes for the application</sub>
   - <sub>[website](https://excalidraw.com/)</sub>
   - <sub>[GitHub repository](https://github.com/excalidraw/excalidraw)</sub>
-- **ChatGPT4o**:
+  - <sub>[documentation](https://docs.excalidraw.com/)</sub>
+- **ChatGPT4o**
   - <sub>generative AI tool used for debugging and development support</sub>
   - <sub>[website](https://chat.openai.com/)</sub>
   - <sub>[GitHub repository](https://github.com/openai)</sub>
@@ -374,9 +465,14 @@ This application was built using the MERN stack, an open source–centric collec
 
 ## <a name="wins"></a> 8. Wins
 
+- vite
+- styled components
+
 ## <a name="takeaways"></a> 9. Key Learnings & Takeaways
 
 ## <a name="future-improvements"></a> 10. Future Improvements
+
+- more themes in addition to light/dark theme to customise app
 
 <!--
 

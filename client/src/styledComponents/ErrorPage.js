@@ -10,6 +10,7 @@ const Wrapper = styled.main`
   img {
     width: 90vw;
     max-width: 600px;
+    border-radius: 13px;
     display: block;
     margin-bottom: 2rem;
     margin-top: -3rem;
