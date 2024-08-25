@@ -1,11 +1,10 @@
 import React from 'react';
 import { Form, Link } from 'react-router-dom';
+import day from 'dayjs';
+import advancedFormat from 'dayjs/plugin/advancedFormat';
 import { FaBriefcase, FaCalendarAlt } from 'react-icons/fa';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
-
-import day from 'dayjs';
-import advancedFormat from 'dayjs/plugin/advancedFormat';
 
 import Wrapper from '../styledComponents/JobCard';
 import JobInfo from './JobInfo';
@@ -54,7 +53,7 @@ const JobCard = ({
           <Link to={`../edit-job/${_id}`} className='btn edit-btn'>
             Edit
           </Link>
-          <Form>
+          <Form method='post' action={`../delete-job/${_id}`}>
             <button type='submit' className='btn delete-btn'>
               Delete
             </button>
