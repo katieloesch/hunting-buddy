@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  Form,
-  redirect,
-  useLoaderData,
-  useNavigation,
-  useParams,
-} from 'react-router-dom';
+import { Form, redirect, useLoaderData, useNavigation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import Wrapper from '../styledComponents/DashboardFormPage';
@@ -23,8 +17,18 @@ export const loader = async ({ params }) => {
   }
 };
 
-export const action = async () => {
-  return null;
+export const action = async ({ request, params }) => {
+  const formData = await request.formData();
+  const data = Object.fromEntries(formData);
+
+  try {
+    await customFetch.patch(`/jobs/${params.jobId}`, data);
+    toast.success('Job edited successfully!');
+    return redirect('/dashboard/all-jobs');
+  } catch (error) {
+    toast.error(error?.response?.data?.msg);
+    return error;
+  }
 };
 
 const EditJob = () => {
@@ -34,7 +38,7 @@ const EditJob = () => {
 
   return (
     <Wrapper>
-      <Form method='patch' className='form'>
+      <Form method='post' className='form'>
         <h4 className='form-title'>Edit Job</h4>
         <div className='form-center'>
           <FormInput type='text' name='position' defaultValue={job.position} />
@@ -45,6 +49,7 @@ const EditJob = () => {
             labelText='Location'
             defaultValue={job.jobLocation}
           />
+
           <FormSelect
             name='jobStatus'
             labelText='status'
