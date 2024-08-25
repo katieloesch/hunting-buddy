@@ -21,6 +21,7 @@ import { action as registerAction } from './pages/Register';
 import { action as loginAction } from './pages/Login';
 import { action as addJobAction } from './pages/AddJob';
 import { loader as dashboardLoader } from './pages/DashboardLayout';
+import { loader as allJobsLoader } from './pages/AllJobs';
 
 export const getThemeFromLS = () => {
   // check localStorage to see if theme was saved there last time website was visited
@@ -69,6 +70,7 @@ const router = createBrowserRouter([
           {
             path: 'all-jobs',
             element: <AllJobs />,
+            loader: allJobsLoader,
           },
           {
             path: 'profile',
