@@ -73,7 +73,7 @@ const Wrapper = styled.aside`
 
   .all-jobs-icon {
     svg {
-      scale: 1.08;
+      scale: 1.05;
     }
   }
 

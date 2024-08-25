@@ -57,6 +57,35 @@ const Wrapper = styled.aside`
     .pending {
       background: var(--background-color);
     }
+    .add-job-icon {
+      svg {
+        scale: 1.13;
+      }
+    }
+
+    .all-jobs-icon {
+      svg {
+        scale: 1.05;
+      }
+    }
+
+    .stats-icon {
+      svg {
+        scale: 0.95;
+      }
+    }
+
+    .profile-icon {
+      svg {
+        scale: 0.92;
+      }
+    }
+
+    .admin-icon {
+      svg {
+        scale: 1.2;
+      }
+    }
   }
 `;
 export default Wrapper;

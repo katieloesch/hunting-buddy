@@ -1,10 +1,10 @@
 # Hunting Buddy - Job Application Tracker App
 
-<img src="./client/src/assets/images/forms_2.jpg" alt="job application forms" width="420">
+<!-- <img src="./client/src/assets/images/forms_2.jpg" alt="job application forms" width="420">
 
-<sub>image source: [Pixabay](https://pixabay.com/illustrations/application-pen-write-writing-tool-1915343/)</sub>
+<sub>image source: [Pixabay](https://pixabay.com/illustrations/application-pen-write-writing-tool-1915343/)</sub> -->
 
-<img src="./client/src/assets/images/job_hunt.jpg" alt="job application forms" width="420">
+<img src="./client/src/assets/images/job_hunt.jpg" alt="job application forms" width="550">
 
 <sub>image source: [Unblast](https://unblast.com/)</sub>
 
@@ -29,12 +29,19 @@
 
 ## <a name="description"></a> 1. Description
 
+Job application tracker to help you keep an overview during your job hunt.
+
 <!--
 <img src="" alt="" width="250">
 
 image source: []()
 
-Job application tracker to help you keep an overview during your job hunt.
+
+Features
+User Authentication: Users can sign up, log in, and log out.
+CRUD Operations: Users can create, read, update, and delete [data type, e.g., posts, profiles, etc.].
+Responsive Design: The frontend is fully responsive and works well on all devices.
+Real-time Updates: [Optional if applicable, e.g., WebSocket integration].
 
 MERN -> react frontend, backend based in express, mongoDB and node.js
 
@@ -97,12 +104,44 @@ npm run dev
 
 ### Core Technologies
 
+This application was built using the MERN stack, an open source–centric collection of technologies that uses JavaScript for both the browser and server sides of a web application:
+
+- **Frontend**
+  - **React.js** (v18.3.1)
+  - <sub>A JavaScript library for building user interfaces, particularly single-page applications where efficient and dynamic rendering of components is crucial.</sub>
+    - <sub>[website](https://react.dev/)</sub>
+    - <sub>[GitHub repository](https://github.com/reactjs/react.dev)</sub>
+  - **Vite** (v5.3.4)
+    - <sub>A frontend build tool that offers fast development and optimized production builds for modern JavaScript projects.</sub>
+    - <sub>[website](https://vitejs.dev/)</sub>
+    - <sub>[Github repository](https://github.com/vitejs/vite)</sub>
+    - <sub>[npm page](https://www.npmjs.com/package/vite)</sub>
+- Backend
+  - **Express.js** (v4.18.2)
+    - <sub>A fast and minimalist web framework for Node.js, used to build web applications and APIs.</sub>
+    - <sub>[npm page](https://www.npmjs.com/package/express)</sub>
+    - <sub>[GitHub repository](https://github.com/expressjs/express)</sub>
+    - <sub> [website](https://expressjs.com/)</sub>
+  - **Node.js** (v20.14.0)
+    - <sub>A JavaScript runtime built on Chrome's V8 JavaScript engine, allowing developers to use JavaScript to build server-side applications with event-driven, non-blocking I/O.</sub>
+    - <sub>[website](https://nodejs.org)</sub>
+    - <sub>[GitHub Repository](https://github.com/nodejs)</sub>
+- Database
+  - **MongoDB / MongoDB Atlas** (v7.0.12)
+    - <sub>MongoDB: a document-oriented NoSQL database designed for scalability and flexibility, making it easy to store and retrieve large volumes of structured and semi-structured data.</sub>
+    - <sub>MongoDB Atlas: a fully managed cloud-based service that hosts and manages MongoDB databases, provided by the creators of MongoDB.</sub>
+    - <sub>[MongoDB website](https://www.mongodb.com/)</sub>
+    - <sub>[MongoDB GitHub Repository](https://github.com/mongodb/mongo)</sub>
+    - <sub>[MongoDB Atlas website](https://www.mongodb.com/cloud/atlas/register)</sub>
+  - **Mongoose** (v7.0.5)
+    - <sub>A MongoDB object modeling tool designed to work in an asynchronous environment, providing schema-based solutions to model data in a MongoDB database.</sub>
+    - <sub>[npm page](https://www.npmjs.com/package/mongoose)</sub>
+    - <sub>[GitHub repository](https://github.com/Automattic/mongoose)</sub>
+    - <sub> [website](https://mongoosejs.com/)</sub>
+    - <sub>[mongoDB](https://www.mongodb.com/developer/languages/javascript/getting-started-with-mongodb-and-mongoose/)</sub>
+
 ### Key Dependencies - Frontend
 
-- **Sass** (v1.77.8)
-  - <sub>CSS preprocessor used for styling the application</sub>
-  - <sub>[npm page](https://www.npmjs.com/package/sass)</sub>
-  - <sub>[GitHub repository](https://github.com/sass/dart-sass)</sub>
 - **@tanstack/react-query** (v4.29.5)
   - <sub>A library for managing server-side data in React applications, providing features like caching, synchronization, and automatic background updates for fetching and updating data.</sub>
   - <sub>[npm page](https://www.npmjs.com/package/@tanstack/react-query)</sub>
@@ -143,6 +182,10 @@ npm run dev
   - <sub>[npm page](https://www.npmjs.com/package/recharts)</sub>
   - <sub>[GitHub repository](https://github.com/recharts/recharts)</sub>
   - <sub> [website](https://recharts.org/en-US/)</sub>
+- **Sass** (v1.77.8)
+  - <sub>CSS preprocessor used for styling the application</sub>
+  - <sub>[npm page](https://www.npmjs.com/package/sass)</sub>
+  - <sub>[GitHub repository](https://github.com/sass/dart-sass)</sub>
 - **styled-components** (v5.3.10)
   - <sub>A library for styling React applications using tagged template literals, allowing developers to write CSS directly within JavaScript and create component-scoped styles.</sub>
   - <sub>[npm page](https://www.npmjs.com/package/styled-components)</sub>
@@ -151,32 +194,96 @@ npm run dev
 
 ### Key Dependencies - Backend
 
--
-
-<!--
-
-    "bcryptjs": "^2.4.3",
-    "cloudinary": "^1.37.3",
-    "concurrently": "^8.0.1",
-    "cookie-parser": "^1.4.6",
-    "datauri": "^4.1.0",
-    "dayjs": "^1.11.9",
-    "dotenv": "^16.0.3",
-    "express": "^4.18.2",
-    "express-async-errors": "^3.1.1",
-    "express-mongo-sanitize": "^2.2.0",
-    "express-rate-limit": "^6.8.0",
-    "express-validator": "^7.0.1",
-    "helmet": "^7.0.0",
-    "http-status-codes": "^2.2.0",
-    "jsonwebtoken": "^9.0.0",
-    "mongoose": "^7.0.5",
-    "morgan": "^1.10.0",
-    "multer": "^1.4.5-lts.1",
-    "nanoid": "^4.0.2",
-    "nodemon": "^2.0.22"
-
- -->
+- **bcryptjs** (v2.4.3)
+  - <sub>A JavaScript library for hashing and comparing passwords securely using the bcrypt algorithm.</sub>
+  - <sub>[npm page](https://www.npmjs.com/package/bcryptjs)</sub>
+  - <sub>[GitHub repository](https://github.com/dcodeIO/bcrypt.js)</sub>
+- **cloudinary** (v1.37.3)
+  - <sub>A cloud-based service that allows you to easily manage, store, and serve images and videos in web applications.</sub>
+  - <sub>[npm page](https://www.npmjs.com/package/cloudinary)</sub>
+  - <sub>[GitHub repository](https://github.com/cloudinary/cloudinary_npm)</sub>
+  - <sub> [website](https://cloudinary.com/)</sub>
+- **concurrently** (v8.0.1)
+  - <sub>A utility that allows you to run multiple commands or scripts concurrently in one terminal window.</sub>
+  - <sub>[npm page](https://www.npmjs.com/package/concurrently)</sub>
+  - <sub>[GitHub repository](https://github.com/open-cli-tools/concurrently)</sub>
+- **cookie-parser** (v1.4.6)
+  - <sub>Middleware for parsing cookies attached to client requests, making it easier to access and manage them in Express.js applications.</sub>
+  - <sub>[npm page](https://www.npmjs.com/package/cookie-parser)</sub>
+  - <sub>[GitHub repository](https://github.com/expressjs/cookie-parser)</sub>
+- **datauri** (v4.1.0)
+  - <sub>Converts file data (such as images) to Data URIs, which are base64-encoded strings that can be embedded directly in HTML or CSS.</sub>
+  - <sub>[npm page](https://www.npmjs.com/package/datauri)</sub>
+  - <sub>[GitHub repository](https://github.com/data-uri/datauri)</sub>
+- **dayjs** (v1.11.9)
+  - <sub>A minimalist JavaScript library for parsing, validating, manipulating, and formatting dates, offering a lightweight and fast alternative to Moment.js.</sub>
+  - <sub>[npm page](https://www.npmjs.com/package/dayjs)</sub>
+  - <sub>[GitHub repository](https://github.com/iamkun/dayjs)</sub>
+  - <sub> [website](https://day.js.org/)</sub>
+- **dotenv** (v16.0.3)
+  - <sub>A zero-dependency module that loads environment variables from a .env file into process.env, allowing secure configuration settings management.</sub>
+  - <sub>[npm page](https://www.npmjs.com/package/dotenv)</sub>
+  - <sub>[GitHub repository](https://github.com/motdotla/dotenv)</sub>
+  - <sub> [website](https://dotenvx.com/)</sub>
+- **express** (v4.18.2)
+  - <sub>A fast and minimalist web framework for Node.js, used to build web applications and APIs.</sub>
+  - <sub>[npm page](https://www.npmjs.com/package/express)</sub>
+  - <sub>[GitHub repository](https://github.com/expressjs/express)</sub>
+  - <sub> [website](https://expressjs.com/)</sub>
+- **express-async-errors** (v3.1.1)
+  - <sub> Automatically handles errors in asynchronous Express routes, allowing you to use async/await without needing try-catch blocks.</sub>
+  - <sub>[npm page](https://www.npmjs.com/package/express-async-errors)</sub>
+  - <sub>[GitHub repository](https://github.com/davidbanham/express-async-errors)</sub>
+- **express-mongo-sanitize** (v2.2.0)
+  - <sub>Middleware that helps prevent MongoDB Operator Injection by sanitizing user inputs in Express.js applications.</sub>
+  - <sub>[npm page](https://www.npmjs.com/package/express-mongo-sanitize)</sub>
+  - <sub>[GitHub repository](https://github.com/fiznool/express-mongo-sanitize)</sub>
+- **express-rate-limit** (v6.8.0)
+  - <sub>Middleware for limiting repeated requests to public APIs or endpoints in an Express.js application, useful for preventing abuse and denial-of-service attacks.</sub>
+  - <sub>[npm page](https://www.npmjs.com/package/express-rate-limit)</sub>
+  - <sub>[GitHub repository](https://github.com/express-rate-limit/express-rate-limit)</sub>
+- **express-validator** (v7.0.1)
+  - <sub>A set of express.js middleware functions that offer a way to validate and sanitise input data, helping to prevent common security vulnerabilities.</sub>
+  - <sub>[npm page](https://www.npmjs.com/package/express-validator)</sub>
+  - <sub>[GitHub repository](https://github.com/express-validator/express-validator)</sub>
+  - <sub> [website](https://express-validator.github.io/docs)</sub>
+- **helmet** (v7.0.0)
+  - <sub>A collection of middleware functions that enhance the security of Express.js applications by setting various HTTP headers.</sub>
+  - <sub>[npm page](https://www.npmjs.com/package/helmet)</sub>
+  - <sub>[GitHub repository](https://github.com/helmetjs/helmet)</sub>
+  - <sub> [website](https://helmetjs.github.io/)</sub>
+- **http-status-codes** (v2.2.0)
+  - <sub>A utility that provides constants and functions for working with HTTP status codes, making code more readable and maintainable.</sub>
+  - <sub>[npm page](https://www.npmjs.com/package/http-status-codes)</sub>
+  - <sub>[GitHub repository](https://github.com/prettymuchbryce/http-status-codes)</sub>
+- **jsonwebtoken** (v9.0.0)
+  - <sub>A library for creating, signing, and verifying JSON Web Tokens (JWTs), which are used for securely transmitting information between parties.</sub>
+  - <sub>[npm page](https://www.npmjs.com/package/jsonwebtoken)</sub>
+  - <sub>[GitHub repository](https://github.com/auth0/node-jsonwebtoken)</sub>
+  - <sub> [website (JsonWebToken implementation for node.js)](https://self-issued.info/docs/draft-ietf-oauth-json-web-token.html)</sub>
+- **morgan** (v1.10.0)
+  - <sub> A HTTP request logger middleware for Node.js that logs requests made to an Express.js server, useful for debugging and monitoring.</sub>
+  - <sub>[npm page](https://npmjs.com/package/morgan)</sub>
+  - <sub>[GitHub repository](https://github.com/expressjs/morgan)</sub>
+- **mongoose** (v7.0.5)
+  - <sub>A MongoDB object modeling tool designed to work in an asynchronous environment, providing schema-based solutions to model data in a MongoDB database.</sub>
+  - <sub>[npm page](https://www.npmjs.com/package/mongoose)</sub>
+  - <sub>[GitHub repository](https://github.com/Automattic/mongoose)</sub>
+  - <sub> [website](https://mongoosejs.com/)</sub>
+- **multer** (v1.4.5-lts.1)
+  - <sub>A middleware for handling multipart/form-data, commonly used for uploading files in Express.js applications.</sub>
+  - <sub>[npm page](https://www.npmjs.com/package/multer)</sub>
+  - <sub>[GitHub repository](https://github.com/expressjs/multer)</sub>
+- **nanoid** (v4.0.2)
+  - <sub>A secure, URL-friendly unique string ID generator for use in web applications.</sub>
+  - <sub>[npm page](https://www.npmjs.com/package/nanoid)</sub>
+  - <sub>[GitHub repository](https://github.com/ai/nanoid)</sub>
+  - <sub>[website](https://zelark.github.io/nano-id-cc/)</sub>
+- **nodemon** (v2.0.22)
+  - <sub> A utility that automatically restarts your Node.js server when files change, making development faster and more efficient.</sub>
+  - <sub>[npm page](https://www.npmjs.com/package/nodemon)</sub>
+  - <sub>[GitHub repository](https://github.com/remy/nodemon)</sub>
+  - <sub>[website](https://nodemon.io/)</sub>
 
 ### UI and Design
 
@@ -204,6 +311,27 @@ npm run dev
 
 ### Development Tools
 
+- **Git / GitHub**
+  - <sub>used for version control and collaboration</sub>
+  - <sub>[Git website](https://git-scm.com/)</sub>
+  - <sub>[GitHub website](https://github.com/)</sub>
+- **Visual Studio Code (VSCode)**
+  - <sub>code editor used for development</sub>
+  - <sub>[website](https://code.visualstudio.com/)</sub>
+  - <sub>[GitHub repository](https://github.com/microsoft/vscode)</sub>
+- **Google Chrome & Chrome DevTools**
+  - <sub>used for testing, debugging, and developing in the browser</sub>
+  - <sub>[Google Chrome website](https://www.google.com/chrome/)</sub>
+  - <sub>[Chrome DevTools documentation](https://developer.chrome.com/docs/devtools)</sub>
+- **Excalidraw**
+  - <sub>tool used to create wireframes for the application</sub>
+  - <sub>[website](https://excalidraw.com/)</sub>
+  - <sub>[GitHub repository](https://github.com/excalidraw/excalidraw)</sub>
+- **ChatGPT4o**:
+  - <sub>generative AI tool used for debugging and development support</sub>
+  - <sub>[website](https://chat.openai.com/)</sub>
+  - <sub>[GitHub repository](https://github.com/openai)</sub>
+
 ### Resources & Tutorials
 
 - **Documentation**
@@ -214,6 +342,7 @@ npm run dev
   - <sub>[dayjs](https://day.js.org/docs/en/installation/installation)</sub>
   - <sub>[styled-components](https://styled-components.com/docs)</sub>
   - <sub>[React-toastify](https://fkhadra.github.io/react-toastify/introduction/)</sub>
+  - <sub> [React useNavigation() and navigation.state](https://reactrouter.com/en/main/hooks/use-navigation#usenavigation)</sub>
 - **Blogs**
   - <sub>[The Power Of CreateBrowserRouter: Optimizing Your React App's Navigation](https://www.dhiwise.com/post/the-power-of-createbrowserrouter-optimizing-your-react-app) by Daxesh Patel</sub>
   - <sub>[Getting Started with createBrowserRouter in react-router-dom](https://medium.com/@pavitramodi.it/getting-started-with-createbrowserrouter-in-react-router-dom-e3131820fef4) by [Pavitra Modi](https://medium.com/@pavitramodi.it)</sub>
@@ -1002,5 +1131,13 @@ To summarize, these lines of code configure a proxy rule for requests starting w
 The concurrently npm package is a utility that allows you to run multiple commands concurrently in the same terminal window. It provides a convenient way to execute multiple tasks or processes simultaneously.
 
 By default, when a command fails, concurrently continues running the remaining commands. However, when --kill-others-on-fail is specified, if any of the commands fail, concurrently will immediately terminate all the other running commands.
+
+
+
+24/08/2024
+
+cookie visible in dev tools after login
+
+<img src='./client/src/assets/images/screenshots/cookie_browser_dev_tools.png'>
 
 -->

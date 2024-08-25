@@ -12,7 +12,6 @@ export const action = async ({ request }) => {
 
   try {
     await customFetch.post('/auth/register', data);
-
     toast.success('Registration Successful!');
     return redirect('/login');
   } catch (error) {

@@ -6,8 +6,7 @@ const Wrapper = styled.main`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgb(255, 255, 255);
-
+  background-color: var(--background-color);
   img {
     width: 90vw;
     max-width: 600px;
@@ -17,6 +16,7 @@ const Wrapper = styled.main`
   }
   h3 {
     margin-bottom: 0.5rem;
+    color: var(--text-color);
   }
   p {
     line-height: 1.5;
