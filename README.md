@@ -342,6 +342,7 @@ This application was built using the MERN stack, an open source–centric collec
   - <sub>[dayjs](https://day.js.org/docs/en/installation/installation)</sub>
   - <sub>[styled-components](https://styled-components.com/docs)</sub>
   - <sub>[React-toastify](https://fkhadra.github.io/react-toastify/introduction/)</sub>
+  - <sub> [React useNavigation() and navigation.state](https://reactrouter.com/en/main/hooks/use-navigation#usenavigation)</sub>
 - **Blogs**
   - <sub>[The Power Of CreateBrowserRouter: Optimizing Your React App's Navigation](https://www.dhiwise.com/post/the-power-of-createbrowserrouter-optimizing-your-react-app) by Daxesh Patel</sub>
   - <sub>[Getting Started with createBrowserRouter in react-router-dom](https://medium.com/@pavitramodi.it/getting-started-with-createbrowserrouter-in-react-router-dom-e3131820fef4) by [Pavitra Modi](https://medium.com/@pavitramodi.it)</sub>
@@ -1130,5 +1131,13 @@ To summarize, these lines of code configure a proxy rule for requests starting w
 The concurrently npm package is a utility that allows you to run multiple commands concurrently in the same terminal window. It provides a convenient way to execute multiple tasks or processes simultaneously.
 
 By default, when a command fails, concurrently continues running the remaining commands. However, when --kill-others-on-fail is specified, if any of the commands fail, concurrently will immediately terminate all the other running commands.
+
+
+
+24/08/2024
+
+cookie visible in dev tools after login
+
+<img src='./client/src/assets/images/screenshots/cookie_browser_dev_tools.png'>
 
 -->

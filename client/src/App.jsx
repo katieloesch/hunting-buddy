@@ -19,6 +19,7 @@ import {
 
 import { action as registerAction } from './pages/Register';
 import { action as loginAction } from './pages/Login';
+import { loader as dashboardLoader } from './pages/DashboardLayout';
 
 export const getThemeFromLS = () => {
   // check localStorage to see if theme was saved there last time website was visited
@@ -53,6 +54,7 @@ const router = createBrowserRouter([
       {
         path: 'dashboard',
         element: <DashboardLayout />,
+        loader: dashboardLoader,
         children: [
           {
             index: true,
