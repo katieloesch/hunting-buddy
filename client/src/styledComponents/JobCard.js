@@ -9,7 +9,7 @@ const Wrapper = styled.article`
 
   header {
     padding: 1rem 1.5rem;
-    border-bottom: 1px solid var(--grey-100);
+    border-bottom: 1px solid rgba(100, 116, 139, 0.6);
     display: grid;
     grid-template-columns: auto 1fr;
     align-items: center;

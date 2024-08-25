@@ -7,7 +7,7 @@ import {
   AllJobs,
   DashboardLayout,
   // DeleteJob,
-  // EditJob,
+  EditJob,
   Error,
   HomeLayout,
   Landing,
@@ -79,6 +79,10 @@ const router = createBrowserRouter([
           {
             path: 'admin',
             element: <Admin />,
+          },
+          {
+            path: 'edit-job/:jobId',
+            element: <EditJob />,
           },
         ],
       },

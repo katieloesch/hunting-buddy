@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Link } from 'react-router-dom';
-import { FaLocationArrow, FaBriefcase, FaCalendarAlt } from 'react-icons/fa';
+import { FaBriefcase, FaCalendarAlt } from 'react-icons/fa';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 
@@ -39,7 +39,7 @@ const JobCard = ({
             icon={
               <FontAwesomeIcon
                 icon={faLocationDot}
-                style={{ fontSize: '1.05em' }}
+                style={{ fontSize: '1.04em' }}
               />
             }
             txt={jobLocation}
@@ -51,7 +51,9 @@ const JobCard = ({
         </div>
 
         <footer className='actions'>
-          <Link className='btn edit-btn'>Edit</Link>
+          <Link to={`../edit-job/${_id}`} className='btn edit-btn'>
+            Edit
+          </Link>
           <Form>
             <button type='submit' className='btn delete-btn'>
               Delete
