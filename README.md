@@ -4,9 +4,9 @@
 
 <sub>image source: [Pixabay](https://pixabay.com/illustrations/application-pen-write-writing-tool-1915343/)</sub> -->
 
-<img src="./client/src/assets/images/job_hunt.jpg" alt="job application forms" width="550">
+<img src="./client/src/assets/images/job_hunt.jpg" alt="job application forms" width="500">
 
-<sub>image source: [Unblast](https://unblast.com/)</sub>
+<sub>image source: [Unblast](https://unblast.com/job-hunting-illustration-ai/)</sub>
 
 <!-- <img src="./client//src//assets/images/job_search_tool.jpg" alt="job search tool" width="400">
 
@@ -75,7 +75,7 @@ git clone https://github.com/katieloesch/hunting-buddy.git
 cd hunting-buddy
 ```
 
-### Running the Application Locally in a local development environment:
+### Running the Application in a Local Development Environment:
 
 **1. Install Dependencies**
 
@@ -87,7 +87,7 @@ npm run setup-project
 
 **2. Start Development Servers**
 
-- After installing the dependencies, start the the backend and frontend servers (concurrently) run:
+- After installing the dependencies, to start the the backend and frontend servers (concurrently) run:
 
 ```zsh
 npm run dev
