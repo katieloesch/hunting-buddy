@@ -55,7 +55,7 @@ const AddJob = () => {
 
           <FormSelect
             name='jobType'
-            labelText='type'
+            labelText='contract'
             options={Object.values(JOB_TYPE)}
             defaultValue={JOB_TYPE.FULL_TIME}
           />

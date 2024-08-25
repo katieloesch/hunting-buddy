@@ -29,9 +29,46 @@ export const action = async () => {
 
 const EditJob = () => {
   const { job } = useLoaderData();
-  console.log(job);
+  const navigation = useNavigation();
+  const isSubmitting = navigation.state === 'submitting';
 
-  return <h2>Edit Job Page</h2>;
+  return (
+    <Wrapper>
+      <Form method='patch' className='form'>
+        <h4 className='form-title'>Edit Job</h4>
+        <div className='form-center'>
+          <FormInput type='text' name='position' defaultValue={job.position} />
+          <FormInput type='text' name='company' defaultValue={job.company} />
+          <FormInput
+            type='text'
+            name='jobLocation'
+            labelText='Location'
+            defaultValue={job.jobLocation}
+          />
+          <FormSelect
+            name='jobStatus'
+            labelText='status'
+            options={Object.values(JOB_STATUS)}
+            defaultValue={job.jobStatus}
+          />
+          <FormSelect
+            name='jobType'
+            labelText='contract'
+            options={Object.values(JOB_TYPE)}
+            defaultValue={job.jobType}
+          />
+
+          <button
+            type='submit'
+            className='btn btn-block form-btn'
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? 'submitting...' : 'submit'}
+          </button>
+        </div>
+      </Form>
+    </Wrapper>
+  );
 };
 
 export default EditJob;
