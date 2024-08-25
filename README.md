@@ -204,6 +204,21 @@ This application was built using the `MERN stack`, an open source–centric coll
 
 ### Key Dependencies - Frontend
 
+- **@fortawesome/fontawesome-svg-core** (v6.6.0)
+  - <sub>A core package that provides the necessary utilities and functions that underpin the use of FontAwesome icons, ensuring that the icons render correctly across different environments.</sub>
+  - <sub>[npm page](https://www.npmjs.com/package/@fortawesome/fontawesome-svg-core?activeTab=readme)</sub>
+  - <sub>[GitHub repository](https://github.com/FortAwesome/Font-Awesome)</sub>
+  - <sub>[website](https://fontawesome.com/)</sub>
+- **@fortawesome/free-solid-svg-icons** (v6.6.0)
+  - <sub>A package that contains the SVG icon definitions for the "solid" style icons provided by FontAwesome, making them available for use in your project.</sub>
+  - <sub>[npm page](https://www.npmjs.com/package/@fortawesome/free-solid-svg-icons)</sub>
+  - <sub>[GitHub repository](https://github.com/FortAwesome/Font-Awesome)</sub>
+  - <sub>[website](https://fontawesome.com/)</sub>
+- **@fortawesome/react-fontawesome** (v0.2.2)
+  - <sub>A package that provides the React components necessary to use FontAwesome icons in React applications.</sub>
+  - <sub>[npm page](https://www.npmjs.com/package/@fortawesome/react-fontawesome)</sub>
+  - <sub>[GitHub repository](https://github.com/FortAwesome/react-fontawesome)</sub>
+  - <sub>[website](https://fontawesome.com/)</sub>
 - **@tanstack/react-query** (v4.29.5)
   - <sub>A library for managing server-side data in React applications, providing features like caching, synchronization, and automatic background updates for fetching and updating data.</sub>
   - <sub>[npm page](https://www.npmjs.com/package/@tanstack/react-query)</sub>
@@ -350,13 +365,16 @@ This application was built using the `MERN stack`, an open source–centric coll
 ### UI and Design
 
 - **Icons**
-
+  - **Font Awesome**
+    - <sub>A popular icon library offering a large set of scalable and customizable icons, with a free version that is open source.</sub>
+    - <sub>[website](https://fontawesome.com/)</sub>
+    - <sub>[GitHub repository](https://github.com/FortAwesome/Font-Awesome)</sub>
+    - <sub>[license](https://fontawesome.com/license/free)</sub>
   - **React Icons**
     - <sub>A free and open-source project providing icons for use in React projects.</sub>
     - <sub> [website](https://react-icons.github.io/react-icons/)</sub>
     - <sub>[GitHub repository](https://github.com/react-icons/react-icons)</sub>
     - <sub>[license](https://github.com/react-icons/react-icons/blob/master/LICENSE)</sub>
-
 - **Images**
   - **Pixabay**
     - <sub>A free stock photo and media platform offering a vast library of images, videos and music.</sub>

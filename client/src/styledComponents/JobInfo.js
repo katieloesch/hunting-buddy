@@ -5,7 +5,7 @@ const Wrapper = styled.div`
   align-items: center;
 
   .job-icon {
-    font-size: 1rem;
+    font-size: 1.25rem;
     margin-right: 1rem;
     display: flex;
     align-items: center;

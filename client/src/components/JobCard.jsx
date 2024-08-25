@@ -1,6 +1,9 @@
 import React from 'react';
 import { Form, Link } from 'react-router-dom';
 import { FaLocationArrow, FaBriefcase, FaCalendarAlt } from 'react-icons/fa';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
+
 import day from 'dayjs';
 import advancedFormat from 'dayjs/plugin/advancedFormat';
 
@@ -32,7 +35,15 @@ const JobCard = ({
 
       <div className='content'>
         <div className='content-center'>
-          <JobInfo icon={<FaLocationArrow />} txt={jobLocation} />
+          <JobInfo
+            icon={
+              <FontAwesomeIcon
+                icon={faLocationDot}
+                style={{ fontSize: '1.05em' }}
+              />
+            }
+            txt={jobLocation}
+          />
           <JobInfo icon={<FaCalendarAlt />} txt={formattedDate} />
           <JobInfo icon={<FaBriefcase />} txt={jobType} />
 
