@@ -63,43 +63,102 @@ MERN -> react frontend, backend based in express, mongoDB and node.js
 
 ### Getting Started
 
-- Ensure [Git](https://git-scm.com/) is installed on your machine.
-- Clone the repository by running this command in your terminal:
+#### 1. Ensure [Git](https://git-scm.com/) is installed:
+
+- Before you begin, make sure Git is installed on your machine.
+
+#### 2. Clone the repository:
+
+- Run the following commandn in your terminal to clone the repository:
 
 ```zsh
 git clone https://github.com/katieloesch/hunting-buddy.git
 ```
 
-- Navigate to the project directory to install dependencies:
+#### 3. Navigate to the project directory:
+
+- Change into the project directory to install the necessary dependencies:
 
 ```zsh
 cd hunting-buddy
 ```
 
-### Running the Application in a Local Development Environment:
+### Running the Application Locally
 
-**1. Install Dependencies**
+#### 1. Install Dependencies
 
-- Run the following command in the project’s root directory to install all necessary dependencies on both the frontend and the backend:
+- To install all the required dependencies for both the frontend and backend, run:
 
-```zsh
-npm run setup-project
-```
+  ```zsh
+  npm run setup-project
+  ```
 
-**2. Start Development Servers**
+#### 2. Set Up Environment Variables
 
-- After installing the dependencies, to start the the backend and frontend servers (concurrently) run:
+- The application requires a `.env` file in the root directory to function correctly. This file contains essential environment variables, such as the MongoDB connection string and JWT secret keys, without which the application will not connect to the database or perform critical functions.
 
-```zsh
-npm run dev
-```
+  **Required Environment Variables:**
 
-**3. Access the Application**
+  ```plaintext
+  NODE_ENV
+  PORT
+  MONGO_URL
+  JWT_SECRET
+  JWT_EXPIRES_IN
+  ```
 
-- The backend development server will start at `http://localhost:5100/`.
-- The frontend development server will start at `http://localhost:5173/`.
-  - By default, your web browser should automatically open and navigate to this address.
-  - If it doesn’t, you can manually access the application by entering `http://localhost:5173/` in any web browser.
+  **Setting up the `.env` File:**
+
+  1. Create a `.env` file in the root directory of the project.
+  2. Copy the required environment variables listed above into the `.env` file and assign values to them.
+
+  **Example `.env` File:**
+
+  ```plaintext
+  NODE_ENV=development
+  PORT=5100
+  MONGO_URL=mongodb+srv://<your-username>:<your-password>@atlascluster.ic1x9.mongodb.net/<your-database-name>?retryWrites=true&w=majority
+  JWT_SECRET=your_jwt_secret
+  JWT_EXPIRES_IN=1d
+  ```
+
+  3. Replace the placeholder values (`<your-username>`, `<your-password>`, `<your-database-name>`, `your_jwt_secret`) with your actual MongoDB credentials and JWT secret.
+
+  - to obtain the `MONGO_URL`, you need to set up a MongoDB database
+  - If you don't have an account already, register on MongoDB Atlas:
+
+    - Go to [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) and create a free account.
+    - Create a New Cluster:
+      - Once logged in, click on the "Build a Cluster" button.
+      - Choose a cloud provider (e.g., AWS, Google Cloud, Azure), and select a region that is close to you for better performance.
+      - You can use the free tier cluster, which provides enough resources for development and small projects.
+    - Create a Database User:
+      - After the cluster is set up, you’ll need to create a database user with a username and password.
+      - Navigate to the "Database Access" tab in your cluster and create a new user.
+      - Make sure to save the username and password, as you’ll need these credentials for the `MONGO_URL`.
+    - Obtain the Connection String: - Go to the "Clusters" view, and click on the "Connect" button for your cluster. - Select "Drivers" and you will be provided with a connection string similar to this:
+
+            ```plaintext
+            mongodb+srv://<your-username>:<your-password>@cluster0.mongodb.net/<your-database-name>?retryWrites=true&w=majority
+            ```
+
+    - Update the `.env` File:
+      - Copy the connection string into your `.env` file, replacing the placeholders (`<your-username>`, `<your-password>`, `<your-database-name>`) with your actual database credentials and database name.
+
+#### 3. Start the Development Servers
+
+- Once the dependencies are installed and the `.env` file is configured, you can start both the backend and frontend servers concurrently by running:
+
+  ```bash
+  npm run dev
+  ```
+
+#### 4. Access the Application
+
+- The backend server will be available at `http://localhost:5100/`.
+- The frontend server will be available at `http://localhost:5173/`.
+  - Your web browser should automatically open and navigate to the frontend server.
+  - If it doesn’t, you can manually access the application by visiting `http://localhost:5173/` in any web browser.
 
 ## <a name="technologies"></a> 4. Technologies Used
 
@@ -312,23 +371,34 @@ This application was built using the `MERN stack`, an open source–centric coll
 
 ### Development Tools
 
-- **Git / GitHub**
+- **Vite** (v5.3.4)
+  - <sub>A frontend build tool that offers fast development and optimized production builds for modern JavaScript projects.</sub>
+  - <sub>[website](https://vitejs.dev/)</sub>
+  - <sub>[Github repository](https://github.com/vitejs/vite)</sub>
+  - <sub>[npm page](https://www.npmjs.com/package/vite)</sub>
+  - <sub>[documentation](https://vitejs.dev/guide/)</sub>
+- **Git / GitHub** (v2.39.3)
   - <sub>used for version control and collaboration</sub>
   - <sub>[Git website](https://git-scm.com/)</sub>
+  - <sub>[Git documentation](https://git-scm.com/doc)</sub>
   - <sub>[GitHub website](https://github.com/)</sub>
-- **Visual Studio Code (VSCode)**
+  - <sub>[GitHub documentation](https://docs.github.com/en)</sub>
+- **Visual Studio Code (VSCode)** (v1.92.2)
   - <sub>code editor used for development</sub>
   - <sub>[website](https://code.visualstudio.com/)</sub>
   - <sub>[GitHub repository](https://github.com/microsoft/vscode)</sub>
-- **Google Chrome & Chrome DevTools**
+  - <sub>[documentation](https://code.visualstudio.com/docs)</sub>
+- **Google Chrome & Chrome DevTools** (v128.0.6613.85)
   - <sub>used for testing, debugging, and developing in the browser</sub>
   - <sub>[Google Chrome website](https://www.google.com/chrome/)</sub>
+  - <sub>[Google Chrome documentation](https://developer.chrome.com/docs)</sub>
   - <sub>[Chrome DevTools documentation](https://developer.chrome.com/docs/devtools)</sub>
-- **Excalidraw**
+- **Excalidraw** (v0.17.0)
   - <sub>tool used to create wireframes for the application</sub>
   - <sub>[website](https://excalidraw.com/)</sub>
   - <sub>[GitHub repository](https://github.com/excalidraw/excalidraw)</sub>
-- **ChatGPT4o**:
+  - <sub>[documentation](https://docs.excalidraw.com/)</sub>
+- **ChatGPT4o**
   - <sub>generative AI tool used for debugging and development support</sub>
   - <sub>[website](https://chat.openai.com/)</sub>
   - <sub>[GitHub repository](https://github.com/openai)</sub>
