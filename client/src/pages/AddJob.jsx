@@ -12,6 +12,20 @@ import { FormInput, FormSelect } from '../components';
 import customFetch from '../utils/customFetch';
 import { JOB_STATUS, JOB_TYPE } from '../../../utils/constants';
 
+export const action = async ({ request }) => {
+  const formData = await request.formData();
+  const data = Object.fromEntries(formData);
+
+  try {
+    await customFetch.post('/jobs', data);
+    toast.success('Job added successfully!');
+    return redirect('all-jobs');
+  } catch (error) {
+    toast.error(error?.response?.data?.msg);
+    return error;
+  }
+};
+
 const AddJob = () => {
   const { user } = useOutletContext(); // variable provided in DashboardLayout (ln 65)
   const navigation = useNavigation();

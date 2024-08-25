@@ -136,11 +136,14 @@ cd hunting-buddy
       - After the cluster is set up, you’ll need to create a database user with a username and password.
       - Navigate to the "Database Access" tab in your cluster and create a new user.
       - Make sure to save the username and password, as you’ll need these credentials for the `MONGO_URL`.
-    - Obtain the Connection String: - Go to the "Clusters" view, and click on the "Connect" button for your cluster. - Select "Drivers" and you will be provided with a connection string similar to this:
+    - Obtain the Connection String:
 
-            ```plaintext
-            mongodb+srv://<your-username>:<your-password>@cluster0.mongodb.net/<your-database-name>?retryWrites=true&w=majority
-            ```
+      - Go to the "Clusters" view, and click on the "Connect" button for your cluster.
+      - Select "Drivers" and you will be provided with a connection string similar to this:
+
+        ```plaintext
+        mongodb+srv://<your-username>:<your-password>@cluster0.mongodb.net/<your-database-name>?retryWrites=true&w=majority
+        ```
 
     - Update the `.env` File:
       - Copy the connection string into your `.env` file, replacing the placeholders (`<your-username>`, `<your-password>`, `<your-database-name>`) with your actual database credentials and database name.
@@ -149,16 +152,15 @@ cd hunting-buddy
 
 - Once the dependencies are installed and the `.env` file is configured, you can start both the backend and frontend servers concurrently by running:
 
-  ```bash
+  ```zsh
   npm run dev
   ```
 
 #### 4. Access the Application
 
-- The backend server will be available at `http://localhost:5100/`.
+- The backend server will be running at `http://localhost:5100/` by default, or at the port you specified in the .env file.
 - The frontend server will be available at `http://localhost:5173/`.
-  - Your web browser should automatically open and navigate to the frontend server.
-  - If it doesn’t, you can manually access the application by visiting `http://localhost:5173/` in any web browser.
+  - If your default web browser doesn't automatically open and navigate to the frontend server, you can manually access the application by visiting `http://localhost:5173/` in any web browser.
 
 ## <a name="technologies"></a> 4. Technologies Used
 
