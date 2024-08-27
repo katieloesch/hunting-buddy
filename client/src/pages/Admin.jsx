@@ -1,6 +1,8 @@
 import React from 'react';
 import { useLoaderData, redirect } from 'react-router-dom';
-import { FaSuitcaseRolling, FaCalendarCheck } from 'react-icons/fa';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserGroup } from '@fortawesome/free-solid-svg-icons';
+import { faBriefcase } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-toastify';
 
 import customFetch from '../utils/customFetch';
@@ -25,16 +27,16 @@ const Admin = () => {
       <StatsItem
         title='current users'
         count={users}
-        color='#e99e49'
-        bg='#fcefc7'
-        icon={<FaSuitcaseRolling />}
+        color='#4db86d'
+        bg='#e8fccf'
+        icon={<FontAwesomeIcon icon={faUserGroup} />}
       />
       <StatsItem
         title='total jobs'
         count={jobs}
         color='#8b64cb'
         bg='#e0e8f9'
-        icon={<FaCalendarCheck />}
+        icon={<FontAwesomeIcon icon={faBriefcase} />}
       />
     </Wrapper>
   );
