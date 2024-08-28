@@ -1,15 +1,9 @@
 import React from 'react';
-import {
-  Form,
-  Link,
-  redirect,
-  useNavigation,
-  useActionData,
-} from 'react-router-dom';
+import { Form, Link, redirect, useActionData } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import Wrapper from '../styledComponents/RegisterLoginPage';
-import { FormInput, Logo } from '../components';
+import { FormBtnSubmit, FormInput, Logo } from '../components';
 import customFetch from '../utils/customFetch';
 
 export const action = async ({ request }) => {
@@ -35,8 +29,7 @@ export const action = async ({ request }) => {
 
 const Login = () => {
   const errors = useActionData();
-  const navigation = useNavigation();
-  const isSubmitting = navigation.state === 'submitting';
+
   return (
     <Wrapper>
       <Form method='post' className='form auth-form'>
@@ -48,13 +41,11 @@ const Login = () => {
         <FormInput
           type='email'
           name='email'
-          defaultValue='hquinn@wayneindusties.com'
+          defaultValue='nthompson@email.com'
         />
-        <FormInput type='password' name='password' defaultValue='mrjpuddin' />
+        <FormInput type='password' name='password' defaultValue='nostromo' />
 
-        <button type='submit' className='btn btn-block' disabled={isSubmitting}>
-          {isSubmitting ? 'submitting...' : 'submit'}
-        </button>
+        <FormBtnSubmit />
 
         <button type='button' className='btn btn-block'>
           explore the app

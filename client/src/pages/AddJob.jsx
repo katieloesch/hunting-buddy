@@ -1,14 +1,9 @@
 import React from 'react';
-import {
-  Form,
-  useNavigation,
-  redirect,
-  useOutletContext,
-} from 'react-router-dom';
+import { Form, redirect, useOutletContext } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import Wrapper from '../styledComponents/DashboardFormPage';
-import { FormInput, FormSelect } from '../components';
+import { FormBtnSubmit, FormInput, FormSelect } from '../components';
 import customFetch from '../utils/customFetch';
 import { JOB_STATUS, JOB_TYPE } from '../../../utils/constants';
 
@@ -28,8 +23,6 @@ export const action = async ({ request }) => {
 
 const AddJob = () => {
   const { user } = useOutletContext(); // variable provided in DashboardLayout (ln 65)
-  const navigation = useNavigation();
-  const isSubmitting = navigation.state === 'submitting';
 
   return (
     <Wrapper>
@@ -45,28 +38,19 @@ const AddJob = () => {
             name='jobLocation'
             defaultValue={user.location}
           />
-
           <FormSelect
             name='jobStatus'
             labelText='status'
             options={Object.values(JOB_STATUS)}
             defaultValue={JOB_STATUS.PENDING}
           />
-
           <FormSelect
             name='jobType'
             labelText='contract'
             options={Object.values(JOB_TYPE)}
             defaultValue={JOB_TYPE.FULL_TIME}
           />
-
-          <button
-            type='submit'
-            className='btn btn-block form-btn'
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? 'submitting...' : 'submit'}
-          </button>
+          <FormBtnSubmit formBtn />
         </div>
       </Form>
     </Wrapper>
