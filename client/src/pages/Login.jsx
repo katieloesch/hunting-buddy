@@ -1,5 +1,11 @@
 import React from 'react';
-import { Form, Link, redirect, useActionData } from 'react-router-dom';
+import {
+  Form,
+  Link,
+  redirect,
+  useActionData,
+  useNavigate,
+} from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import Wrapper from '../styledComponents/RegisterLoginPage';
@@ -29,6 +35,18 @@ export const action = async ({ request }) => {
 
 const Login = () => {
   const errors = useActionData();
+  const navigate = useNavigate();
+  const loginDemoUser = async () => {
+    const data = { email: 'nthompson@email.com', password: 'nostromo' };
+
+    try {
+      await customFetch.post('/auth/login', data);
+      toast.success('Welcome to your test drive!');
+      navigate('/dashboard');
+    } catch (error) {
+      toast.error(error?.response?.data?.msg);
+    }
+  };
 
   return (
     <Wrapper>
@@ -47,7 +65,7 @@ const Login = () => {
 
         <FormBtnSubmit />
 
-        <button type='button' className='btn btn-block'>
+        <button type='button' className='btn btn-block' onClick={loginDemoUser}>
           explore the app
         </button>
 
