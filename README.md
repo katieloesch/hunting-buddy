@@ -1236,4 +1236,10 @@ cookie visible in dev tools after login
 
 <img src='./client/src/assets/images/screenshots/cookie_browser_dev_tools.png'>
 
+28/08/2024
+
+create mock data using mockaroo (https://www.mockaroo.com/)
+download json file
+
+
 -->
