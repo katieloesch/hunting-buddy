@@ -366,7 +366,7 @@ This application was built using the `MERN stack`, an open source–centric coll
 
 - **Icons**
   - **Font Awesome**
-    - <sub>A popular icon library offering a large set of scalable and customizable icons, with a free version that is open source.</sub>
+    - <sub>An icon library offering a large set of scalable and customisable icons, with a free version that is open source.</sub>
     - <sub>[website](https://fontawesome.com/)</sub>
     - <sub>[GitHub repository](https://github.com/FortAwesome/Font-Awesome)</sub>
     - <sub>[license](https://fontawesome.com/license/free)</sub>
@@ -444,7 +444,7 @@ This application was built using the `MERN stack`, an open source–centric coll
 - **Udemy**
   - <sub>[MERN 2024 Edition - MongoDB, Express, React and NodeJS](https://www.udemy.com/course/mern-stack-course-mongodb-express-react-and-nodejs/) by [John Smilga](https://www.udemy.com/user/janis-smilga-3/)</sub>
   - <sub>[The Complete Node.js Developer Course (3rd Edition)](https://www.udemy.com/course/the-complete-nodejs-developer-course-2/) by [Andrew Mead](https://www.udemy.com/user/andrewmead/) & [Rob Percival](https://www.udemy.com/user/robpercival/)</sub>
-  - <sub>[React, NodeJS, Express & MongoDB - The MERN Fullstack Guide]() by [Manuel Lorenz](https://www.udemy.com/user/manuel-lorenz/) & [Maximilian Schwarzmüller](https://www.udemy.com/user/maximilian-schwarzmuller/)</sub>
+  - <sub>[React, NodeJS, Express & MongoDB - The MERN Fullstack Guide](https://www.udemy.com/course/react-nodejs-express-mongodb-the-mern-fullstack-guide/?couponCode=OF83024F) by [Manuel Lorenz](https://www.udemy.com/user/manuel-lorenz/) & [Maximilian Schwarzmüller](https://www.udemy.com/user/maximilian-schwarzmuller/)</sub>
   - <sub>[React - The Complete Guide 2024 (incl. Next.js, Redux)](https://www.udemy.com/course/react-the-complete-guide-incl-redux/learn/lecture/25595350?start=0#overview) by [Maximilian Schwarzmüller](https://www.udemy.com/user/maximilian-schwarzmuller/)</sub>
 
 ## <a name="deliverables"></a> 5. Deliverables
