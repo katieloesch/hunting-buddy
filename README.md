@@ -422,6 +422,9 @@ This application was built using the `MERN stack`, an open source–centric coll
   - <sub>generative AI tool used for debugging and development support</sub>
   - <sub>[website](https://chat.openai.com/)</sub>
   - <sub>[GitHub repository](https://github.com/openai)</sub>
+- **Mockaroo**
+  - <sub>web-based tool for quickly and easily generating fake datasets for a variety of purposes, such as testing software, populating databases or creating sample documents</sub>
+  - <sub>[website](https://www.mockaroo.com/)</sub>
 
 ### Resources & Tutorials
 
@@ -463,12 +466,45 @@ This application was built using the `MERN stack`, an open source–centric coll
 
 ## <a name="challenges"></a> 7. Challenges
 
+- Managing state across various components efficiently
+- Implementing authentication and role-based access control
+- Optimizing API requests for better performance
+- Handling edge cases in form validation and error handling
+
 ## <a name="wins"></a> 8. Wins
 
-- vite
-- styled components
+- Successfully implementation of a full-featured job tracking application
+- Improved app performance with React Query and optimized API calls
+- Provided a seamless user experience with a well-structured UI
+- Enabled dark mode toggle for better user accessibility
+- successfully built and structured a RESTful API using Express.js and MongoDB
+- Implemented JWT-based authentication, ensuring secure user sessions
+- Used bcrypt.js for password hashing to enhance security
+
+- Designed a scalable MongoDB schema using Mongoose
+- Implemented data validation at both the database and API level using Express Validator
+
+- Optimized frontend build sizes using Vite for faster performance
+- Successfully deployed a full-stack app using Netlify (Frontend), Render/Heroku (Backend), and MongoDB Atlas
 
 ## <a name="takeaways"></a> 9. Key Learnings & Takeaways
+
+- Understanding the benefits of using Vite over create-react-app
+- Managing state effectively with React Context and local storage
+- Improving backend security with authentication and validation layers
+- Structuring Express routes and controllers for maintainability
+- Enhancing user experience with animations and responsive design
+
+- Gained deeper knowledge of React Router, including nested routes and protected routes
+- Learned how to use React Query to optimize data fetching and reduce redundant API calls
+- Built custom React hooks to manage repetitive logic and improve code reusability
+
+- Learned to use Styled Components to write CSS-in-JS, making styling more modular, reusable, and maintainable
+- Enhanced UI structure by using Wrapper components for consistent layout management
+- Learned the importance of role-based authentication (RBAC) for managing user permissions
+- Learned how to efficiently filter, paginate, and sort database queries
+- Implemented custom error classes to handle errors consistently across the application
+- Gained a better understanding of handling asynchronous errors in Express using express-async-errors
 
 ## <a name="future-improvements"></a> 10. Future Improvements
 
