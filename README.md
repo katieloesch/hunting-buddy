@@ -436,7 +436,8 @@ This application was built using the `MERN stack`, an open source–centric coll
   - <sub>[dayjs](https://day.js.org/docs/en/installation/installation)</sub>
   - <sub>[styled-components](https://styled-components.com/docs)</sub>
   - <sub>[React-toastify](https://fkhadra.github.io/react-toastify/introduction/)</sub>
-  - <sub> [React useNavigation() and navigation.state](https://reactrouter.com/en/main/hooks/use-navigation#usenavigation)</sub>
+  - <sub>[React useNavigation() and navigation.state](https://reactrouter.com/en/main/hooks/use-navigation#usenavigation)</sub>
+  - <sub>[MongoDB aggregation pipeline](https://www.mongodb.com/docs/manual/core/aggregation-pipeline/)</sub>
 - **Blogs**
   - <sub>[The Power Of CreateBrowserRouter: Optimizing Your React App's Navigation](https://www.dhiwise.com/post/the-power-of-createbrowserrouter-optimizing-your-react-app) by Daxesh Patel</sub>
   - <sub>[Getting Started with createBrowserRouter in react-router-dom](https://medium.com/@pavitramodi.it/getting-started-with-createbrowserrouter-in-react-router-dom-e3131820fef4) by [Pavitra Modi](https://medium.com/@pavitramodi.it)</sub>
@@ -1276,6 +1277,40 @@ cookie visible in dev tools after login
 
 create mock data using mockaroo (https://www.mockaroo.com/)
 download json file
+
+
+06/02/2025
+
+stats page -> process stats data using the MongoDB aggregation pipeline (data cleaning, sorting, grouping i.e. a way to process data inside MongoDB)
+docs: https://www.mongodb.com/docs/manual/core/aggregation-pipeline/
+
+```JavaScript
+
+  let stats = await Job.aggregate([
+    { $match: { createdBy: new mongoose.Types.ObjectId(req.user.userId) } },
+    { $group: { _id: '$jobStatus', count: { $sum: 1 } } },
+  ]);
+
+  /*  -> stats output:
+    [
+      { _id: 'interview', count: 37 },
+      { _id: 'declined', count: 33 },
+      { _id: 'pending', count: 30 }
+    ]
+     -> need to turn this array into an object
+  */
+
+  stats = stats.reduce((acc, curr) => {
+    const { _id: title, count } = curr;
+    acc[title] = count;
+    return acc;
+  }, {});
+
+  /*  -> stats output:
+    { declined: 33, pending: 30, interview: 37 }
+  */
+
+```
 
 
 -->

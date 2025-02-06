@@ -33,16 +33,34 @@ export const deleteJob = async (req, res) => {
 };
 
 export const showStats = async (req, res) => {
+  // MongoDB aggregation pipeline -> data cleaning, sorting, grouping i.e. a way to process data inside MongoDB
+  // docs: https://www.mongodb.com/docs/manual/core/aggregation-pipeline/
+
   let stats = await Job.aggregate([
     { $match: { createdBy: new mongoose.Types.ObjectId(req.user.userId) } },
     { $group: { _id: '$jobStatus', count: { $sum: 1 } } },
   ]);
+
+  /*  -> stats output:
+    [
+      { _id: 'interview', count: 37 },
+      { _id: 'declined', count: 33 },
+      { _id: 'pending', count: 30 }
+    ]
+     -> need to turn this array into an object
+  */
 
   stats = stats.reduce((acc, curr) => {
     const { _id: title, count } = curr;
     acc[title] = count;
     return acc;
   }, {});
+
+  /*  -> stats output:
+    { declined: 33, pending: 30, interview: 37 } 
+  */
+
+  console.log(stats);
 
   const defaultStats = {
     pending: stats.pending || 0,
@@ -51,9 +69,9 @@ export const showStats = async (req, res) => {
   };
 
   let monthlyApplications = [
-    { date: 'May 23', count: 17 },
-    { date: 'June 23', count: 17 },
-    { date: 'Jul 23', count: 17 },
+    { date: 'May 24', count: 12 },
+    { date: 'June 24', count: 9 },
+    { date: 'Jul 24', count: 3 },
   ];
 
   res.status(StatusCodes.OK).json({ defaultStats, monthlyApplications });
