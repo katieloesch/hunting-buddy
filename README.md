@@ -422,6 +422,9 @@ This application was built using the `MERN stack`, an open source–centric coll
   - <sub>generative AI tool used for debugging and development support</sub>
   - <sub>[website](https://chat.openai.com/)</sub>
   - <sub>[GitHub repository](https://github.com/openai)</sub>
+- **Mockaroo**
+  - <sub>web-based tool for quickly and easily generating fake datasets for a variety of purposes, such as testing software, populating databases or creating sample documents</sub>
+  - <sub>[website](https://www.mockaroo.com/)</sub>
 
 ### Resources & Tutorials
 
@@ -433,7 +436,8 @@ This application was built using the `MERN stack`, an open source–centric coll
   - <sub>[dayjs](https://day.js.org/docs/en/installation/installation)</sub>
   - <sub>[styled-components](https://styled-components.com/docs)</sub>
   - <sub>[React-toastify](https://fkhadra.github.io/react-toastify/introduction/)</sub>
-  - <sub> [React useNavigation() and navigation.state](https://reactrouter.com/en/main/hooks/use-navigation#usenavigation)</sub>
+  - <sub>[React useNavigation() and navigation.state](https://reactrouter.com/en/main/hooks/use-navigation#usenavigation)</sub>
+  - <sub>[MongoDB aggregation pipeline](https://www.mongodb.com/docs/manual/core/aggregation-pipeline/)</sub>
 - **Blogs**
   - <sub>[The Power Of CreateBrowserRouter: Optimizing Your React App's Navigation](https://www.dhiwise.com/post/the-power-of-createbrowserrouter-optimizing-your-react-app) by Daxesh Patel</sub>
   - <sub>[Getting Started with createBrowserRouter in react-router-dom](https://medium.com/@pavitramodi.it/getting-started-with-createbrowserrouter-in-react-router-dom-e3131820fef4) by [Pavitra Modi](https://medium.com/@pavitramodi.it)</sub>
@@ -463,12 +467,45 @@ This application was built using the `MERN stack`, an open source–centric coll
 
 ## <a name="challenges"></a> 7. Challenges
 
+- Managing state across various components efficiently
+- Implementing authentication and role-based access control
+- Optimizing API requests for better performance
+- Handling edge cases in form validation and error handling
+
 ## <a name="wins"></a> 8. Wins
 
-- vite
-- styled components
+- Successfully implementation of a full-featured job tracking application
+- Improved app performance with React Query and optimized API calls
+- Provided a seamless user experience with a well-structured UI
+- Enabled dark mode toggle for better user accessibility
+- successfully built and structured a RESTful API using Express.js and MongoDB
+- Implemented JWT-based authentication, ensuring secure user sessions
+- Used bcrypt.js for password hashing to enhance security
+
+- Designed a scalable MongoDB schema using Mongoose
+- Implemented data validation at both the database and API level using Express Validator
+
+- Optimized frontend build sizes using Vite for faster performance
+- Successfully deployed a full-stack app using Netlify (Frontend), Render/Heroku (Backend), and MongoDB Atlas
 
 ## <a name="takeaways"></a> 9. Key Learnings & Takeaways
+
+- Understanding the benefits of using Vite over create-react-app
+- Managing state effectively with React Context and local storage
+- Improving backend security with authentication and validation layers
+- Structuring Express routes and controllers for maintainability
+- Enhancing user experience with animations and responsive design
+
+- Gained deeper knowledge of React Router, including nested routes and protected routes
+- Learned how to use React Query to optimize data fetching and reduce redundant API calls
+- Built custom React hooks to manage repetitive logic and improve code reusability
+
+- Learned to use Styled Components to write CSS-in-JS, making styling more modular, reusable, and maintainable
+- Enhanced UI structure by using Wrapper components for consistent layout management
+- Learned the importance of role-based authentication (RBAC) for managing user permissions
+- Learned how to efficiently filter, paginate, and sort database queries
+- Implemented custom error classes to handle errors consistently across the application
+- Gained a better understanding of handling asynchronous errors in Express using express-async-errors
 
 ## <a name="future-improvements"></a> 10. Future Improvements
 
@@ -1241,5 +1278,109 @@ cookie visible in dev tools after login
 create mock data using mockaroo (https://www.mockaroo.com/)
 download json file
 
+
+06/02/2025
+
+stats page -> process stats data using the MongoDB aggregation pipeline (data cleaning, sorting, grouping i.e. a way to process data inside MongoDB)
+docs: https://www.mongodb.com/docs/manual/core/aggregation-pipeline/
+
+```JavaScript
+
+export const showStats = async (req, res) => {
+  // MongoDB aggregation pipeline -> data cleaning, sorting, grouping i.e. a way to process data inside MongoDB
+  // docs: https://www.mongodb.com/docs/manual/core/aggregation-pipeline/
+
+  let stats = await Job.aggregate([
+    { $match: { createdBy: new mongoose.Types.ObjectId(req.user.userId) } },
+    { $group: { _id: '$jobStatus', count: { $sum: 1 } } },
+  ]);
+
+  /*  -> output:
+    [{ _id: 'interview', count: 37 },
+     { _id: 'declined', count: 33 },
+     { _id: 'pending', count: 30 }]
+
+     -> need to turn this array into an object
+  */
+
+  stats = stats.reduce((acc, curr) => {
+    const { _id: title, count } = curr;
+    acc[title] = count;
+    return acc;
+  }, {});
+
+  // console.log(stats);
+
+  /*  -> output:
+      { interview: 36, pending: 29, declined: 35 }
+  */
+
+  const defaultStats = {
+    pending: stats.pending || 0,
+    interview: stats.interview || 0,
+    declined: stats.declined || 0,
+  };
+
+  let monthlyApplications = await Job.aggregate([
+    { $match: { createdBy: new mongoose.Types.ObjectId(req.user.userId) } },
+    {
+      $group: {
+        _id: { year: { $year: '$createdAt' }, month: { $month: '$createdAt' } },
+        count: { $sum: 1 },
+      },
+    },
+    { $sort: { '_id.year': -1, '_id.month': -1 } }, // most recent ones should come first
+    { $limit: 6 }, // limit to 6 months
+  ]);
+
+  // console.log(monthlyApplications);
+
+  /*  -> output:
+
+    [{ _id: { year: 2025, month: 3 }, count: 6 },
+    { _id: { year: 2025, month: 2 }, count: 22 },
+    { _id: { year: 2025, month: 1 }, count: 21 },
+    { _id: { year: 2024, month: 12 }, count: 14 },
+    { _id: { year: 2024, month: 11 }, count: 23 },
+    { _id: { year: 2024, month: 10 }, count: 14 }]
+
+  */
+
+  monthlyApplications = monthlyApplications
+    .map((application) => {
+      const {
+        _id: { year, month },
+        count,
+      } = application;
+
+      const date = day()
+        .month(month - 1) // dayjs starts at 0 but for mongodb january=1
+        .year(year)
+        .format('MMM YY');
+      return { date, count };
+    })
+    .reverse();
+  // earlier sorting selected 6 most recent months (i.e. reverse-chronological order)
+  // now: chronological order
+
+  console.log(monthlyApplications);
+  /*  -> output:
+      [
+        { date: 'Oct 24', count: 14 },
+        { date: 'Nov 24', count: 23 },
+        { date: 'Dec 24', count: 14 },
+        { date: 'Jan 25', count: 21 },
+        { date: 'Feb 25', count: 22 },
+        { date: 'Mar 25', count: 6 },
+      ];
+  */
+
+  res.status(StatusCodes.OK).json({ defaultStats, monthlyApplications });
+};
+
+```
+06/02/2025
+
+barchart + areachart for stats page using recharts library
 
 -->
