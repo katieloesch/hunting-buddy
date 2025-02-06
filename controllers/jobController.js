@@ -41,12 +41,11 @@ export const showStats = async (req, res) => {
     { $group: { _id: '$jobStatus', count: { $sum: 1 } } },
   ]);
 
-  /*  -> stats output:
-    [
-      { _id: 'interview', count: 37 },
-      { _id: 'declined', count: 33 },
-      { _id: 'pending', count: 30 }
-    ]
+  /*  -> output:
+    [{ _id: 'interview', count: 37 },
+     { _id: 'declined', count: 33 },
+     { _id: 'pending', count: 30 }]
+
      -> need to turn this array into an object
   */
 
@@ -56,11 +55,11 @@ export const showStats = async (req, res) => {
     return acc;
   }, {});
 
-  /*  -> stats output:
-    { declined: 33, pending: 30, interview: 37 } 
-  */
+  // console.log(stats);
 
-  console.log(stats);
+  /*  -> output:
+      { interview: 36, pending: 29, declined: 35 }    
+  */
 
   const defaultStats = {
     pending: stats.pending || 0,
@@ -68,11 +67,59 @@ export const showStats = async (req, res) => {
     declined: stats.declined || 0,
   };
 
-  let monthlyApplications = [
-    { date: 'May 24', count: 12 },
-    { date: 'June 24', count: 9 },
-    { date: 'Jul 24', count: 3 },
-  ];
+  let monthlyApplications = await Job.aggregate([
+    { $match: { createdBy: new mongoose.Types.ObjectId(req.user.userId) } },
+    {
+      $group: {
+        _id: { year: { $year: '$createdAt' }, month: { $month: '$createdAt' } },
+        count: { $sum: 1 },
+      },
+    },
+    { $sort: { '_id.year': -1, '_id.month': -1 } }, // most recent ones should come first
+    { $limit: 6 }, // limit to 6 months
+  ]);
+
+  // console.log(monthlyApplications);
+
+  /*  -> output:
+
+    [{ _id: { year: 2025, month: 3 }, count: 6 },
+    { _id: { year: 2025, month: 2 }, count: 22 },
+    { _id: { year: 2025, month: 1 }, count: 21 },
+    { _id: { year: 2024, month: 12 }, count: 14 },
+    { _id: { year: 2024, month: 11 }, count: 23 },
+    { _id: { year: 2024, month: 10 }, count: 14 }]
+
+  */
+
+  monthlyApplications = monthlyApplications
+    .map((application) => {
+      const {
+        _id: { year, month },
+        count,
+      } = application;
+
+      const date = day()
+        .month(month - 1) // dayjs starts at 0 but for mongodb january=1
+        .year(year)
+        .format('MMM YY');
+      return { date, count };
+    })
+    .reverse();
+  // earlier sorting selected 6 most recent months (i.e. reverse-chronological order)
+  // now: chronological order
+
+  // console.log(monthlyApplications);
+  /*  -> output:
+      [
+        { date: 'Oct 24', count: 14 },
+        { date: 'Nov 24', count: 23 },
+        { date: 'Dec 24', count: 14 },
+        { date: 'Jan 25', count: 21 },
+        { date: 'Feb 25', count: 22 },
+        { date: 'Mar 25', count: 6 },
+      ];
+  */
 
   res.status(StatusCodes.OK).json({ defaultStats, monthlyApplications });
 };

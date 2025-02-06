@@ -32,22 +32,22 @@ import User from './models/UserModel.js';
 
 /*** admin user -> sprescott@email.com ***/
 
-// try {
-//   await mongoose.connect(process.env.MONGO_URL);
+try {
+  await mongoose.connect(process.env.MONGO_URL);
 
-//   // find demo/test user
-//   const user = await User.findOne({ email: 'sprescott@email.com' });
+  // find demo/test user
+  const user = await User.findOne({ email: 'sprescott@email.com' });
 
-//   // add mock jobs to demo/test user
-//   const jsonMockJobs = JSON.parse(
-//     await readFile(new URL('./utils/mockData.json', import.meta.url))
-//   );
-//   const mockJobs = jsonMockJobs.map((job) => ({ ...job, createdBy: user._id }));
-//   await Job.deleteMany({ createdBy: user._id });
-//   await Job.create(mockJobs);
-//   console.log('Success! Admin user data created.');
-//   process.exit();
-// } catch (error) {
-//   console.log(error);
-//   process.exit(1);
-// }
+  // add mock jobs to demo/test user
+  const jsonMockJobs = JSON.parse(
+    await readFile(new URL('./utils/mockData.json', import.meta.url))
+  );
+  const mockJobs = jsonMockJobs.map((job) => ({ ...job, createdBy: user._id }));
+  await Job.deleteMany({ createdBy: user._id });
+  await Job.create(mockJobs);
+  console.log('Success! Admin user data created.');
+  process.exit();
+} catch (error) {
+  console.log(error);
+  process.exit(1);
+}
