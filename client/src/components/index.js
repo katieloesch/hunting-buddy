@@ -1,3 +1,6 @@
+export { default as AreaChart } from './AreaChart';
+export { default as BarChart } from './BarChart';
+export { default as ChartsContainer } from './ChartsContainer';
 export { default as FormBtnSubmit } from './FormBtnSubmit';
 export { default as FormInput } from './FormInput';
 export { default as FormSelect } from './FormSelect';
@@ -9,5 +12,6 @@ export { default as NavLinks } from './NavLinks';
 export { default as SearchContainer } from './SearchContainer';
 export { default as Sidebar } from './Sidebar';
 export { default as SidebarMobile } from './SidebarMobile';
+export { default as StatsContainer } from './StatsContainer';
 export { default as StatsItem } from './StatsItem';
 export { default as ThemeToggle } from './ThemeToggle';
