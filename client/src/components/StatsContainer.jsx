@@ -15,16 +15,16 @@ const StatsContainer = (defaultStats) => {
       title: 'pending applications',
       count: defaultStats?.pending || 0,
       icon: <FaClock />,
-      color: '#67b564',
-      bg: '#e1f9e0',
+      color: '#64b58a',
+      bg: '#e9fbe8',
     },
     {
       title: 'interviews scheduled',
       count: defaultStats?.interview || 0,
       icon: <FaCalendarCheck />,
 
-      color: '#ebbe44',
-      bg: '#fcf6dc',
+      color: '#deb350',
+      bg: '#fffbe9',
     },
     {
       title: 'jobs declined',
