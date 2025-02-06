@@ -1379,6 +1379,8 @@ export const showStats = async (req, res) => {
 };
 
 ```
+06/02/2025
 
+barchart + areachart for stats page using recharts library
 
 -->
