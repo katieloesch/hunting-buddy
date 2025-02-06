@@ -8,7 +8,7 @@ dotenv.config();
 import Job from './models/JobModel.js';
 import User from './models/UserModel.js';
 
-// test/demo user -> nthompson@email.com
+/*** test/demo user -> nthompson@email.com ***/
 
 // try {
 //   await mongoose.connect(process.env.MONGO_URL);
@@ -30,7 +30,7 @@ import User from './models/UserModel.js';
 //   process.exit(1);
 // }
 
-// admin user -> sprescott@email.com
+/*** admin user -> sprescott@email.com ***/
 
 // try {
 //   await mongoose.connect(process.env.MONGO_URL);
