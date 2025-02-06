@@ -1,5 +1,5 @@
 export { default as AreaChartComponent } from './AreaChartComponent';
-export { default as BarChart } from './BarChart';
+export { default as BarChartComponent } from './BarChartComponent';
 export { default as ChartsContainer } from './ChartsContainer';
 export { default as FormBtnSubmit } from './FormBtnSubmit';
 export { default as FormInput } from './FormInput';

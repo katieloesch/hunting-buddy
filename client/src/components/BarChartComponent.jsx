@@ -1,18 +1,18 @@
 import React from 'react';
 import {
   ResponsiveContainer,
-  AreaChart,
-  Area,
+  BarChart,
+  Bar,
   XAxis,
   YAxis,
   CartesianGrid,
   Tooltip,
 } from 'recharts';
 
-const AreaChartComponent = ({ data }) => {
+const BarChartComponent = ({ data }) => {
   return (
     <ResponsiveContainer width='100%' height={300}>
-      <AreaChart data={data} margin={{ top: 50 }}>
+      <BarChart data={data} margin={{ top: 50 }}>
         <CartesianGrid strokeDasharray='3 3' />
         <XAxis dataKey='date' />
         <YAxis allowDecimals={false} />
@@ -24,16 +24,10 @@ const AreaChartComponent = ({ data }) => {
           labelStyle={{ color: 'rgb(85, 140, 203)' }}
           itemStyle={{ color: 'rgb(85, 140, 203)' }}
         />
-
-        <Area
-          type='monotone'
-          dataKey='count'
-          stroke='#rgb(84, 84, 142)'
-          fill='rgb(85, 140, 203)'
-        />
-      </AreaChart>
+        <Bar dataKey='count' fill='rgb(85, 140, 203)' barSize={75} />
+      </BarChart>
     </ResponsiveContainer>
   );
 };
 
-export default AreaChartComponent;
+export default BarChartComponent;

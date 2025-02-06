@@ -9,7 +9,7 @@ import { GiSandsOfTime } from 'react-icons/gi';
 import Wrapper from '../styledComponents/StatsContainer';
 import StatsItem from './StatsItem';
 
-const StatsContainer = (defaultStats) => {
+const StatsContainer = ({ defaultStats }) => {
   const stats = [
     {
       title: 'pending applications',
