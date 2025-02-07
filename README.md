@@ -397,18 +397,18 @@ This application was built using the `MERN stack`, an open source–centric coll
   - <sub>[Github repository](https://github.com/vitejs/vite)</sub>
   - <sub>[npm page](https://www.npmjs.com/package/vite)</sub>
   - <sub>[documentation](https://vitejs.dev/guide/)</sub>
-- **Git / GitHub** (v2.39.3)
+- **Git / GitHub** (v2.39.5)
   - <sub>used for version control and collaboration</sub>
   - <sub>[Git website](https://git-scm.com/)</sub>
   - <sub>[Git documentation](https://git-scm.com/doc)</sub>
   - <sub>[GitHub website](https://github.com/)</sub>
   - <sub>[GitHub documentation](https://docs.github.com/en)</sub>
-- **Visual Studio Code (VSCode)** (v1.92.2)
+- **Visual Studio Code (VSCode)** (v1.96.4)
   - <sub>code editor used for development</sub>
   - <sub>[website](https://code.visualstudio.com/)</sub>
   - <sub>[GitHub repository](https://github.com/microsoft/vscode)</sub>
   - <sub>[documentation](https://code.visualstudio.com/docs)</sub>
-- **Google Chrome & Chrome DevTools** (v128.0.6613.85)
+- **Google Chrome & Chrome DevTools** (v133.0.6943.54)
   - <sub>used for testing, debugging, and developing in the browser</sub>
   - <sub>[Google Chrome website](https://www.google.com/chrome/)</sub>
   - <sub>[Google Chrome documentation](https://developer.chrome.com/docs)</sub>
