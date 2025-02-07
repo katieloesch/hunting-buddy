@@ -1383,4 +1383,36 @@ export const showStats = async (req, res) => {
 
 barchart + areachart for stats page using recharts library
 
+
+07/02/2025
+
+look for query params in getAllJobs function to filter jobs based on position and company
+
+```JavaScript
+export const getAllJobs = async (req, res) => {
+  console.log(req.query);
+
+  // extract Search Query e.g. ?search=developer
+  const { search } = req.query; // if search is not provided -> undefined
+
+  // construct MongoDB Query Object
+  const queryObj = {
+    createdBy: req.user.userId, // filters jobs based on user ID so users only see jobs they created
+  };
+
+  // apply search filtering
+  if (search) {
+    queryObj.$or = [
+      // $or -> ensures jobs are retrieved if either condition matches
+      // find jobs where the position contains the search term, $options: 'i' makes the search case-insensitive
+      { position: { $regex: search, $options: 'i' } },
+      // find jobs where the company contains the search term, $options: 'i' makes the search case-insensitive
+      { company: { $regex: search, $options: 'i' } },
+    ];
+  }
+
+  const jobs = await Job.find(queryObj);
+  res.status(StatusCodes.OK).json({ jobs });
+};
+```
 -->

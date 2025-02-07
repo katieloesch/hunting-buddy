@@ -5,7 +5,28 @@ import day from 'dayjs';
 import Job from '../models/JobModel.js';
 
 export const getAllJobs = async (req, res) => {
-  const jobs = await Job.find({ createdBy: req.user.userId });
+  console.log(req.query);
+
+  // extract Search Query e.g. ?search=developer
+  const { search } = req.query; // if search is not provided -> undefined
+
+  // construct MongoDB Query Object
+  const queryObj = {
+    createdBy: req.user.userId, // filters jobs based on user ID so users only see jobs they created
+  };
+
+  // apply search filtering
+  if (search) {
+    queryObj.$or = [
+      // $or -> ensures jobs are retrieved if either condition matches
+      // find jobs where the position contains the search term, $options: 'i' makes the search case-insensitive
+      { position: { $regex: search, $options: 'i' } },
+      // find jobs where the company contains the search term, $options: 'i' makes the search case-insensitive
+      { company: { $regex: search, $options: 'i' } },
+    ];
+  }
+
+  const jobs = await Job.find(queryObj);
   res.status(StatusCodes.OK).json({ jobs });
 };
 
