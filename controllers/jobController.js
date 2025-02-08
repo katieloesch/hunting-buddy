@@ -43,8 +43,18 @@ export const getAllJobs = async (req, res) => {
 
   const sortKey = sortOptions[sort] || sortOptions.newest;
 
-  const jobs = await Job.find(queryObj).sort(sortKey);
-  res.status(StatusCodes.OK).json({ jobs });
+  // pagination
+  const page = Number(req.query.page) || 1; // by default look for first page
+  const limit = Number(req.query.limit) || 10; // 10 jobs per page
+  const skip = (page - 1) * limit; // e.g. when seeing second page, skip jobs from first page
+
+  const jobs = await Job.find(queryObj).sort(sortKey).skip(skip).limit(limit);
+  const totalJobs = await Job.countDocuments(queryObj);
+  const numOfPages = Math.ceil(totalJobs / limit); // always round up, page number needs to be integer
+
+  res
+    .status(StatusCodes.OK)
+    .json({ totalJobs, numOfPages, currentPage: page, jobs });
 };
 
 export const createJob = async (req, res) => {
