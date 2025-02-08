@@ -8,7 +8,7 @@ export const getAllJobs = async (req, res) => {
   console.log(req.query);
 
   // extract Search Query e.g. ?search=developer
-  const { search, jobStatus, jobType } = req.query; // if search is not provided -> undefined
+  const { search, jobStatus, jobType, sort } = req.query; // if search is not provided -> undefined
 
   // construct MongoDB Query Object
   const queryObj = {
@@ -34,7 +34,16 @@ export const getAllJobs = async (req, res) => {
     queryObj.jobType = jobType;
   }
 
-  const jobs = await Job.find(queryObj);
+  const sortOptions = {
+    newest: '-createdAt',
+    oldest: 'createdAt',
+    'a-z': 'position',
+    'z-a': '-position',
+  };
+
+  const sortKey = sortOptions[sort] || sortOptions.newest;
+
+  const jobs = await Job.find(queryObj).sort(sortKey);
   res.status(StatusCodes.OK).json({ jobs });
 };
 
