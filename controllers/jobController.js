@@ -8,7 +8,7 @@ export const getAllJobs = async (req, res) => {
   console.log(req.query);
 
   // extract Search Query e.g. ?search=developer
-  const { search } = req.query; // if search is not provided -> undefined
+  const { search, jobStatus, jobType } = req.query; // if search is not provided -> undefined
 
   // construct MongoDB Query Object
   const queryObj = {
@@ -24,6 +24,14 @@ export const getAllJobs = async (req, res) => {
       // find jobs where the company contains the search term, $options: 'i' makes the search case-insensitive
       { company: { $regex: search, $options: 'i' } },
     ];
+  }
+
+  if (jobStatus && jobStatus !== 'all') {
+    queryObj.jobStatus = jobStatus;
+  }
+
+  if (jobType && jobType !== 'all') {
+    queryObj.jobType = jobType;
   }
 
   const jobs = await Job.find(queryObj);
