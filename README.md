@@ -1479,4 +1479,32 @@ export const getAllJobs = async (req, res) => {
     .json({ totalJobs, numOfPages, currentPage: page, jobs });
 };
 ```
+
+
+09/02/2025
+
+update search form to submit form programmatically (controlled inputs) - setup default values from the context - remove SubmitBtn - add onChange to FormRow, FormRowSelect and all inputs
+use JS debounce to create delay when user types into search box before submitting the form to avoid unnecessary processing
+
+```js
+const debounce = (onChange) => {
+  let timeout;
+  return (e) => {
+    const form = e.currentTarget.form;
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      onChange(form);
+    }, 2000);
+  };
+};
+<FormRow
+  type='search'
+  name='search'
+  defaultValue={search}
+  onChange={debounce((form) => {
+    submit(form);
+  })}
+/>;
+```
+
 -->
