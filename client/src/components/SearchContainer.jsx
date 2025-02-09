@@ -6,39 +6,56 @@ import { JOB_TYPE, JOB_STATUS, JOB_SORT_BY } from '../../../utils/constants';
 import { useAllJobsContext } from '../pages/AllJobs';
 
 const SearchContainer = () => {
+  const { searchValues } = useAllJobsContext();
+  const { search, jobStatus, jobType, sort } = searchValues;
+  const submit = useSubmit();
+
   return (
     <Wrapper>
       <Form className='form'>
         <h5 className='form-title'>search form</h5>
         <div className='form-center'>
-          <FormInput type='search' name='search' defaultValue='abc' />
+          <FormInput
+            type='search'
+            name='search'
+            defaultValue={search}
+            onChange={(e) => {
+              submit(e.currentTarget.form);
+            }}
+          />
 
           <FormSelect
             labelText='job status'
             name='jobStatus'
             options={['all', ...Object.values(JOB_STATUS)]}
-            defaultValue='all'
+            defaultValue={jobStatus}
+            onChange={(e) => {
+              submit(e.currentTarget.form);
+            }}
           />
 
           <FormSelect
             labelText='job type'
             name='jobType'
             options={['all', ...Object.values(JOB_TYPE)]}
-            defaultValue='all'
+            defaultValue={jobType}
+            onChange={(e) => {
+              submit(e.currentTarget.form);
+            }}
           />
 
           <FormSelect
             name='sort'
-            defaultValue='newest'
+            defaultValue={sort}
             options={[...Object.values(JOB_SORT_BY)]}
+            onChange={(e) => {
+              submit(e.currentTarget.form);
+            }}
           />
 
           <Link to='/dashboard/all-jobs' className='btn form-btn delete-btn'>
             Reset Search Values
           </Link>
-
-          {/* TEMP */}
-          <FormBtnSubmit formBtn />
         </div>
       </Form>
     </Wrapper>
