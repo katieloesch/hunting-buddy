@@ -7,18 +7,37 @@ import { FormBtnSubmit, FormInput, FormSelect } from '../components';
 import customFetch from '../utils/customFetch';
 import { JOB_STATUS, JOB_TYPE } from '../../../utils/constants';
 
-export const action = async ({ request }) => {
-  const formData = await request.formData();
-  const data = Object.fromEntries(formData);
+// export const action = async ({ request }) => {
+//   const formData = await request.formData();
+//   const data = Object.fromEntries(formData);
 
-  try {
-    await customFetch.post('/jobs', data);
-    toast.success('Job added successfully!');
-    return redirect('all-jobs');
-  } catch (error) {
-    toast.error(error?.response?.data?.msg);
-    return error;
-  }
+//   try {
+//     await customFetch.post('/jobs', data);
+//     toast.success('Job added successfully!');
+//     return redirect('all-jobs');
+//   } catch (error) {
+//     toast.error(error?.response?.data?.msg);
+//     return error;
+//   }
+// };
+
+// fixing npm run build issue
+
+export const action = ({ request }) => {
+  return request
+    .formData()
+    .then((formData) => {
+      const data = Object.fromEntries(formData);
+      return customFetch.post('/jobs', data);
+    })
+    .then(() => {
+      toast.success('Job added successfully!');
+      return redirect('all-jobs');
+    })
+    .catch((error) => {
+      toast.error(error?.response?.data?.msg);
+      return error;
+    });
 };
 
 const AddJob = () => {

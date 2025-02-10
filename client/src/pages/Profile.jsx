@@ -6,22 +6,46 @@ import customFetch from '../utils/customFetch';
 import Wrapper from '../styledComponents/DashboardFormPage';
 import { FormBtnSubmit, FormInput } from '../components';
 
-export const action = async ({ request }) => {
-  const formData = await request.formData();
-  const file = formData.get('avatar');
-  if (file && file.size > 500000) {
-    toast.error(
-      'Image size too large, please select an image that is < 0.5 MB.'
-    );
-    return null;
-  }
-  try {
-    await customFetch.patch('/users/update-user', formData);
-    toast.success('Profile updated successfully!');
-  } catch (error) {
-    toast.error(error?.response?.data?.msg);
-  }
-  return null;
+// export const action = async ({ request }) => {
+//   const formData = await request.formData();
+//   const file = formData.get('avatar');
+//   if (file && file.size > 500000) {
+//     toast.error(
+//       'Image size too large, please select an image that is < 0.5 MB.'
+//     );
+//     return null;
+//   }
+//   try {
+//     await customFetch.patch('/users/update-user', formData);
+//     toast.success('Profile updated successfully!');
+//   } catch (error) {
+//     toast.error(error?.response?.data?.msg);
+//   }
+//   return null;
+// };
+
+// fixing npm run build issue
+
+export const action = ({ request }) => {
+  return request.formData().then((formData) => {
+    const file = formData.get('avatar');
+
+    if (file && file.size > 500000) {
+      toast.error(
+        'Image size too large, please select an image that is < 0.5 MB.'
+      );
+      return null;
+    }
+
+    return customFetch
+      .patch('/users/update-user', formData)
+      .then(() => {
+        toast.success('Profile updated successfully!');
+      })
+      .catch((error) => {
+        toast.error(error?.response?.data?.msg);
+      });
+  });
 };
 
 const Profile = () => {
