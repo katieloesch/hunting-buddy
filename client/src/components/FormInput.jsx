@@ -1,6 +1,6 @@
 import React from 'react';
 
-const FormInput = ({ type, name, labelText, defaultValue }) => {
+const FormInput = ({ type, name, labelText, defaultValue, onChange }) => {
   return (
     <div className='form-row'>
       <label htmlFor={name} className='form-label'>
@@ -11,7 +11,8 @@ const FormInput = ({ type, name, labelText, defaultValue }) => {
         id={name}
         name={name}
         className='form-input'
-        defaultValue={defaultValue}
+        defaultValue={defaultValue || ''}
+        onChange={onChange}
         required
       />
     </div>

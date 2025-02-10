@@ -5,8 +5,56 @@ import day from 'dayjs';
 import Job from '../models/JobModel.js';
 
 export const getAllJobs = async (req, res) => {
-  const jobs = await Job.find({ createdBy: req.user.userId });
-  res.status(StatusCodes.OK).json({ jobs });
+  console.log(req.query);
+
+  // extract Search Query e.g. ?search=developer
+  const { search, jobStatus, jobType, sort } = req.query; // if search is not provided -> undefined
+
+  // construct MongoDB Query Object
+  const queryObj = {
+    createdBy: req.user.userId, // filters jobs based on user ID so users only see jobs they created
+  };
+
+  // apply search filtering
+  if (search) {
+    queryObj.$or = [
+      // $or -> ensures jobs are retrieved if either condition matches
+      // find jobs where the position contains the search term, $options: 'i' makes the search case-insensitive
+      { position: { $regex: search, $options: 'i' } },
+      // find jobs where the company contains the search term, $options: 'i' makes the search case-insensitive
+      { company: { $regex: search, $options: 'i' } },
+    ];
+  }
+
+  if (jobStatus && jobStatus !== 'all') {
+    queryObj.jobStatus = jobStatus;
+  }
+
+  if (jobType && jobType !== 'all') {
+    queryObj.jobType = jobType;
+  }
+
+  const sortOptions = {
+    newest: '-createdAt',
+    oldest: 'createdAt',
+    'a-z': 'position',
+    'z-a': '-position',
+  };
+
+  const sortKey = sortOptions[sort] || sortOptions.newest;
+
+  // pagination
+  const page = Number(req.query.page) || 1; // by default look for first page
+  const limit = Number(req.query.limit) || 10; // 10 jobs per page
+  const skip = (page - 1) * limit; // e.g. when seeing second page, skip jobs from first page
+
+  const jobs = await Job.find(queryObj).sort(sortKey).skip(skip).limit(limit);
+  const totalJobs = await Job.countDocuments(queryObj);
+  const numOfPages = Math.ceil(totalJobs / limit); // always round up, page number needs to be integer
+
+  res
+    .status(StatusCodes.OK)
+    .json({ totalJobs, numOfPages, currentPage: page, jobs });
 };
 
 export const createJob = async (req, res) => {

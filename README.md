@@ -445,6 +445,7 @@ This application was built using the `MERN stack`, an open source–centric coll
   - <sub>[React Router in Depth #3 - Router Provider, createBrowserRouter & Outlet](https://www.youtube.com/watch?v=5s57C7leXc4&pp=ygUacmVhY3QgY3JlYXRlYnJvd3NlcnJvdXRlciA%3D) by [Net Ninja](https://www.youtube.com/@NetNinja)</sub>
   - <sub>[Javascript Nuggets - FormData API](https://youtu.be/5-x4OUM-SP8) by [Coding Addict](https://www.youtube.com/@CodingAddict)</sub>
   - <sub>[FormData API - React](https://youtu.be/WrX5RndZIzw) by [Coding Addict](https://www.youtube.com/@CodingAddict)</sub>
+    <sub>[Javascript Nuggets - Debounce](https://www.youtube.com/watch?v=tYx6pXdvt1s) by [Coding Addict](https://www.youtube.com/@CodingAddict)</sub>
 - **Udemy**
   - <sub>[MERN 2024 Edition - MongoDB, Express, React and NodeJS](https://www.udemy.com/course/mern-stack-course-mongodb-express-react-and-nodejs/) by [John Smilga](https://www.udemy.com/user/janis-smilga-3/)</sub>
   - <sub>[The Complete Node.js Developer Course (3rd Edition)](https://www.udemy.com/course/the-complete-nodejs-developer-course-2/) by [Andrew Mead](https://www.udemy.com/user/andrewmead/) & [Rob Percival](https://www.udemy.com/user/robpercival/)</sub>
@@ -1382,5 +1383,128 @@ export const showStats = async (req, res) => {
 06/02/2025
 
 barchart + areachart for stats page using recharts library
+
+
+07/02/2025
+
+look for query params in getAllJobs function to filter jobs based on position and company
+
+```JavaScript
+export const getAllJobs = async (req, res) => {
+  console.log(req.query);
+
+  // extract Search Query e.g. ?search=developer
+  const { search } = req.query; // if search is not provided -> undefined
+
+  // construct MongoDB Query Object
+  const queryObj = {
+    createdBy: req.user.userId, // filters jobs based on user ID so users only see jobs they created
+  };
+
+  // apply search filtering
+  if (search) {
+    queryObj.$or = [
+      // $or -> ensures jobs are retrieved if either condition matches
+      // find jobs where the position contains the search term, $options: 'i' makes the search case-insensitive
+      { position: { $regex: search, $options: 'i' } },
+      // find jobs where the company contains the search term, $options: 'i' makes the search case-insensitive
+      { company: { $regex: search, $options: 'i' } },
+    ];
+  }
+
+  const jobs = await Job.find(queryObj);
+  res.status(StatusCodes.OK).json({ jobs });
+};
+```
+
+08/02/2025
+
+update jobController | use query params to sort jobs
+
+update jobController | use query params to filter jobs by jobType and jobStatus
+
+pagination
+
+```JavaScript
+export const getAllJobs = async (req, res) => {
+  console.log(req.query);
+
+  // extract Search Query e.g. ?search=developer
+  const { search, jobStatus, jobType, sort } = req.query; // if search is not provided -> undefined
+
+  // construct MongoDB Query Object
+  const queryObj = {
+    createdBy: req.user.userId, // filters jobs based on user ID so users only see jobs they created
+  };
+
+  // apply search filtering
+  if (search) {
+    queryObj.$or = [
+      // $or -> ensures jobs are retrieved if either condition matches
+      // find jobs where the position contains the search term, $options: 'i' makes the search case-insensitive
+      { position: { $regex: search, $options: 'i' } },
+      // find jobs where the company contains the search term, $options: 'i' makes the search case-insensitive
+      { company: { $regex: search, $options: 'i' } },
+    ];
+  }
+
+  if (jobStatus && jobStatus !== 'all') {
+    queryObj.jobStatus = jobStatus;
+  }
+
+  if (jobType && jobType !== 'all') {
+    queryObj.jobType = jobType;
+  }
+
+  const sortOptions = {
+    newest: '-createdAt',
+    oldest: 'createdAt',
+    'a-z': 'position',
+    'z-a': '-position',
+  };
+
+  const sortKey = sortOptions[sort] || sortOptions.newest;
+
+  // pagination
+  const page = Number(req.query.page) || 1; // by default look for first page
+  const limit = Number(req.query.limit) || 10; // 10 jobs per page
+  const skip = (page - 1) * limit; // e.g. when seeing second page, skip jobs from first page
+
+  const jobs = await Job.find(queryObj).sort(sortKey).skip(skip).limit(limit);
+  const totalJobs = await Job.countDocuments(queryObj);
+  const numOfPages = Math.ceil(totalJobs / limit); // always round up, page number needs to be integer
+
+  res
+    .status(StatusCodes.OK)
+    .json({ totalJobs, numOfPages, currentPage: page, jobs });
+};
+```
+
+
+09/02/2025
+
+update search form to submit form programmatically (controlled inputs) - setup default values from the context - remove SubmitBtn - add onChange to FormRow, FormRowSelect and all inputs
+use JS debounce to create delay when user types into search box before submitting the form to avoid unnecessary processing
+
+```js
+const debounce = (onChange) => {
+  let timeout;
+  return (e) => {
+    const form = e.currentTarget.form;
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      onChange(form);
+    }, 2000);
+  };
+};
+<FormRow
+  type='search'
+  name='search'
+  defaultValue={search}
+  onChange={debounce((form) => {
+    submit(form);
+  })}
+/>;
+```
 
 -->
