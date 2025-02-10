@@ -56,12 +56,8 @@ const Login = () => {
         {errors?.msg && <p style={{ color: 'red' }}>{errors.msg}</p>}
         <p></p>
 
-        <FormInput
-          type='email'
-          name='email'
-          defaultValue='nthompson@email.com'
-        />
-        <FormInput type='password' name='password' defaultValue='nostromo' />
+        <FormInput type='email' name='email' />
+        <FormInput type='password' name='password' />
 
         <FormBtnSubmit />
 

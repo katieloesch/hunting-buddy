@@ -1,6 +1,6 @@
 const txt = {
   description: [
-    'Application Description goes here...Application Description goes here...Application Description goes here...Application Description goes here...Application Description goes here...Application Description goes here...Application Description goes here...Application Description goes here...',
+    'Simplify your job hunt by organizing, tracking and managing all of your job applications in one place.',
   ],
 };
 
