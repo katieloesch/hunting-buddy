@@ -7,13 +7,22 @@ import customFetch from '../utils/customFetch';
 import { getThemeFromLS } from '../App';
 import { toast } from 'react-toastify';
 
-export const loader = async () => {
-  try {
-    const { data } = await customFetch.get('/users/current-user'); // works only with valid cookie
-    return data;
-  } catch (error) {
-    return redirect('/login');
-  }
+// export const loader = async () => {
+//   try {
+//     const { data } = await customFetch.get('/users/current-user'); // works only with valid cookie
+//     return data;
+//   } catch (error) {
+//     return redirect('/login');
+//   }
+// };
+
+// fixing npm run build issue
+
+export const loader = () => {
+  return customFetch
+    .get('/users/current-user')
+    .then(({ data }) => data)
+    .catch(() => redirect('/login'));
 };
 
 const DashboardContext = createContext();

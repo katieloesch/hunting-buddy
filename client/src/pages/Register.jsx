@@ -6,18 +6,37 @@ import Wrapper from '../styledComponents/RegisterLoginPage';
 import { FormBtnSubmit, FormInput, Logo } from '../components';
 import customFetch from '../utils/customFetch';
 
-export const action = async ({ request }) => {
-  const formData = await request.formData();
-  const data = Object.fromEntries(formData);
+// export const action = async ({ request }) => {
+//   const formData = await request.formData();
+//   const data = Object.fromEntries(formData);
 
-  try {
-    await customFetch.post('/auth/register', data);
-    toast.success('Registration Successful!');
-    return redirect('/login');
-  } catch (error) {
-    toast.error(error?.response?.data?.msg); // make sure custom error is displayed, not axios error
-    return error;
-  }
+//   try {
+//     await customFetch.post('/auth/register', data);
+//     toast.success('Registration Successful!');
+//     return redirect('/login');
+//   } catch (error) {
+//     toast.error(error?.response?.data?.msg); // make sure custom error is displayed, not axios error
+//     return error;
+//   }
+// };
+
+// fixing npm run build issue
+
+export const action = ({ request }) => {
+  return request
+    .formData()
+    .then((formData) => {
+      const data = Object.fromEntries(formData);
+      return customFetch.post('/auth/register', data);
+    })
+    .then(() => {
+      toast.success('Registration Successful!');
+      return redirect('/login');
+    })
+    .catch((error) => {
+      toast.error(error?.response?.data?.msg);
+      return error;
+    });
 };
 
 const Register = () => {
