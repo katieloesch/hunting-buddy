@@ -13,7 +13,7 @@ export default defineConfig({
       },
     },
   },
-  // build: {
-  //   target: 'esnext', // Allows top-level await (but may reduce compatibility)
-  // },
+  build: {
+    target: 'esnext', // Allows top-level await (but may reduce compatibility)
+  },
 });
