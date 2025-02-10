@@ -53,7 +53,7 @@ MERN -> react frontend, backend based in express, mongoDB and node.js
 
 ## <a name="deployment-link"></a> 2. Deployment Link
 
-:link: https://hunting-buddy.onrender.com
+:link:&nbsp; https://hunting-buddy.onrender.com
 
 ## <a name="installation"></a> 3. Installation
 
