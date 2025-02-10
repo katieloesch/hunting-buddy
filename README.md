@@ -391,6 +391,14 @@ This application was built using the `MERN stack`, an open source–centric coll
     - [website](https://unblast.com/)
     - [license](https://unblast.com/license/)
 
+### Deployment
+
+- **Render**:
+  - <sub>A cloud platform that provides a service for deploying web applications, APIs, databases, and static sites with automatic scaling and Git-based continuous deployment.</sub>
+  - <sub>[website](https://render.com/)</sub>
+  - <sub>[GitHub repository](https://github.com/renderinc)</sub>
+  - <sub>[documentation](https://render.com/docs)</sub>
+
 ### Development Tools
 
 - **Vite** (v5.3.4)
@@ -440,6 +448,7 @@ This application was built using the `MERN stack`, an open source–centric coll
   - <sub>[React-toastify](https://fkhadra.github.io/react-toastify/introduction/)</sub>
   - <sub>[React useNavigation() and navigation.state](https://reactrouter.com/en/main/hooks/use-navigation#usenavigation)</sub>
   - <sub>[MongoDB aggregation pipeline](https://www.mongodb.com/docs/manual/core/aggregation-pipeline/)</sub>
+  - <sub>[Render](https://render.com/docs)</sub>
 - **Blogs**
   - <sub>[The Power Of CreateBrowserRouter: Optimizing Your React App's Navigation](https://www.dhiwise.com/post/the-power-of-createbrowserrouter-optimizing-your-react-app) by Daxesh Patel</sub>
   - <sub>[Getting Started with createBrowserRouter in react-router-dom](https://medium.com/@pavitramodi.it/getting-started-with-createbrowserrouter-in-react-router-dom-e3131820fef4) by [Pavitra Modi](https://medium.com/@pavitramodi.it)</sub>
@@ -489,7 +498,7 @@ This application was built using the `MERN stack`, an open source–centric coll
 - Implemented data validation at both the database and API level using Express Validator
 
 - Optimized frontend build sizes using Vite for faster performance
-- Successfully deployed a full-stack app using Netlify (Frontend), Render/Heroku (Backend), and MongoDB Atlas
+- Successfully deployed a full-stack app using Render and MongoDB Atlas
 
 ## <a name="takeaways"></a> 9. Key Learnings & Takeaways
 
