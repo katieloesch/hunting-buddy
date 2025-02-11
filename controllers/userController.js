@@ -1,6 +1,7 @@
 import { StatusCodes } from 'http-status-codes';
 import cloudinary from 'cloudinary';
-import { promises as fs } from 'fs';
+import { formatImage } from '../middleware/multerMiddleware.js';
+// import { promises as fs } from 'fs';
 
 import User from '../models/UserModel.js';
 import Job from '../models/JobModel.js';
@@ -22,8 +23,11 @@ export const getApplicationStats = async (req, res) => {
 export const updateUser = async (req, res) => {
   const newData = { ...req.body };
   if (req.file) {
-    const response = await cloudinary.v2.uploader.upload(req.file.path);
-    await fs.unlink(req.file.path);
+    const file = formatImage(req.file);
+
+    const response = await cloudinary.v2.uploader.upload(file);
+
+    // await fs.unlink(req.file.path);
     newData.avatar = response.secure_url;
     newData.avatarPublicId = response.public_id;
   }
