@@ -1518,4 +1518,52 @@ const debounce = (onChange) => {
 />;
 ```
 
+
+10/02/2025
+deployment on render
+
+encountered issues due to await outside of async function
+
+add new script to package.json
+
+```js
+ "scripts": {
+    "setup-production-app": "npm i && cd client && npm i && npm run build",
+  },
+```
+
+update server.js
+
+server.js
+
+```js
+app.use(express.static(path.resolve(__dirname, './client/dist')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, './client/dist', 'index.html'));
+});
+```
+
+#### Test Locally
+
+- remove client/dist and client/node_modules
+- remove node_modules and package-lock.json (optional)
+- run "npm run setup-production-app", followed by "node server"
+
+#### Test in Production
+
+- change build command on render
+
+```sh
+npm run setup-production-app
+
+```
+
+
+
+11/02/2025
+
+upload image as buffer using datauri
+
+disk space on render not available with the free version
 -->
