@@ -26,26 +26,52 @@ import { FormBtnSubmit, FormInput } from '../components';
 
 // fixing npm run build issue
 
-export const action = ({ request }) => {
-  return request.formData().then((formData) => {
-    const file = formData.get('avatar');
+// export const action = ({ request }) => {
+//   return request.formData().then((formData) => {
+//     const file = formData.get('avatar');
 
-    if (file && file.size > 500000) {
-      toast.error(
-        'Image size too large, please select an image that is < 0.5 MB.'
-      );
-      return null;
+//     if (file && file.size > 500000) {
+//       toast.error(
+//         'Image size too large, please select an image that is < 0.5 MB.'
+//       );
+//       return null;
+//     }
+
+//     return customFetch
+//       .patch('/users/update-user', formData)
+//       .then(() => {
+//         toast.success('Profile updated successfully!');
+//       })
+//       .catch((error) => {
+//         toast.error(error?.response?.data?.msg);
+//       });
+//   });
+// };
+
+export const action = async ({ request }) => {
+  const formData = await request.formData();
+  const file = formData.get('avatar');
+
+  if (file && file.size > 500000) {
+    toast.error(
+      'Image size too large, please select an image that is < 0.5 MB.'
+    );
+    return { error: 'Image too large' }; // ✅ Return an object instead of null
+  }
+
+  try {
+    const response = await customFetch.patch('/users/update-user', formData);
+
+    if (!response.ok) {
+      throw new Error('Failed to update profile');
     }
 
-    return customFetch
-      .patch('/users/update-user', formData)
-      .then(() => {
-        toast.success('Profile updated successfully!');
-      })
-      .catch((error) => {
-        toast.error(error?.response?.data?.msg);
-      });
-  });
+    toast.success('Profile updated successfully!');
+    return { success: true }; // ✅ Ensure a response is returned
+  } catch (error) {
+    toast.error(error?.response?.data?.msg || 'An error occurred');
+    return { error: error?.response?.data?.msg || 'Error updating profile' }; // ✅ Return error object
+  }
 };
 
 const Profile = () => {
