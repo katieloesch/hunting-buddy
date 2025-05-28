@@ -1,7 +1,6 @@
 import { StatusCodes } from 'http-status-codes';
 import cloudinary from 'cloudinary';
 import { formatImage } from '../middleware/multerMiddleware.js';
-// import { promises as fs } from 'fs';
 
 import User from '../models/UserModel.js';
 import Job from '../models/JobModel.js';
@@ -51,6 +50,35 @@ export const getApplicationStats = async (req, res) => {
   res.status(StatusCodes.OK).json({ users, jobs });
 };
 
+export const updateUser = async (req, res) => {
+  console.log('updating user....................');
+  const newData = { ...req.body };
+  if (req.file) {
+    console.log('req.file ----------------------');
+    const file = formatImage(req.file);
+    const response = await cloudinary.v2.uploader.upload(file);
+
+    newData.avatar = response.secure_url;
+    newData.avatarPublicId = response.public_id;
+
+    console.log('RESPONSE');
+    console.log(newData.avatar);
+    console.log(newData.avatarPublicId);
+  }
+  const updatedUser = await User.findByIdAndUpdate(req.user.userId, newData);
+
+  console.log('new Data ^^^^^^^^^^^^^^^^^^');
+  console.log(newData);
+
+  console.log('UPDATED USER ############## ');
+  console.log(updatedUser);
+
+  if (req.file && updatedUser.avatarPublicId) {
+    await cloudinary.v2.uploader.destroy(updatedUser.avatarPublicId);
+  }
+  res.status(StatusCodes.OK).json({ msg: 'update user...' });
+};
+
 // export const updateUser = async (req, res) => {
 //   const newData = { ...req.body };
 //   if (req.file) {
@@ -72,49 +100,49 @@ export const getApplicationStats = async (req, res) => {
 //   res.status(StatusCodes.OK).json({ msg: 'update user...' });
 // };
 
-export const updateUser = async (req, res) => {
-  try {
-    console.log('>>>>>>>');
-    console.log('Incoming update request (Before Fix):', req.body);
+// export const updateUser = async (req, res) => {
+//   try {
+//     console.log('>>>>>>>');
+//     console.log('Incoming update request (Before Fix):', req.body);
 
-    // ✅ Convert `req.body` to a regular object
-    const newData = JSON.parse(JSON.stringify(req.body));
+//     // ✅ Convert `req.body` to a regular object
+//     const newData = JSON.parse(JSON.stringify(req.body));
 
-    console.log('Parsed update data:', newData);
+//     console.log('Parsed update data:', newData);
 
-    if (req.file) {
-      console.log('Uploading new avatar...');
-      const file = formatImage(req.file);
-      const response = await cloudinary.v2.uploader.upload(file);
-      newData.avatar = response.secure_url;
-      newData.avatarPublicId = response.public_id;
-      console.log('New avatar uploaded:', newData.avatar);
-    }
+//     if (req.file) {
+//       console.log('Uploading new avatar...');
+//       const file = formatImage(req.file);
+//       const response = await cloudinary.v2.uploader.upload(file);
+//       newData.avatar = response.secure_url;
+//       newData.avatarPublicId = response.public_id;
+//       console.log('New avatar uploaded:', newData.avatar);
+//     }
 
-    console.log('Updating user with data:', newData);
-    const updatedUser = await User.findByIdAndUpdate(req.user.userId, newData, {
-      new: true,
-      runValidators: true,
-    });
+//     console.log('Updating user with data:', newData);
+//     const updatedUser = await User.findByIdAndUpdate(req.user.userId, newData, {
+//       new: true,
+//       runValidators: true,
+//     });
 
-    if (!updatedUser) {
-      console.error('User not found');
-      return res
-        .status(StatusCodes.NOT_FOUND)
-        .json({ error: 'User not found' });
-    }
+//     if (!updatedUser) {
+//       console.error('User not found');
+//       return res
+//         .status(StatusCodes.NOT_FOUND)
+//         .json({ error: 'User not found' });
+//     }
 
-    if (req.file && updatedUser.avatarPublicId) {
-      await cloudinary.v2.uploader.destroy(updatedUser.avatarPublicId);
-    }
+//     if (req.file && updatedUser.avatarPublicId) {
+//       await cloudinary.v2.uploader.destroy(updatedUser.avatarPublicId);
+//     }
 
-    console.log('Updated user:', updatedUser);
+//     console.log('Updated user:', updatedUser);
 
-    res.status(StatusCodes.OK).json({ success: true, user: updatedUser });
-  } catch (error) {
-    console.error('Error updating user:', error);
-    res
-      .status(StatusCodes.INTERNAL_SERVER_ERROR)
-      .json({ error: error.message || 'Failed to update user' });
-  }
-};
+//     res.status(StatusCodes.OK).json({ success: true, user: updatedUser });
+//   } catch (error) {
+//     console.error('Error updating user:', error);
+//     res
+//       .status(StatusCodes.INTERNAL_SERVER_ERROR)
+//       .json({ error: error.message || 'Failed to update user' });
+//   }
+// };
