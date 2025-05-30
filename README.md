@@ -1566,4 +1566,22 @@ npm run setup-production-app
 upload image as buffer using datauri
 
 disk space on render not available with the free version
+
+
+
+30/05/2025
+global loading
+create loading component for loading spinner
+
+```CSS
+.loading {
+  width: 6rem;
+  height: 6rem;
+  border: 5px solid var(--grey-400);
+  border-radius: 50%;
+  border-top-color: var(--primary-500);
+  animation: spinner 0.6s linear infinite;
+}
+
+```
 -->
