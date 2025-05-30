@@ -13,11 +13,16 @@ import { useLoaderData } from 'react-router-dom';
 // };
 
 // fixing npm run build issue
-export const loader = () => {
-  return customFetch
-    .get('/jobs/stats')
-    .then((response) => response.data)
-    .catch((error) => error);
+// export const loader = () => {
+//   return customFetch
+//     .get('/jobs/stats')
+//     .then((response) => response.data)
+//     .catch((error) => error);
+// };
+
+export const loader = async () => {
+  const response = await customFetch.get('/jobs/stats');
+  return response.data;
 };
 
 const Stats = () => {
