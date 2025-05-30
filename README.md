@@ -172,7 +172,7 @@ This application was built using the `MERN stack`, an open source–centric coll
 
 - **Frontend**
   - **React.js** (v18.3.1)
-  - <sub>A JavaScript library for building user interfaces, particularly single-page applications where efficient and dynamic rendering of components is crucial.</sub>
+    - <sub>A JavaScript library for building user interfaces, particularly single-page applications where efficient and dynamic rendering of components is crucial.</sub>
     - <sub>[website](https://react.dev/)</sub>
     - <sub>[GitHub repository](https://github.com/reactjs/react.dev)</sub>
   - **Vite** (v5.3.4)
@@ -1590,4 +1590,7 @@ create loading component for loading spinner
       { isPageLoading ? <Loading /> : <Outlet context={{ user }} />}
   </div>
 ```
+
+- react query
+
 -->
