@@ -1584,4 +1584,10 @@ create loading component for loading spinner
 }
 
 ```
+
+```JSX
+  <div className='dashboard-page'>
+      { isPageLoading ? <Loading /> : <Outlet context={{ user }} />}
+  </div>
+```
 -->
