@@ -21,24 +21,24 @@ import { useQuery } from '@tanstack/react-query';
 //     .catch((error) => error);
 // };
 
-export const loader = async () => {
-  // const response = await customFetch.get('/jobs/stats');
-  // return response.data;
-  return null;
+const statsQuery = {
+  queryKey: ['stats'],
+  queryFn: async () => {
+    const response = await customFetch.get('/jobs/stats');
+    return response.data;
+  },
+};
+
+export const loader = (queryClient) => async () => {
+  const data = await queryClient.ensureQueryData(statsQuery);
+  return data;
 };
 
 const Stats = () => {
   // const { defaultStats, monthlyApplications } = useLoaderData();
 
-  const { isLoading, isError, data } = useQuery({
-    queryKey: ['stats'],
-    queryFn: () => customFetch.get('/jobs/stats'),
-  });
-
-  if (isLoading) return <h4>Loading...</h4>;
-  if (isError) return <h4>Error...</h4>;
-
-  const { defaultStats, monthlyApplications } = data.data;
+  const { data } = useQuery(statsQuery);
+  const { defaultStats, monthlyApplications } = data;
 
   return (
     <React.Fragment>
