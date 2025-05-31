@@ -12,22 +12,6 @@ import Wrapper from '../styledComponents/RegisterLoginPage';
 import { FormBtnSubmit, FormInput, Logo } from '../components';
 import customFetch from '../utils/customFetch';
 
-// export const action = async ({ request }) => {
-//   const formData = await request.formData();
-//   const data = Object.fromEntries(formData);
-
-//   try {
-//     await customFetch.post('/auth/login', data);
-//     toast.success('Login successful!');
-//     return redirect('/dashboard');
-//   } catch (error) {
-//     toast.error(error?.response?.data?.msg); // make sure custom error is displayed, not axios error
-//     return error;
-
-//   }
-// };
-
-// fixing npm run build issue
 export const action =
   (queryClient) =>
   ({ request }) => {

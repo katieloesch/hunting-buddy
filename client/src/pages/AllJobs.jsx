@@ -36,26 +36,6 @@ export const loader =
     await queryClient.ensureQueryData(allJobsQuery(params));
 
     return { searchValues: { ...params } };
-
-    // try {
-    //   const { data } = await customFetch.get('/jobs', {
-    //     params,
-    //   });
-    //   return { data, searchValues: { ...params } };
-    // } catch (error) {
-    //   toast.error(error?.response?.data?.msg);
-    //   return error;
-    // }
-
-    // fixing npm run build issue
-
-    // return customFetch
-    //   .get('/jobs', { params })
-    //   .then(({ data }) => ({ data, searchValues: { ...params } }))
-    //   .catch((error) => {
-    //     toast.error(error?.response?.data?.msg);
-    //     return error;
-    //   });
   };
 
 const AllJobsContext = createContext();

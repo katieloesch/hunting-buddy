@@ -465,63 +465,136 @@ This application was built using the `MERN stack`, an open source–centric coll
 
 ## <a name="deliverables"></a> 5. Deliverables
 
-<!-- ### MVP
+### MVP
+
+1. **User Authentication**
+   - Register, login, logout
+   - Password hashing and validation
+   - Basic session management
+2. **Job Management**
+   - Create, read, update, and delete (CRUD) job applications
+   - Store job attributes: company, position, status, type, location
+   - View all jobs in a list format
+3. **Role-Based Access**
+   - Support for standard user and admin roles
+   - Protected routes and authorization
+4. **Dashboard UI**
+   - Responsive layout with key pages: Add Job, All Jobs, Profile
+   - Navigation via sidebar and navbar
+5. **Form Validation & Error Handling**
+   - Input validation using express-validator
+   - Global error handling middleware
+6. **Backend API**
+   - RESTful API with Express and MongoDB (via Mongoose)
+   - Controllers and routers organized by feature
+7. **Frontend Framework**
+   - React with Vite
+   - Styled-components for modular styling
+8. **Deployment**
+   - Fully deployed on a public domain
 
 ### Potential Extra Features / Stretch Goals
 
-### User Stories -->
+- Advanced Data Visualization
+  - Interactive charts (e.g. job status breakdown) using Recharts
+- Advanced Filtering & Sorting
+  - Sort jobs by date, company, position, and status
+  - Filter by job type, location, and custom criteria
+- Dark Mode Toggle
+  - Theme preference persisted via local storage
+- Admin Panel
+  - Admin-specific tools and access to additional data views
+- Pagination
+  - Improve performance for users with many job entries
+- Demo User Mode
+  - Instant access for demo/testing purposes
+- Profile Customization
+  - Upload profile pictures
+- Accessibility Improvements
+  - ARIA roles, keyboard navigation, and contrast checks
+- React Query Integration
+  - Improve data caching and reduce redundant API calls
+- Cloudinary Integration
+  - Store and manage uploaded images in the cloud
+- Rate Limiting & Security
+  - Helmet, express-rate-limit, and mongo-sanitize for production hardening
+
+### User Stories
+
+#### **Authentication & User Roles**
+
+- As a new user, I should be able to register with my details, so I can start managing my job applications.
+- As a returning user, I should be able to log in securely, so I can access my dashboard and data.
+- As a user, I should remain logged in, so I don’t have to re-enter credentials every time.
+- As a user, I should be able to update my profile information, so I can keep my account details accurate.
+- As an admin user, I should have privileged access, so I can manage admin-specific views and actions.
+
+#### **Job Management**
+
+- As a user, I should be able to add new job applications, so I can keep track of positions I’ve applied for.
+- As a user, I should be able to edit job details, so I can update application statuses or correct information.
+- As a user, I should be able to delete jobs, so I can remove applications that are no longer relevant.
+- As a user, I should be able to view all job applications in a list, so I can get a comprehensive overview.
+- As a user, I should be able to filter and sort jobs, so I can easily find and organise my applications.
+
+#### **Analytics & Insights**
+
+- As a user, I should be able to view my application statistics so I can monitor my application progress.
+- As a user, I should be able to see how many jobs are pending, decline or have an interview scheduled, so I can assess performance.
+
+#### **UI & Performance**
+
+- As a user, I should be able to switch between light and dark mode, so I can choose a theme that suits my environment.
+- As a user, I should be able to load the application quickly, so I can access features without delay.
+- As a user, I should be able to use the app smoothly across different devices, so I can use it on both desktop and mobile.
+- As a user, I should be able to see feedback messages, so I know the result of my actions.
 
 ## <a name="planning"></a> 6. Planning & Build Process
 
-<!-- bronze plan | silver plan | gold plan
+<!--
 
 <img src="" alt="wireframe" width="250"> -->
 
 ## <a name="challenges"></a> 7. Challenges
 
-- Managing state across various components efficiently
-- Implementing authentication and role-based access control
-- Optimizing API requests for better performance
-- Handling edge cases in form validation and error handling
+- Implementing secure authentication and differentiating user roles (admin vs user) with proper route protection.
+- Adapting to newer routing patterns, especially with loaders and actions, which differed from older implementations.
+- Ensuring form validations were enforced both client-side and server-side without redundancy or conflicts.
+- Managing state efficiently across nested dashboard components while avoiding prop drilling.
 
 ## <a name="wins"></a> 8. Wins
 
-- Successfully implementation of a full-featured job tracking application
-- Improved app performance with React Query and optimized API calls
-- Provided a seamless user experience with a well-structured UI
-- Enabled dark mode toggle for better user accessibility
-- successfully built and structured a RESTful API using Express.js and MongoDB
-- Implemented JWT-based authentication, ensuring secure user sessions
-- Used bcrypt.js for password hashing to enhance security
-
-- Designed a scalable MongoDB schema using Mongoose
-- Implemented data validation at both the database and API level using Express Validator
-
-- Optimized frontend build sizes using Vite for faster performance
-- Successfully deployed a full-stack app using Render and MongoDB Atlas
+- Implemented full CRUD functionality with a clean, intuitive user interface.
+- Developed light/dark theme support with persistent user preferences via local storage and a toggle control.
+- Integrated Recharts to visualize job application statistics and insights.
+- Utilized styled-components and layout wrappers to create modular, reusable, and maintainable UI components.
+- Structured Express backend using controllers, routers, and middleware to ensure clear separation of concerns.
+- Enhanced performance with React Query for efficient data fetching, caching, and background refetching.
+- Enforced robust validation at both the database and API levels using Express Validator.
+- Implemented secure JWT-based authentication to manage user sessions.
+- Deployed the application using Render for the backend and MongoDB Atlas for cloud-hosted database services.
 
 ## <a name="takeaways"></a> 9. Key Learnings & Takeaways
 
-- Understanding the benefits of using Vite over create-react-app
-- Managing state effectively with React Context and local storage
-- Improving backend security with authentication and validation layers
-- Structuring Express routes and controllers for maintainability
-- Enhancing user experience with animations and responsive design
-
-- Gained deeper knowledge of React Router, including nested routes and protected routes
-- Learned how to use React Query to optimize data fetching and reduce redundant API calls
-- Built custom React hooks to manage repetitive logic and improve code reusability
-
-- Learned to use Styled Components to write CSS-in-JS, making styling more modular, reusable, and maintainable
-- Enhanced UI structure by using Wrapper components for consistent layout management
-- Learned the importance of role-based authentication (RBAC) for managing user permissions
-- Learned how to efficiently filter, paginate, and sort database queries
-- Implemented custom error classes to handle errors consistently across the application
-- Gained a better understanding of handling asynchronous errors in Express using express-async-errors
+- Gained a clear understanding of the advantages of using Vite over Create React App, particularly in terms of build speed and developer experience.
+- Recognized the value of design systems: establishing global styles and component wrappers early accelerated development and enhanced visual consistency.
+- Developed custom React hooks to abstract repetitive logic and promote code reusability across components.
+- Learned the significance of implementing role-based access control for managing user permissions securely and effectively.
+- Discovered the power of React Query in improving perceived performance and simplifying async data management.
+- Emphasized the importance of centralized error handling, using shared backend middleware and frontend notifications to create a seamless user experience.
+- Reinforced the critical role of validation, combining backend checks via express-validator with client-side form validation to ensure data integrity.
+- Experienced how routing architecture affects user experience: creating nested routes and layout components in React Router to maintain a clean, scalable structure.
 
 ## <a name="future-improvements"></a> 10. Future Improvements
 
-- more themes in addition to light/dark theme to customise app
+- Accessibility Audits
+  - Add keyboard navigation, screen reader support, and ARIA roles for inclusivity.
+- Testing Suite
+  - Add unit and integration tests using tools like Jest, React Testing Library, and Supertest for backend.
+- User Notifications
+  - Add email notifications or reminders for follow-ups on pending applications.
+- Multitenancy/Teams
+  - Enable job tracking across multiple users/teams for collaborative job hunting.
 
 <!--
 
