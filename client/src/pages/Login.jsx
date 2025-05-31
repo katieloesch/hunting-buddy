@@ -28,22 +28,25 @@ import customFetch from '../utils/customFetch';
 // };
 
 // fixing npm run build issue
-export const action = ({ request }) => {
-  return request.formData().then((formData) => {
-    const data = Object.fromEntries(formData);
+export const action =
+  (queryClient) =>
+  ({ request }) => {
+    return request.formData().then((formData) => {
+      const data = Object.fromEntries(formData);
 
-    return customFetch
-      .post('/auth/login', data)
-      .then(() => {
-        toast.success('Login successful!');
-        return redirect('/dashboard');
-      })
-      .catch((error) => {
-        toast.error(error?.response?.data?.msg);
-        return error;
-      });
-  });
-};
+      return customFetch
+        .post('/auth/login', data)
+        .then(() => {
+          queryClient.invalidateQueries();
+          toast.success('Login successful!');
+          return redirect('/dashboard');
+        })
+        .catch((error) => {
+          toast.error(error?.response?.data?.msg);
+          return error;
+        });
+    });
+  };
 
 const Login = () => {
   const errors = useActionData();

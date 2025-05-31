@@ -53,7 +53,11 @@ const DashboardContext = createContext();
 const DashboardLayout = () => {
   const queryClient = useQueryClient();
   // const { user } = useLoaderData();
-  const { user } = useQuery(userQuery)?.data;
+  // const { user } = useQuery(userQuery)?.data;
+
+  const { data } = useQuery(userQuery);
+  const user = data?.user;
+
   const navigate = useNavigate();
   const navigation = useNavigation();
   const isPageLoading = navigation.state === 'loading';
@@ -77,6 +81,7 @@ const DashboardLayout = () => {
   const logoutUser = async () => {
     navigate('/');
     await customFetch.get('/auth/logout');
+    queryClient.invalidateQueries();
     toast.success('Logout successful!');
   };
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, useOutletContext } from 'react-router-dom';
+import { Form, redirect, useOutletContext } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import customFetch from '../utils/customFetch';
@@ -26,26 +26,30 @@ import { FormBtnSubmit, FormInput } from '../components';
 
 // fixing npm run build issue
 
-export const action = async ({ request }) => {
-  const formData = await request.formData();
-  const file = formData.get('avatar');
+export const action =
+  (queryClient) =>
+  async ({ request }) => {
+    const formData = await request.formData();
+    const file = formData.get('avatar');
 
-  if (file && file.size > 500000) {
-    toast.error(
-      'Image size too large, please select an image that is < 0.5 MB.'
-    );
-    return null;
-  }
+    if (file && file.size > 500000) {
+      toast.error(
+        'Image size too large, please select an image that is < 0.5 MB.'
+      );
+      return null;
+    }
 
-  try {
-    await customFetch.patch('/users/update-user', formData);
-    toast.success('Profile updated successfully!');
-    return { success: true };
-  } catch (error) {
-    toast.error(error?.response?.data?.msg || 'An error occurred');
-    return { error: true };
-  }
-};
+    try {
+      await customFetch.patch('/users/update-user', formData);
+      queryClient.invalidateQueries(['user']);
+      toast.success('Profile updated successfully!');
+      return redirect('/dashboard');
+      return { success: true };
+    } catch (error) {
+      toast.error(error?.response?.data?.msg || 'An error occurred');
+      return { error: true };
+    }
+  };
 
 const Profile = () => {
   const { user } = useOutletContext();
