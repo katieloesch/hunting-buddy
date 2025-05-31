@@ -15,8 +15,8 @@ import './index.css';
 })();
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  <React.Fragment>
     <App />
     <ToastContainer position='top-center' />
-  </React.StrictMode>
+  </React.Fragment>
 );

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import {
   Outlet,
   redirect,
@@ -6,6 +6,7 @@ import {
   useNavigate,
   useNavigation,
 } from 'react-router-dom';
+import { useQueryClient, useQuery } from '@tanstack/react-query';
 
 import Wrapper from '../styledComponents/Dashboard';
 import { Loading, Navbar, Sidebar, SidebarMobile } from '../components';
@@ -24,23 +25,46 @@ import { toast } from 'react-toastify';
 
 // fixing npm run build issue
 
-export const loader = () => {
-  return customFetch
-    .get('/users/current-user')
-    .then(({ data }) => data)
-    .catch(() => redirect('/login'));
+// export const loader = () => {
+//   return customFetch
+//     .get('/users/current-user')
+//     .then(({ data }) => data)
+//     .catch(() => redirect('/login'));
+// };
+
+const userQuery = {
+  queryKey: ['user'],
+  queryFn: async () => {
+    const { data } = await customFetch('/users/current-user');
+    return data;
+  },
+};
+
+export const loader = (queryClient) => async () => {
+  try {
+    return await queryClient.ensureQueryData(userQuery);
+  } catch (error) {
+    return redirect('/');
+  }
 };
 
 const DashboardContext = createContext();
 
 const DashboardLayout = () => {
-  const { user } = useLoaderData();
+  const queryClient = useQueryClient();
+  // const { user } = useLoaderData();
+  // const { user } = useQuery(userQuery)?.data;
+
+  const { data } = useQuery(userQuery);
+  const user = data?.user;
+
   const navigate = useNavigate();
   const navigation = useNavigation();
   const isPageLoading = navigation.state === 'loading';
 
   const [showSidebar, setShowSidebar] = useState(false);
   const [darkThemeActive, setDarkThemeActive] = useState(getThemeFromLS());
+  const [isAuthError, setIsAuthError] = useState(false);
 
   const toggleDarkTheme = () => {
     const updatedTheme = !darkThemeActive;
@@ -58,8 +82,28 @@ const DashboardLayout = () => {
   const logoutUser = async () => {
     navigate('/');
     await customFetch.get('/auth/logout');
+    queryClient.invalidateQueries();
     toast.success('Logout successful!');
   };
+
+  customFetch.interceptors.response.use(
+    (response) => {
+      return response;
+    },
+    (error) => {
+      if (error?.response?.status === 401) {
+        setIsAuthError(true);
+      }
+      return Promise.reject(error);
+    }
+  );
+
+  useEffect(() => {
+    if (!isAuthError) {
+      return;
+    }
+    logoutUser();
+  }, [isAuthError]);
 
   return (
     <DashboardContext.Provider

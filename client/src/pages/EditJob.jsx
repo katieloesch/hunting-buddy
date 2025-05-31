@@ -1,6 +1,7 @@
 import React from 'react';
 import { Form, redirect, useLoaderData } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { useQuery } from '@tanstack/react-query';
 
 import Wrapper from '../styledComponents/DashboardFormPage';
 import { FormBtnSubmit, FormInput, FormSelect } from '../components';
@@ -31,37 +32,56 @@ import customFetch from '../utils/customFetch';
 //   }
 // };
 
+const singleJobQuery = (id) => {
+  return {
+    queryKey: ['job', id],
+    queryFn: async () => {
+      const { data } = await customFetch.get(`/jobs/${id}`);
+      return data;
+    },
+  };
+};
+
 // fixing npm run build issue
 
-export const loader = ({ params }) => {
-  return customFetch
-    .get(`/jobs/${params.jobId}`)
-    .then(({ data }) => data)
-    .catch((error) => {
-      toast.error(error?.response?.data?.msg);
-      return redirect('/dashboard/all-jobs');
-    });
-};
+export const loader =
+  (queryClient) =>
+  ({ params }) => {
+    return queryClient
+      .ensureQueryData(singleJobQuery(params.jobId))
+      .then(() => params.jobId)
+      .catch((error) => {
+        toast.error(error?.response?.data?.msg);
+        return redirect('/dashboard/all-jobs');
+      });
+  };
 
-export const action = ({ request, params }) => {
-  return request
-    .formData()
-    .then((formData) => {
-      const data = Object.fromEntries(formData);
-      return customFetch.patch(`/jobs/${params.jobId}`, data);
-    })
-    .then(() => {
-      toast.success('Job edited successfully!');
-      return redirect('/dashboard/all-jobs');
-    })
-    .catch((error) => {
-      toast.error(error?.response?.data?.msg);
-      return error;
-    });
-};
+export const action =
+  (queryClient) =>
+  ({ request, params }) => {
+    return request
+      .formData()
+      .then((formData) => {
+        const data = Object.fromEntries(formData);
+        return customFetch.patch(`/jobs/${params.jobId}`, data);
+      })
+      .then(() => {
+        queryClient.invalidateQueries(['jobs']);
+        toast.success('Job edited successfully!');
+        return redirect('/dashboard/all-jobs');
+      })
+      .catch((error) => {
+        toast.error(error?.response?.data?.msg);
+        return error;
+      });
+  };
 
 const EditJob = () => {
-  const { job } = useLoaderData();
+  const id = useLoaderData();
+
+  const {
+    data: { job },
+  } = useQuery(singleJobQuery(id));
 
   return (
     <Wrapper>
