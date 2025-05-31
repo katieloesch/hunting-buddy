@@ -38,7 +38,9 @@ export const getThemeFromLS = () => {
   return darkThemeActiveLS;
 };
 
-getThemeFromLS();
+if (typeof window !== 'undefined') {
+  getThemeFromLS();
+}
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -103,7 +105,7 @@ const router = createBrowserRouter([
           {
             path: 'edit-job/:jobId',
             element: <EditJob />,
-            loader: editJobLoader,
+            loader: editJobLoader(queryClient),
             action: editJobAction(queryClient),
           },
           {
