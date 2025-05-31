@@ -43,22 +43,25 @@ export const loader = ({ params }) => {
     });
 };
 
-export const action = ({ request, params }) => {
-  return request
-    .formData()
-    .then((formData) => {
-      const data = Object.fromEntries(formData);
-      return customFetch.patch(`/jobs/${params.jobId}`, data);
-    })
-    .then(() => {
-      toast.success('Job edited successfully!');
-      return redirect('/dashboard/all-jobs');
-    })
-    .catch((error) => {
-      toast.error(error?.response?.data?.msg);
-      return error;
-    });
-};
+export const action =
+  (queryClient) =>
+  ({ request, params }) => {
+    return request
+      .formData()
+      .then((formData) => {
+        const data = Object.fromEntries(formData);
+        return customFetch.patch(`/jobs/${params.jobId}`, data);
+      })
+      .then(() => {
+        queryClient.invalidateQueries(['jobs']);
+        toast.success('Job edited successfully!');
+        return redirect('/dashboard/all-jobs');
+      })
+      .catch((error) => {
+        toast.error(error?.response?.data?.msg);
+        return error;
+      });
+  };
 
 const EditJob = () => {
   const { job } = useLoaderData();

@@ -23,22 +23,25 @@ import { JOB_STATUS, JOB_TYPE } from '../../../utils/constants';
 
 // fixing npm run build issue
 
-export const action = ({ request }) => {
-  return request
-    .formData()
-    .then((formData) => {
-      const data = Object.fromEntries(formData);
-      return customFetch.post('/jobs', data);
-    })
-    .then(() => {
-      toast.success('Job added successfully!');
-      return redirect('all-jobs');
-    })
-    .catch((error) => {
-      toast.error(error?.response?.data?.msg);
-      return error;
-    });
-};
+export const action =
+  (queryClient) =>
+  ({ request }) => {
+    return request
+      .formData()
+      .then((formData) => {
+        const data = Object.fromEntries(formData);
+        return customFetch.post('/jobs', data);
+      })
+      .then(() => {
+        queryClient.invalidateQueries(['jobs']);
+        toast.success('Job added successfully!');
+        return redirect('all-jobs');
+      })
+      .catch((error) => {
+        toast.error(error?.response?.data?.msg);
+        return error;
+      });
+  };
 
 const AddJob = () => {
   const { user } = useOutletContext(); // variable provided in DashboardLayout (ln 65)

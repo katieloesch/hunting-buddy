@@ -13,15 +13,18 @@ import customFetch from '../utils/customFetch';
 //   return redirect('/dashboard/all-jobs');
 // };
 
-export const action = ({ params }) => {
-  return customFetch
-    .delete(`/jobs/${params.jobId}`)
-    .then(() => {
-      toast.success('Job deleted successfully!');
-      return redirect('/dashboard/all-jobs');
-    })
-    .catch((error) => {
-      toast.error(error?.response?.data?.msg);
-      return redirect('/dashboard/all-jobs');
-    });
-};
+export const action =
+  (queryClient) =>
+  ({ params }) => {
+    return customFetch
+      .delete(`/jobs/${params.jobId}`)
+      .then(() => {
+        queryClient.invalidateQueries(['jobs']);
+        toast.success('Job deleted successfully!');
+        return redirect('/dashboard/all-jobs');
+      })
+      .catch((error) => {
+        toast.error(error?.response?.data?.msg);
+        return redirect('/dashboard/all-jobs');
+      });
+  };
