@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import {
   Outlet,
   redirect,
@@ -64,6 +64,7 @@ const DashboardLayout = () => {
 
   const [showSidebar, setShowSidebar] = useState(false);
   const [darkThemeActive, setDarkThemeActive] = useState(getThemeFromLS());
+  const [isAuthError, setIsAuthError] = useState(false);
 
   const toggleDarkTheme = () => {
     const updatedTheme = !darkThemeActive;
@@ -84,6 +85,25 @@ const DashboardLayout = () => {
     queryClient.invalidateQueries();
     toast.success('Logout successful!');
   };
+
+  customFetch.interceptors.response.use(
+    (response) => {
+      return response;
+    },
+    (error) => {
+      if (error?.response?.status === 401) {
+        setIsAuthError(true);
+      }
+      return Promise.reject(error);
+    }
+  );
+
+  useEffect(() => {
+    if (!isAuthError) {
+      return;
+    }
+    logoutUser();
+  }, [isAuthError]);
 
   return (
     <DashboardContext.Provider
