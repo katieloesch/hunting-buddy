@@ -29,7 +29,9 @@
 
 ## <a name="description"></a> 1. Description
 
-Job application tracker to help you keep an overview during your job hunt.
+The goal of this project was to develop a full-stack job application management platform that supports users in tracking their job search while deepening practical understanding of the MERN stack.
+
+<br>Built with React, Vite, Node.js, Express, and MongoDB, the application includes secure user authentication with hashed passwords, input validation, and session management. It features role-based access control, allowing for differentiated permissions between admin and standard users. <br> Users can manage job applications through a responsive dashboard, which includes advanced filtering, sorting, and visual analytics powered by Recharts. The interface is styled using styled-components to promote modularity and responsiveness, with support for both light and dark themes. <br> On the backend, a RESTful API is implemented using Express and Mongoose, offering full CRUD functionality. Input validation and error handling are managed via express-validator and custom middleware to ensure data integrity. Performance is enhanced through the use of React Query for optimized data fetching and caching, combined with lazy loading and route-based code splitting.
 
 <!--
 <img src="" alt="" width="250">
