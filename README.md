@@ -553,11 +553,17 @@ This application was built using the `MERN stack`, an open source–centric coll
 
 ## <a name="planning"></a> 6. Planning & Build Process
 
+### Wireframe
+
 <img src="./client/src/assets/images/wireframe/wireframe_1.png" alt="wireframe for landing page, login page and register page" width="630">
 
 <img src="./client/src/assets/images/wireframe/wireframe_2.png" alt="wireframe for jobs page" width="410"> <img src="./client/src/assets/images/wireframe/wireframe_3.png" alt="wireframe for add job page" width="410">
 
 <img src="./client/src/assets/images/wireframe/wireframe_4.png" alt="wireframe for stats page" width="410"> <img src="./client/src/assets/images/wireframe/wireframe_5.png" alt="wireframe for profile page" width="410">
+
+### ERD
+
+<img src="./client/src/assets/images/erd/erd.png" alt="erd" width="450">
 
 ## <a name="challenges"></a> 7. Challenges
 
