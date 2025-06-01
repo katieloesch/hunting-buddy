@@ -99,7 +99,9 @@ cd hunting-buddy
 
 #### 2. Set Up Environment Variables
 
-- The application requires a `.env` file in the root directory to function correctly. This file contains essential environment variables, such as the MongoDB connection string and JWT secret keys, without which the application will not connect to the database or perform critical functions.
+- The application requires a `.env` file in the root directory to function correctly.
+
+  - This file contains essential environment variables used for database connections, authentication, and image uploads.
 
   **Required Environment Variables:**
 
@@ -109,6 +111,9 @@ cd hunting-buddy
   MONGO_URL
   JWT_SECRET
   JWT_EXPIRES_IN
+  CLOUD_NAME
+  CLOUD_API_KEY
+  CLOUD_API_SECRET
   ```
 
   **Setting up the `.env` File:**
@@ -121,40 +126,54 @@ cd hunting-buddy
   ```plaintext
   NODE_ENV=development
   PORT=5100
-  MONGO_URL=mongodb+srv://<your-username>:<your-password>@atlascluster.ic1x9.mongodb.net/<your-database-name>?retryWrites=true&w=majority
+  MONGO_URL=your_mongo_url
   JWT_SECRET=your_jwt_secret
   JWT_EXPIRES_IN=1d
+  CLOUD_NAME=your_cloudinary_cloud_name
+  CLOUD_API_KEY=your_cloudinary_api_key
+  CLOUD_API_SECRET=your_cloudinary_api_secret
   ```
 
-  3. Replace the placeholder values (`<your-username>`, `<your-password>`, `<your-database-name>`, `your_jwt_secret`) with your actual MongoDB credentials and JWT secret.
+  3. Replace the placeholder values (`your_mongo_url`, `your_jwt_secret`, `your_cloudinary_cloud_name`, `your_cloudinary_api_key`, `your_jwt_secret`) with your actual credentials.
 
-  - to obtain the `MONGO_URL`, you need to set up a MongoDB database
-  - If you don't have an account already, register on MongoDB Atlas:
+  - MongoDB Setup Instructions:
 
-    - Go to [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) and create a free account.
-    - Create a New Cluster:
-      - Once logged in, click on the "Build a Cluster" button.
-      - Choose a cloud provider (e.g., AWS, Google Cloud, Azure), and select a region that is close to you for better performance.
-      - You can use the free tier cluster, which provides enough resources for development and small projects.
-    - Create a Database User:
-      - After the cluster is set up, you’ll need to create a database user with a username and password.
-      - Navigate to the "Database Access" tab in your cluster and create a new user.
-      - Make sure to save the username and password, as you’ll need these credentials for the `MONGO_URL`.
-    - Obtain the Connection String:
-
-      - Go to the "Clusters" view, and click on the "Connect" button for your cluster.
-      - Select "Drivers" and you will be provided with a connection string similar to this:
-
+    - to obtain the `MONGO_URL`, you need to set up a MongoDB database
+    - If you don't have an account already, register on MongoDB Atlas:
+      - Visit [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) and sign up for a free account.
+      - Create a cluster:
+        - Select a cloud provider and a nearby region.
+        - Use the free tier (sufficient for development).
+      - Create a Database User:
+        - Go to Database Access → Add New Database User
+        - Set a username and password.
+      - Get Your Connection String:
+        - Go to Clusters → Connect → Drivers → Copy the URI, e.g.:
         ```plaintext
         mongodb+srv://<your-username>:<your-password>@cluster0.mongodb.net/<your-database-name>?retryWrites=true&w=majority
         ```
+      - Update the `.env` file with this URL as follows:
+        ```plaintext
+          MONGO_URL=mongodb+srv://<your-username>:<your-password>@atlascluster.ic1x9.mongodb.net/<your-database-name>?retryWrites=true&w=majority
+        ```
 
-    - Update the `.env` File:
-      - Copy the connection string into your `.env` file, replacing the placeholders (`<your-username>`, `<your-password>`, `<your-database-name>`) with your actual database credentials and database name.
+  - Cloudinary Setup Instructions:
+    - If you don’t have a Cloudinary account:
+    - Visit [Cloudinary](https://cloudinary.com/) and create a free account.
+    - Once signed in, navigate to the Dashboard to find your:
+      - Cloud Name
+      - API Key
+      - API Secret
+    - Add these to your .env file as follows:
+    ```plaintext
+    CLOUD_NAME=your_cloud_name
+    CLOUD_API_KEY=your_api_key
+    CLOUD_API_SECRET=your_api_secret
+    ```
 
 #### 3. Start the Development Servers
 
-- Once the dependencies are installed and the `.env` file is configured, you can start both the backend and frontend servers concurrently by running:
+- With the dependencies installed and .env configured, start both frontend and backend servers concurrently:
 
   ```zsh
   npm run dev
@@ -164,7 +183,7 @@ cd hunting-buddy
 
 - The backend server will be running at `http://localhost:5100/` by default, or at the port you specified in the .env file.
 - The frontend server will be available at `http://localhost:5173/`.
-  - If your default web browser doesn't automatically open and navigate to the frontend server, you can manually access the application by visiting `http://localhost:5173/` in any web browser.
+  - If the browser doesn't open automatically, navigate manually to http://localhost:5173/
 
 ## <a name="technologies"></a> 4. Technologies Used
 
@@ -555,7 +574,7 @@ This application was built using the `MERN stack`, an open source–centric coll
 
 ### Wireframe
 
-<img src="./client/src/assets/images/wireframe/wireframe_1.png" alt="wireframe for landing page, login page and register page" width="630">
+<img src="./client/src/assets/images/wireframe/wireframe_1.png" alt="wireframe for landing page, login page and register page" width="650">
 
 <img src="./client/src/assets/images/wireframe/wireframe_2.png" alt="wireframe for jobs page" width="410"> <img src="./client/src/assets/images/wireframe/wireframe_3.png" alt="wireframe for add job page" width="410">
 
@@ -563,7 +582,7 @@ This application was built using the `MERN stack`, an open source–centric coll
 
 ### ERD
 
-<img src="./client/src/assets/images/erd/erd.png" alt="erd" width="450">
+<img src="./client/src/assets/images/erd/erd.png" alt="erd" width="500">
 
 ## <a name="challenges"></a> 7. Challenges
 
