@@ -14,24 +14,6 @@ import customFetch from '../utils/customFetch';
 import { getThemeFromLS } from '../App';
 import { toast } from 'react-toastify';
 
-// export const loader = async () => {
-//   try {
-//     const { data } = await customFetch.get('/users/current-user'); // works only with valid cookie
-//     return data;
-//   } catch (error) {
-//     return redirect('/login');
-//   }
-// };
-
-// fixing npm run build issue
-
-// export const loader = () => {
-//   return customFetch
-//     .get('/users/current-user')
-//     .then(({ data }) => data)
-//     .catch(() => redirect('/login'));
-// };
-
 const userQuery = {
   queryKey: ['user'],
   queryFn: async () => {
@@ -52,8 +34,6 @@ const DashboardContext = createContext();
 
 const DashboardLayout = () => {
   const queryClient = useQueryClient();
-  // const { user } = useLoaderData();
-  // const { user } = useQuery(userQuery)?.data;
 
   const { data } = useQuery(userQuery);
   const user = data?.user;

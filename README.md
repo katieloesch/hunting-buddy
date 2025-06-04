@@ -29,27 +29,20 @@
 
 ## <a name="description"></a> 1. Description
 
-Job application tracker to help you keep an overview during your job hunt.
-
 <!--
 <img src="" alt="" width="250">
 
-image source: []()
-
-
-Features
-User Authentication: Users can sign up, log in, and log out.
-CRUD Operations: Users can create, read, update, and delete [data type, e.g., posts, profiles, etc.].
-Responsive Design: The frontend is fully responsive and works well on all devices.
-Real-time Updates: [Optional if applicable, e.g., WebSocket integration].
-
-MERN -> react frontend, backend based in express, mongoDB and node.js
-
-- full crud functionality
-- authentication
-- responsive design, styled components
-
  -->
+
+A full-stack job application management platform designed to help users track their job search efficiently.
+
+<br>Built with React, Vite, Node.js, Express, and MongoDB, the app features authentication with hashed passwords, input validation, and session management. Role-based access control distinguishes permissions between standard users and admins.
+
+<br>
+On the client side, users can manage job applications via a responsive dashboard that includes advanced filtering, sorting, and data visualisation with Recharts. The responsive interface was created using styled-components and includes a light/dark theme toggle.
+
+<br>
+The backend provides a RESTful API built with Express and Mongoose, supporting full CRUD functionality. Validation and error handling are managed using express-validator and custom middleware. Performance is optimised with React Query for efficient data fetching, along with lazy loading and route-based code splitting.
 
 ## <a name="deployment-link"></a> 2. Deployment Link
 
@@ -71,15 +64,13 @@ MERN -> react frontend, backend based in express, mongoDB and node.js
 
 #### 2. Clone the repository:
 
-- Run the following commandn in your terminal to clone the repository:
-
 ```zsh
 git clone https://github.com/katieloesch/hunting-buddy.git
 ```
 
 #### 3. Navigate to the project directory:
 
-- Change into the project directory to install the necessary dependencies:
+- Navigate into the project directory to install the necessary dependencies:
 
 ```zsh
 cd hunting-buddy
@@ -97,7 +88,9 @@ cd hunting-buddy
 
 #### 2. Set Up Environment Variables
 
-- The application requires a `.env` file in the root directory to function correctly. This file contains essential environment variables, such as the MongoDB connection string and JWT secret keys, without which the application will not connect to the database or perform critical functions.
+- The application requires a `.env` file in the root directory to function correctly.
+
+  - This file contains essential environment variables used for database connections, authentication, and image uploads.
 
   **Required Environment Variables:**
 
@@ -107,6 +100,9 @@ cd hunting-buddy
   MONGO_URL
   JWT_SECRET
   JWT_EXPIRES_IN
+  CLOUD_NAME
+  CLOUD_API_KEY
+  CLOUD_API_SECRET
   ```
 
   **Setting up the `.env` File:**
@@ -119,40 +115,54 @@ cd hunting-buddy
   ```plaintext
   NODE_ENV=development
   PORT=5100
-  MONGO_URL=mongodb+srv://<your-username>:<your-password>@atlascluster.ic1x9.mongodb.net/<your-database-name>?retryWrites=true&w=majority
+  MONGO_URL=your_mongo_url
   JWT_SECRET=your_jwt_secret
   JWT_EXPIRES_IN=1d
+  CLOUD_NAME=your_cloudinary_cloud_name
+  CLOUD_API_KEY=your_cloudinary_api_key
+  CLOUD_API_SECRET=your_cloudinary_api_secret
   ```
 
-  3. Replace the placeholder values (`<your-username>`, `<your-password>`, `<your-database-name>`, `your_jwt_secret`) with your actual MongoDB credentials and JWT secret.
+  3. Replace the placeholder values (`your_mongo_url`, `your_jwt_secret`, `your_cloudinary_cloud_name`, `your_cloudinary_api_key`, `your_jwt_secret`) with your actual credentials.
 
-  - to obtain the `MONGO_URL`, you need to set up a MongoDB database
-  - If you don't have an account already, register on MongoDB Atlas:
+  - MongoDB Setup Instructions:
 
-    - Go to [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) and create a free account.
-    - Create a New Cluster:
-      - Once logged in, click on the "Build a Cluster" button.
-      - Choose a cloud provider (e.g., AWS, Google Cloud, Azure), and select a region that is close to you for better performance.
-      - You can use the free tier cluster, which provides enough resources for development and small projects.
-    - Create a Database User:
-      - After the cluster is set up, you’ll need to create a database user with a username and password.
-      - Navigate to the "Database Access" tab in your cluster and create a new user.
-      - Make sure to save the username and password, as you’ll need these credentials for the `MONGO_URL`.
-    - Obtain the Connection String:
-
-      - Go to the "Clusters" view, and click on the "Connect" button for your cluster.
-      - Select "Drivers" and you will be provided with a connection string similar to this:
-
+    - to obtain the `MONGO_URL`, you need to set up a MongoDB database
+    - If you don't have an account already, register on MongoDB Atlas:
+      - Visit [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) and sign up for a free account.
+      - Create a cluster:
+        - Select a cloud provider and a nearby region.
+        - Use the free tier (sufficient for development).
+      - Create a Database User:
+        - Go to Database Access → Add New Database User
+        - Set a username and password.
+      - Get Your Connection String:
+        - Go to Clusters → Connect → Drivers → Copy the URI, e.g.:
         ```plaintext
         mongodb+srv://<your-username>:<your-password>@cluster0.mongodb.net/<your-database-name>?retryWrites=true&w=majority
         ```
+      - Update the `.env` file with this URL as follows:
+        ```plaintext
+          MONGO_URL=mongodb+srv://<your-username>:<your-password>@atlascluster.ic1x9.mongodb.net/<your-database-name>?retryWrites=true&w=majority
+        ```
 
-    - Update the `.env` File:
-      - Copy the connection string into your `.env` file, replacing the placeholders (`<your-username>`, `<your-password>`, `<your-database-name>`) with your actual database credentials and database name.
+  - Cloudinary Setup Instructions:
+    - If you don’t have a Cloudinary account:
+    - Visit [Cloudinary](https://cloudinary.com/) and create a free account.
+    - Once signed in, navigate to the Dashboard to find your:
+      - Cloud Name
+      - API Key
+      - API Secret
+    - Add these to your .env file as follows:
+    ```plaintext
+    CLOUD_NAME=your_cloud_name
+    CLOUD_API_KEY=your_api_key
+    CLOUD_API_SECRET=your_api_secret
+    ```
 
 #### 3. Start the Development Servers
 
-- Once the dependencies are installed and the `.env` file is configured, you can start both the backend and frontend servers concurrently by running:
+- With the dependencies installed and .env configured, start both frontend and backend servers concurrently:
 
   ```zsh
   npm run dev
@@ -162,7 +172,7 @@ cd hunting-buddy
 
 - The backend server will be running at `http://localhost:5100/` by default, or at the port you specified in the .env file.
 - The frontend server will be available at `http://localhost:5173/`.
-  - If your default web browser doesn't automatically open and navigate to the frontend server, you can manually access the application by visiting `http://localhost:5173/` in any web browser.
+  - If the browser doesn't open automatically, navigate manually to http://localhost:5173/
 
 ## <a name="technologies"></a> 4. Technologies Used
 
@@ -465,63 +475,144 @@ This application was built using the `MERN stack`, an open source–centric coll
 
 ## <a name="deliverables"></a> 5. Deliverables
 
-<!-- ### MVP
+### MVP
+
+1. **User Authentication**
+   - Register, login, logout
+   - Password hashing and validation
+   - Basic session management
+2. **Job Management**
+   - Create, read, update, and delete (CRUD) job applications
+   - Store job attributes: company, position, status, type, location
+   - View all jobs in a list format
+3. **Role-Based Access**
+   - Support for standard user and admin roles
+   - Protected routes and authorization
+4. **Dashboard UI**
+   - Responsive layout with key pages: Add Job, All Jobs, Profile
+   - Navigation via sidebar and navbar
+5. **Form Validation & Error Handling**
+   - Input validation using express-validator
+   - Global error handling middleware
+6. **Backend API**
+   - RESTful API with Express and MongoDB (via Mongoose)
+   - Controllers and routers organized by feature
+7. **Frontend Framework**
+   - React with Vite
+   - Styled-components for modular styling
+8. **Deployment**
+   - Fully deployed on a public domain
 
 ### Potential Extra Features / Stretch Goals
 
-### User Stories -->
+- Advanced Data Visualization
+  - Interactive charts (e.g. job status breakdown) using Recharts
+- Advanced Filtering & Sorting
+  - Sort jobs by date, company, position, and status
+  - Filter by job type, location, and custom criteria
+- Dark Mode Toggle
+  - Theme preference persisted via local storage
+- Admin Panel
+  - Admin-specific tools and access to additional data views
+- Pagination
+  - Improve performance for users with many job entries
+- Demo User Mode
+  - Instant access for demo/testing purposes
+- Profile Customization
+  - Upload profile pictures
+- Accessibility Improvements
+  - ARIA roles, keyboard navigation, and contrast checks
+- React Query Integration
+  - Improve data caching and reduce redundant API calls
+- Cloudinary Integration
+  - Store and manage uploaded images in the cloud
+- Rate Limiting & Security
+  - Helmet, express-rate-limit, and mongo-sanitize for production hardening
+
+### User Stories
+
+#### **Authentication & User Roles**
+
+- As a new user, I should be able to register with my details, so I can start managing my job applications.
+- As a returning user, I should be able to log in securely, so I can access my dashboard and data.
+- As a user, I should remain logged in, so I don’t have to re-enter credentials every time.
+- As a user, I should be able to update my profile information, so I can keep my account details accurate.
+- As an admin user, I should have privileged access, so I can manage admin-specific views and actions.
+
+#### **Job Management**
+
+- As a user, I should be able to add new job applications, so I can keep track of positions I’ve applied for.
+- As a user, I should be able to edit job details, so I can update application statuses or correct information.
+- As a user, I should be able to delete jobs, so I can remove applications that are no longer relevant.
+- As a user, I should be able to view all job applications in a list, so I can get a comprehensive overview.
+- As a user, I should be able to filter and sort jobs, so I can easily find and organise my applications.
+
+#### **Analytics & Insights**
+
+- As a user, I should be able to view my application statistics so I can monitor my application progress.
+- As a user, I should be able to see how many jobs are pending, decline or have an interview scheduled, so I can assess performance.
+
+#### **UI & Performance**
+
+- As a user, I should be able to switch between light and dark mode, so I can choose a theme that suits my environment.
+- As a user, I should be able to load the application quickly, so I can access features without delay.
+- As a user, I should be able to use the app smoothly across different devices, so I can use it on both desktop and mobile.
+- As a user, I should be able to see feedback messages, so I know the result of my actions.
 
 ## <a name="planning"></a> 6. Planning & Build Process
 
-<!-- bronze plan | silver plan | gold plan
+### Wireframe
 
-<img src="" alt="wireframe" width="250"> -->
+<img src="./client/src/assets/images/wireframe/wireframe_1.png" alt="wireframe for landing page, login page and register page" width="650">
+
+<img src="./client/src/assets/images/wireframe/wireframe_2.png" alt="wireframe for jobs page" width="410"> <img src="./client/src/assets/images/wireframe/wireframe_3.png" alt="wireframe for add job page" width="410">
+
+<img src="./client/src/assets/images/wireframe/wireframe_4.png" alt="wireframe for stats page" width="410"> <img src="./client/src/assets/images/wireframe/wireframe_5.png" alt="wireframe for profile page" width="410">
+
+### ERD
+
+<img src="./client/src/assets/images/erd/erd.png" alt="erd" width="500">
 
 ## <a name="challenges"></a> 7. Challenges
 
-- Managing state across various components efficiently
-- Implementing authentication and role-based access control
-- Optimizing API requests for better performance
-- Handling edge cases in form validation and error handling
+- Implementing secure authentication and differentiating user roles (admin vs user) with proper route protection.
+- Adapting to newer routing patterns, especially with loaders and actions, which differed from older implementations.
+- Ensuring form validations were enforced both client-side and server-side without redundancy or conflicts.
+- Managing state efficiently across nested dashboard components while avoiding prop drilling.
 
 ## <a name="wins"></a> 8. Wins
 
-- Successfully implementation of a full-featured job tracking application
-- Improved app performance with React Query and optimized API calls
-- Provided a seamless user experience with a well-structured UI
-- Enabled dark mode toggle for better user accessibility
-- successfully built and structured a RESTful API using Express.js and MongoDB
-- Implemented JWT-based authentication, ensuring secure user sessions
-- Used bcrypt.js for password hashing to enhance security
-
-- Designed a scalable MongoDB schema using Mongoose
-- Implemented data validation at both the database and API level using Express Validator
-
-- Optimized frontend build sizes using Vite for faster performance
-- Successfully deployed a full-stack app using Render and MongoDB Atlas
+- Implemented full CRUD functionality with a clean, intuitive user interface.
+- Developed light/dark theme support with persistent user preferences via local storage and a toggle control.
+- Integrated Recharts to visualize job application statistics and insights.
+- Utilized styled-components and layout wrappers to create modular, reusable, and maintainable UI components.
+- Structured Express backend using controllers, routers, and middleware to ensure clear separation of concerns.
+- Enhanced performance with React Query for efficient data fetching, caching, and background refetching.
+- Enforced robust validation at both the database and API levels using Express Validator.
+- Implemented secure JWT-based authentication to manage user sessions.
+- Deployed the application using Render for the backend and MongoDB Atlas for cloud-hosted database services.
 
 ## <a name="takeaways"></a> 9. Key Learnings & Takeaways
 
-- Understanding the benefits of using Vite over create-react-app
-- Managing state effectively with React Context and local storage
-- Improving backend security with authentication and validation layers
-- Structuring Express routes and controllers for maintainability
-- Enhancing user experience with animations and responsive design
-
-- Gained deeper knowledge of React Router, including nested routes and protected routes
-- Learned how to use React Query to optimize data fetching and reduce redundant API calls
-- Built custom React hooks to manage repetitive logic and improve code reusability
-
-- Learned to use Styled Components to write CSS-in-JS, making styling more modular, reusable, and maintainable
-- Enhanced UI structure by using Wrapper components for consistent layout management
-- Learned the importance of role-based authentication (RBAC) for managing user permissions
-- Learned how to efficiently filter, paginate, and sort database queries
-- Implemented custom error classes to handle errors consistently across the application
-- Gained a better understanding of handling asynchronous errors in Express using express-async-errors
+- Gained a clear understanding of the advantages of using Vite over Create React App, particularly in terms of build speed and developer experience.
+- Recognized the value of design systems: establishing global styles and component wrappers early accelerated development and enhanced visual consistency.
+- Developed custom React hooks to abstract repetitive logic and promote code reusability across components.
+- Learned the significance of implementing role-based access control for managing user permissions securely and effectively.
+- Discovered the power of React Query in improving perceived performance and simplifying async data management.
+- Emphasized the importance of centralized error handling, using shared backend middleware and frontend notifications to create a seamless user experience.
+- Reinforced the critical role of validation, combining backend checks via express-validator with client-side form validation to ensure data integrity.
+- Experienced how routing architecture affects user experience: creating nested routes and layout components in React Router to maintain a clean, scalable structure.
 
 ## <a name="future-improvements"></a> 10. Future Improvements
 
-- more themes in addition to light/dark theme to customise app
+- Accessibility Audits
+  - Add keyboard navigation, screen reader support, and ARIA roles for inclusivity.
+- Testing Suite
+  - Add unit and integration tests using tools like Jest, React Testing Library, and Supertest for backend.
+- User Notifications
+  - Add email notifications or reminders for follow-ups on pending applications.
+- Multitenancy/Teams
+  - Enable job tracking across multiple users/teams for collaborative job hunting.
 
 <!--
 

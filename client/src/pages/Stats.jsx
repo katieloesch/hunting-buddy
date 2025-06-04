@@ -4,23 +4,6 @@ import customFetch from '../utils/customFetch';
 import { useLoaderData } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 
-// export const loader = async () => {
-//   try {
-//     const response = await customFetch.get('/jobs/stats');
-//     return response.data;
-//   } catch (error) {
-//     return error;
-//   }
-// };
-
-// fixing npm run build issue
-// export const loader = () => {
-//   return customFetch
-//     .get('/jobs/stats')
-//     .then((response) => response.data)
-//     .catch((error) => error);
-// };
-
 const statsQuery = {
   queryKey: ['stats'],
   queryFn: async () => {

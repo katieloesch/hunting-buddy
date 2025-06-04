@@ -8,30 +8,6 @@ import { FormBtnSubmit, FormInput, FormSelect } from '../components';
 import { JOB_STATUS, JOB_TYPE } from '../../../utils/constants';
 import customFetch from '../utils/customFetch';
 
-// export const loader = async ({ params }) => {
-//   try {
-//     const { data } = await customFetch.get(`/jobs/${params.jobId}`);
-//     return data;
-//   } catch (error) {
-//     toast.error(error?.response?.data?.msg);
-//     return redirect('/dashboard/all-jobs');
-//   }
-// };
-
-// export const action = async ({ request, params }) => {
-//   const formData = await request.formData();
-//   const data = Object.fromEntries(formData);
-
-//   try {
-//     await customFetch.patch(`/jobs/${params.jobId}`, data);
-//     toast.success('Job edited successfully!');
-//     return redirect('/dashboard/all-jobs');
-//   } catch (error) {
-//     toast.error(error?.response?.data?.msg);
-//     return error;
-//   }
-// };
-
 const singleJobQuery = (id) => {
   return {
     queryKey: ['job', id],
@@ -41,8 +17,6 @@ const singleJobQuery = (id) => {
     },
   };
 };
-
-// fixing npm run build issue
 
 export const loader =
   (queryClient) =>
