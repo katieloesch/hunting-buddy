@@ -44,8 +44,7 @@ On the client side, users can manage job applications via a responsive dashboard
 <br>
 The backend provides a RESTful API built with Express and Mongoose, supporting full CRUD functionality. Validation and error handling are managed using express-validator and custom middleware. Performance is optimised with React Query for efficient data fetching, along with lazy loading and route-based code splitting.
 
-<br>
-
+<br></br>
 <img src="./client/src/assets/images/screenshots/screenshot_light_mode.png" alt="screenshot of all jobs page light mode" height="270"> <img src="./client/src/assets/images/screenshots/screenshot_dark_mode.png" alt="screenshot of all jobs page dark mode" height="270"><br><img src="./client/src/assets/images/screenshots/screenshot_pagination.png" alt="screenshot of all jobs pagination" height="269"> <img src="./client/src/assets/images/screenshots/screenshot_profile.png" alt="screenshot of stats page" height="269"><br><img src="./client/src/assets/images/screenshots/screenshot_stats_1.png" alt="screenshot of stats page" height="270"> <img src="./client/src/assets/images/screenshots/screenshot_stats_2.png" alt="screenshot of stats page" height="270"><br>
 <img src="./client/src/assets/images/screenshots/screenshot_admin.png" alt="screenshot of admin page" height="270">
 
