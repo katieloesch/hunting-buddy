@@ -31,9 +31,7 @@
 
 ## <a name="description"></a> 1. Description
 
-<img src="./client/src/assets/images/screenshots/screenshot_landing_page.png" alt="screenshot of landing page" width="604">
-<br>
-<img src="./client/src/assets/images/screenshots/screenshot_register.png" alt="screenshot of register form" width="296">&nbsp;&nbsp;<img src="./client/src/assets/images/screenshots/screenshot_login.png" width="300">
+<img src="./client/src/assets/images/screenshots/screenshot_landing_page.png" alt="screenshot of landing page" width="700"><br><img src="./client/src/assets/images/screenshots/screenshot_register.png" alt="screenshot of register form" height="253"> <img src="./client/src/assets/images/screenshots/screenshot_login.png" height="253">
 
 <br>
 A full-stack job application management platform designed to help users track their job search efficiently.
@@ -47,10 +45,9 @@ On the client side, users can manage job applications via a responsive dashboard
 The backend provides a RESTful API built with Express and Mongoose, supporting full CRUD functionality. Validation and error handling are managed using express-validator and custom middleware. Performance is optimised with React Query for efficient data fetching, along with lazy loading and route-based code splitting.
 
 <br>
-<img src="./client/src/assets/images/screenshots/screenshot_light_mode.png" alt="screenshot of all jobs page light mode" height="250">&nbsp;&nbsp;<img src="./client/src/assets/images/screenshots/screenshot_dark_mode.png" alt="screenshot of all jobs page dark mode" height="250"><br>
-<img src="./client/src/assets/images/screenshots/screenshot_pagination.png" alt="screenshot of all jobs pagination" height="250">&nbsp;&nbsp;<img src="./client/src/assets/images/screenshots/screenshot_profile.png" alt="screenshot of stats page" height="250"><br>
-<img src="./client/src/assets/images/screenshots/screenshot_stats_1.png" alt="screenshot of stats page" height="250">&nbsp;&nbsp;<img src="./client/src/assets/images/screenshots/screenshot_stats_2.png" alt="screenshot of stats page" height="250"><br>
-<img src="./client/src/assets/images/screenshots/screenshot_admin.png" alt="screenshot of admin page" height="250">
+
+<img src="./client/src/assets/images/screenshots/screenshot_light_mode.png" alt="screenshot of all jobs page light mode" height="280"> <img src="./client/src/assets/images/screenshots/screenshot_dark_mode.png" alt="screenshot of all jobs page dark mode" height="280"><br><img src="./client/src/assets/images/screenshots/screenshot_pagination.png" alt="screenshot of all jobs pagination" height="279"> <img src="./client/src/assets/images/screenshots/screenshot_profile.png" alt="screenshot of stats page" height="279"><br><img src="./client/src/assets/images/screenshots/screenshot_stats_1.png" alt="screenshot of stats page" height="280"> <img src="./client/src/assets/images/screenshots/screenshot_stats_2.png" alt="screenshot of stats page" height="280"><br>
+<img src="./client/src/assets/images/screenshots/screenshot_admin.png" alt="screenshot of admin page" height="280">
 
 ## <a name="deployment-link"></a> 2. Deployment Link
 
