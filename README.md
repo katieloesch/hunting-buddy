@@ -31,8 +31,11 @@
 
 ## <a name="description"></a> 1. Description
 
-<img src="./client/src/assets/images/screenshots/screenshot_landing_page.png" alt="landing page" width="600">
+<img src="./client/src/assets/images/screenshots/screenshot_landing_page.png" alt="screenshot of landing page" width="604">
+<br>
+<img src="./client/src/assets/images/screenshots/screenshot_register.png" alt="screenshot of register form" width="296">&nbsp;&nbsp;<img src="./client/src/assets/images/screenshots/screenshot_login.png" width="300">
 
+<br>
 A full-stack job application management platform designed to help users track their job search efficiently.
 
 <br>Built with React, Vite, Node.js, Express, and MongoDB, the app features authentication with hashed passwords, input validation, and session management. Role-based access control distinguishes permissions between standard users and admins.
@@ -44,10 +47,10 @@ On the client side, users can manage job applications via a responsive dashboard
 The backend provides a RESTful API built with Express and Mongoose, supporting full CRUD functionality. Validation and error handling are managed using express-validator and custom middleware. Performance is optimised with React Query for efficient data fetching, along with lazy loading and route-based code splitting.
 
 <br>
-
-<img src="./client/src/assets/images/screenshots/screenshot_light_mode.png" alt="screenshot of all jobs page light mode" width="600">
-
-<img src="./client/src/assets/images/screenshots/screenshot_dark_mode.png" alt="screenshot of all jobs page dark mode" width="600">
+<img src="./client/src/assets/images/screenshots/screenshot_light_mode.png" alt="screenshot of all jobs page light mode" height="250">&nbsp;&nbsp;<img src="./client/src/assets/images/screenshots/screenshot_dark_mode.png" alt="screenshot of all jobs page dark mode" height="250"><br>
+<img src="./client/src/assets/images/screenshots/screenshot_pagination.png" alt="screenshot of all jobs pagination" height="250">&nbsp;&nbsp;<img src="./client/src/assets/images/screenshots/screenshot_profile.png" alt="screenshot of stats page" height="250"><br>
+<img src="./client/src/assets/images/screenshots/screenshot_stats_1.png" alt="screenshot of stats page" height="250">&nbsp;&nbsp;<img src="./client/src/assets/images/screenshots/screenshot_stats_2.png" alt="screenshot of stats page" height="250"><br>
+<img src="./client/src/assets/images/screenshots/screenshot_admin.png" alt="screenshot of admin page" height="250">
 
 ## <a name="deployment-link"></a> 2. Deployment Link
 
