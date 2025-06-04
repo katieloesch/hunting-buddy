@@ -9,15 +9,11 @@ import { Logo } from '../components';
 const Landing = () => {
   return (
     <Wrapper>
-      <nav>
-        <Logo section='landing' />
-      </nav>
-
       <div className='container page'>
         <div className='info'>
-          <h1>
-            Your Personal <span>Job Application Tracker </span>
-          </h1>
+          <Logo section='landing' />
+
+          <h1>Your Personal Job Application Tracker</h1>
 
           <div className='description'>
             {txt.description.map((paragraph, index) => (
@@ -28,7 +24,6 @@ const Landing = () => {
           <Link to='register' className='btn register-link'>
             Register
           </Link>
-
           <Link to='login' className='btn login-link'>
             Login / Demo User
           </Link>

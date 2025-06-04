@@ -29,29 +29,20 @@
 
 ## <a name="description"></a> 1. Description
 
-The goal of this project was to develop a full-stack job application management platform that supports users in tracking their job search while deepening practical understanding of the MERN stack.
-
-<br>Built with React, Vite, Node.js, Express, and MongoDB, the application includes secure user authentication with hashed passwords, input validation, and session management. It features role-based access control, allowing for differentiated permissions between admin and standard users. <br> Users can manage job applications through a responsive dashboard, which includes advanced filtering, sorting, and visual analytics powered by Recharts. The interface is styled using styled-components to promote modularity and responsiveness, with support for both light and dark themes. <br> On the backend, a RESTful API is implemented using Express and Mongoose, offering full CRUD functionality. Input validation and error handling are managed via express-validator and custom middleware to ensure data integrity. Performance is enhanced through the use of React Query for optimized data fetching and caching, combined with lazy loading and route-based code splitting.
-
 <!--
 <img src="" alt="" width="250">
 
-image source: []()
-
-
-Features
-User Authentication: Users can sign up, log in, and log out.
-CRUD Operations: Users can create, read, update, and delete [data type, e.g., posts, profiles, etc.].
-Responsive Design: The frontend is fully responsive and works well on all devices.
-Real-time Updates: [Optional if applicable, e.g., WebSocket integration].
-
-MERN -> react frontend, backend based in express, mongoDB and node.js
-
-- full crud functionality
-- authentication
-- responsive design, styled components
-
  -->
+
+A full-stack job application management platform designed to help users track their job search efficiently.
+
+<br>Built with React, Vite, Node.js, Express, and MongoDB, the app features authentication with hashed passwords, input validation, and session management. Role-based access control distinguishes permissions between standard users and admins.
+
+<br>
+On the client side, users can manage job applications via a responsive dashboard that includes advanced filtering, sorting, and data visualisation with Recharts. The responsive interface was created using styled-components and includes a light/dark theme toggle.
+
+<br>
+The backend provides a RESTful API built with Express and Mongoose, supporting full CRUD functionality. Validation and error handling are managed using express-validator and custom middleware. Performance is optimised with React Query for efficient data fetching, along with lazy loading and route-based code splitting.
 
 ## <a name="deployment-link"></a> 2. Deployment Link
 
@@ -73,15 +64,13 @@ MERN -> react frontend, backend based in express, mongoDB and node.js
 
 #### 2. Clone the repository:
 
-- Run the following commandn in your terminal to clone the repository:
-
 ```zsh
 git clone https://github.com/katieloesch/hunting-buddy.git
 ```
 
 #### 3. Navigate to the project directory:
 
-- Change into the project directory to install the necessary dependencies:
+- Navigate into the project directory to install the necessary dependencies:
 
 ```zsh
 cd hunting-buddy

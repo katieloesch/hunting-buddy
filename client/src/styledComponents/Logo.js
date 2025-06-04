@@ -11,6 +11,7 @@ const Wrapper = styled.section`
   }
 
   .logo-txt {
+    /* font-family: var(--font-editorial); */
     color: var(--primary-500);
     font-weight: 600;
     padding-left: 10px;
@@ -21,6 +22,36 @@ const Wrapper = styled.section`
   .logo-icon {
     width: 50px;
     height: 50px;
+    color: white;
+    border-radius: 50%;
+    background-color: var(--primary-500);
+
+    svg {
+      width: 100%;
+      height: 100%;
+      padding: 9px;
+    }
+  }
+  /* landing page logo */
+  .logo.landing {
+    /* border: 2px solid pink; */
+    width: auto;
+    justify-content: flex-start;
+    margin-bottom: 15px;
+  }
+
+  .logo.landing .logo-txt {
+    /* font-family: var(--font-editorial); */
+    color: var(--primary-500);
+    font-weight: 700;
+    padding-left: 10px;
+    letter-spacing: var(--letter-spacing);
+    font-size: clamp(1.35rem, 2.4vw, 2.8rem);
+  }
+
+  .landing .logo-icon {
+    width: clamp(42px, 3.8vw, 63px);
+    height: clamp(42px, 3.8vw, 63px);
     color: white;
     border-radius: 50%;
     background-color: var(--primary-500);
