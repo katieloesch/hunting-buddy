@@ -1,14 +1,16 @@
 # Hunting Buddy - Job Application Tracker App
 
-<!-- <img src="./client/src/assets/images/forms_2.jpg" alt="job application forms" width="420">
+<!--
+<img src="./client/src/assets/images/forms_2.jpg" alt="job application forms" width="420">
 
-<sub>image source: [Pixabay](https://pixabay.com/illustrations/application-pen-write-writing-tool-1915343/)</sub> -->
+<sub>image source: [Pixabay](https://pixabay.com/illustrations/application-pen-write-writing-tool-1915343/)</sub>
+
 
 <img src="./client/src/assets/images/job_hunt.jpg" alt="job application forms" width="500">
 
 <sub>image source: [Unblast](https://unblast.com/job-hunting-illustration-ai/)</sub>
 
-<!-- <img src="./client//src//assets/images/job_search_tool.jpg" alt="job search tool" width="400">
+<img src="./client//src//assets/images/job_search_tool.jpg" alt="job search tool" width="400">
 
 <sub>image source: [Pixabay](https://pixabay.com/photos/trousers-pocket-note-wrench-job-1255851/)</sub> -->
 
@@ -29,10 +31,7 @@
 
 ## <a name="description"></a> 1. Description
 
-<!--
-<img src="" alt="" width="250">
-
- -->
+<img src="./client/src/assets/images/screenshots/screenshot_landing_page.png" alt="landing page" width="600">
 
 A full-stack job application management platform designed to help users track their job search efficiently.
 
@@ -43,6 +42,12 @@ On the client side, users can manage job applications via a responsive dashboard
 
 <br>
 The backend provides a RESTful API built with Express and Mongoose, supporting full CRUD functionality. Validation and error handling are managed using express-validator and custom middleware. Performance is optimised with React Query for efficient data fetching, along with lazy loading and route-based code splitting.
+
+<br>
+
+<img src="./client/src/assets/images/screenshots/screenshot_light_mode.png" alt="screenshot of all jobs page light mode" width="600">
+
+<img src="./client/src/assets/images/screenshots/screenshot_dark_mode.png" alt="screenshot of all jobs page dark mode" width="600">
 
 ## <a name="deployment-link"></a> 2. Deployment Link
 
@@ -387,6 +392,11 @@ This application was built using the `MERN stack`, an open source–centric coll
     - <sub> [website](https://react-icons.github.io/react-icons/)</sub>
     - <sub>[GitHub repository](https://github.com/react-icons/react-icons)</sub>
     - <sub>[license](https://github.com/react-icons/react-icons/blob/master/LICENSE)</sub>
+- **Font**
+
+  - **Urbanist** designed by Corey Hu
+    - <sub>[Google Fonts](https://fonts.google.com/specimen/Urbanist)</sub>
+
 - **Images**
   - **Pixabay**
     - <sub>A free stock photo and media platform offering a vast library of images, videos and music.</sub>
